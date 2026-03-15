@@ -649,6 +649,7 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
   <div class="syn-row">
     <div class="syn-lbl">Moon Phase</div>
     <div class="moon-chips" id="mChips"></div>
+    <div id="synthMoonName" style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;color:var(--black);margin:12px 0 6px;">—</div>
     <div class="phase-grade-row">
       <div class="phase-grade-num" id="synthMoonGrade">—</div>
       <div class="phase-grade-meta">
@@ -946,6 +947,7 @@ function loadDate(){
   buildBiasWhy(en, ed, sign, phase, day);
 
   document.getElementById('synthMoon').textContent=phase.mkt;
+  document.getElementById('synthMoonName').textContent=phase.name;
   const mgEl=document.getElementById('synthMoonGrade');
   mgEl.textContent=phase.grade||'—';
   mgEl.style.color=phase.gradeColor||'#333';
@@ -1112,6 +1114,7 @@ function previewMoonChip(i){
   });
   document.getElementById('mGlyph').textContent=p.sym;
   document.getElementById('mPhase').textContent=p.name.toUpperCase();
+  document.getElementById('synthMoonName').textContent=p.name;
   document.getElementById('synthMoonGrade').textContent=p.grade;
   document.getElementById('synthMoonGrade').style.color=p.gradeColor;
   document.getElementById('synthMoonType').textContent=p.energyType;
