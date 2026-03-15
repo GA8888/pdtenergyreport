@@ -176,10 +176,11 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
 }
 
 /* ─── ENERGY ─── */
-.energy-hero{display:flex;align-items:flex-start;gap:20px;margin-bottom:20px;flex-wrap:wrap;}
+.energy-hero{display:flex;align-items:center;gap:0;margin-bottom:12px;border:1px solid var(--rule);}
 .e-num{
-  font-family:'Cormorant Garamond',serif;font-size:clamp(80px,13vw,110px);font-weight:600;
-  line-height:0.9;color:var(--black);min-width:64px;text-align:center;flex-shrink:0;
+  font-family:'Cormorant Garamond',serif;font-size:clamp(64px,11vw,88px);font-weight:600;
+  line-height:1;color:var(--black);width:88px;min-width:88px;text-align:center;flex-shrink:0;
+  padding:16px 0;border-right:1px solid var(--rule);
 }
 .e-num.master{color:var(--gold);}
 .type-badge{
@@ -197,10 +198,10 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
 .type-badge.technical{color:var(--blue);border-color:var(--blue);background:#e8f0f8;}
 .type-badge.trap{color:var(--amber);border-color:var(--amber);background:#fdf3e7;}
 .type-badge.reversal{color:var(--red);border-color:var(--red);background:#faeaea;}
-.e-info{}
-.e-name{font-family:'DM Sans',sans-serif;font-size:clamp(18px,3vw,24px);font-style:italic;color:var(--black);margin-bottom:4px;line-height:1.1;}
-.e-kw{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
-.e-desc{font-size:15px;color:var(--mid);line-height:1.8;border-left:2px solid var(--rule);padding-left:12px;max-width:560px;}
+.e-info{padding:14px 16px;flex:1;}
+.e-name{font-family:'DM Sans',sans-serif;font-size:clamp(17px,3vw,22px);font-style:italic;color:var(--black);margin-bottom:4px;line-height:1.1;}
+.e-kw{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:0;margin-top:6px;}
+.e-desc{display:none;}
 .e-market{
   background:var(--off);border-left:2px solid var(--dark);
   padding:12px 14px;font-size:15px;color:var(--mid);line-height:1.75;margin-bottom:18px;
@@ -283,12 +284,42 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
   color:var(--muted);
   line-height:1;
 }
+.elem-chips{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:0;
+  border:1px solid var(--rule);
+  width:100%;
+  margin-top:12px;
+}
+.elem-chip{
+  cursor:pointer;
+  transition:all .15s;
+  user-select:none;
+  text-align:center;
+  padding:10px 4px 8px;
+  border-right:1px solid var(--rule);
+  background:#fff;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+}
+.elem-chip:last-child{border-right:none;}
+.elem-chip:hover{background:var(--off);}
+.elem-chip.active{background:var(--black);}
+.elem-chip.active .ec-name{color:#fff;}
+.elem-chip.active .ec-sym{filter:brightness(5);}
+.elem-chip.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--black);}
+.ec-sym{font-size:22px;line-height:1;}
+.ec-name{font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:600;}
 
 /* ─── MOON ─── */
-.moon-top{display:flex;align-items:center;gap:16px;padding-bottom:20px;border-bottom:1px solid var(--rule);margin-bottom:20px;flex-wrap:wrap;}
-.moon-glyph{font-size:clamp(40px,7vw,58px);line-height:1;}
-.moon-sign{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(26px,4vw,36px);color:var(--black);margin-bottom:4px;}
-.moon-phase-lbl{font-size:7px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.moon-top{display:flex;align-items:center;gap:0;margin-bottom:20px;border:1px solid var(--rule);}
+.moon-glyph{font-size:clamp(48px,8vw,64px);line-height:1;width:88px;min-width:88px;text-align:center;flex-shrink:0;padding:16px 0;border-right:1px solid var(--rule);}
+.moon-sign{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(24px,4vw,32px);color:var(--black);margin-bottom:4px;}
+.moon-phase-lbl{font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
 .etag{display:inline-block;font-size:7px;letter-spacing:2px;text-transform:uppercase;font-weight:500;padding:2px 8px;border:1px solid;}
 .etag.fire{color:#c0392b;border-color:#c0392b;}
 .etag.earth{color:#27ae60;border-color:#27ae60;}
@@ -535,39 +566,49 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
   <div class="date-center">
     <span id="dayLabel">—</span>
     <input type="date" id="dateInput" onchange="loadDate()">
-    <div class="date-sub">
-      <div class="datebar-meta">
-        <div class="db-label">Day Ruler</div>
-        <div class="db-val" id="sRuler">—</div>
-      </div>
-      <div class="datebar-meta">
-        <div class="db-label">Moon Phase</div>
-        <div class="db-val" id="sPhase">—</div>
-      </div>
-    </div>
   </div>
   <button class="arr" onclick="shiftDate(1)">→</button>
 </div>
 
-<!-- TRADE METRIC CARDS -->
-<div class="trade-cards">
-  <div class="tc">
-    <div class="tc-label">Energy</div>
-    <div class="tc-main" id="tcENum">—</div>
-    <div class="tc-sub" id="tcEName">—</div>
-    <span class="tc-tag" id="tcEType">—</span>
+<!-- DAILY SNAPSHOT CARD -->
+<div id="snapshotCard" style="margin:20px 16px;border:1px solid var(--rule);background:#fff;">
+  <div style="padding:12px 16px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;">
+    <span style="font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);">Daily Snapshot</span>
+    <span id="snapTRS" style="font-size:11px;font-weight:600;color:#000;"></span>
   </div>
-  <div class="tc">
-    <div class="tc-label">Moon Sign</div>
-    <div class="tc-main" id="tcMSign">—</div>
-    <div class="tc-sub" id="tcMMkt">—</div>
-    <span class="tc-tag" id="tcMElem">—</span>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--rule);">
+    <div style="background:#fff;padding:14px 16px;">
+      <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Energy</div>
+      <div style="display:flex;align-items:baseline;gap:8px;">
+        <span id="snapENum" style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;line-height:1;color:#000;">—</span>
+        <span id="snapEName" style="font-size:15px;font-style:italic;color:#000;">—</span>
+      </div>
+      <div id="snapEBadge" style="margin-top:6px;"></div>
+    </div>
+    <div style="background:#fff;padding:14px 16px;">
+      <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Day Ruler</div>
+      <div id="snapRuler" style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:#000;">—</div>
+      <div id="snapRulerQ" style="font-size:11px;color:var(--muted);margin-top:2px;">—</div>
+    </div>
+    <div style="background:#fff;padding:14px 16px;">
+      <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Moon</div>
+      <div id="snapMoon" style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:#000;">—</div>
+      <div id="snapMoonSub" style="font-size:11px;color:var(--muted);margin-top:2px;">—</div>
+    </div>
+    <div style="background:#fff;padding:14px 16px;">
+      <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Phase</div>
+      <div id="snapPhaseVal" style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:#000;">—</div>
+      <div id="snapPhaseSub" style="font-size:11px;margin-top:2px;">—</div>
+    </div>
   </div>
-  <div class="tc">
-    <div class="tc-label">Planetary Alignment</div>
-    <div class="tc-main" id="tcPAlign">—</div>
-    <div class="tc-sub" id="tcPMkt">—</div>
-    <span class="tc-tag" id="tcPRel">—</span>
+  <!-- Alignment full width -->
+  <div style="padding:14px 16px;border-top:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;">
+    <div>
+      <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Planetary Alignment</div>
+      <div id="snapAlignVal" style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:#000;">—</div>
+      <div id="snapAlignMkt" style="font-size:12px;color:var(--muted);margin-top:2px;">—</div>
+    </div>
+    <div id="snapAlignGradeBig" style="font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:600;line-height:1;"></div>
   </div>
 </div>
 
@@ -580,7 +621,6 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
       <div class="e-name" id="eName">—</div>
       <span class="type-badge" id="typeBadge">—</span>
       <div class="e-kw" id="eKw">—</div>
-      <div class="e-desc" id="eDesc">—</div>
     </div>
   </div>
   <div class="e-market" id="eMarket">—</div>
@@ -592,7 +632,7 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
   <div class="sec-label">Moon Sign · Phase · Planetary Rulers</div>
   <div class="moon-top">
     <div class="moon-glyph" id="mGlyph">🌕</div>
-    <div>
+    <div style="padding:14px 16px;flex:1;">
       <div class="moon-sign" id="mSign">—</div>
       <div class="moon-phase-lbl" id="mPhase">—</div>
       <span class="etag" id="eTag">—</span>
@@ -623,23 +663,59 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
     <div class="rel-col"><div class="rel-lbl re">Enemies</div><div class="rel-items" id="rEnemy">—</div></div>
   </div>
   <div class="elem-note" id="elemNote">—</div>
+  <div class="elem-chips" id="elemChips"></div>
   <div id="alignGradeBanner" style="display:none;margin-top:12px;padding:14px 16px;border-left:3px solid var(--gold);background:#fafafa;"></div>
+
+  <!-- Planetary Hours Drawer -->
+  <div style="margin-top:12px;border:1px solid var(--rule);">
+    <button onclick="togglePHours()" id="pHoursBtn" style="width:100%;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#fff;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;">
+      <span style="font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);">Planetary Hours</span>
+      <span id="pHoursArrow" style="font-size:12px;color:var(--muted);">↓</span>
+    </button>
+    <div id="pHoursPanel" style="display:none;padding:0 16px 16px;">
+      <!-- Current Hour -->
+      <div id="pHourCurrent" style="padding:14px 0 10px;border-bottom:1px solid var(--rule);"></div>
+      <!-- Session Table -->
+      <div style="margin-top:12px;">
+        <div style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">NY AM Session · 9:30 – 4:00</div>
+        <div id="pHoursTable"></div>
+      </div>
+      <!-- Sunrise input -->
+      <div style="margin-top:14px;display:flex;align-items:center;gap:10px;">
+        <span style="font-size:11px;color:var(--muted);">Sunrise</span>
+        <input type="time" id="sunriseInput" value="06:30" onchange="buildPHours()" style="font-family:'DM Sans',sans-serif;font-size:13px;border:1px solid var(--rule);padding:4px 8px;background:#fff;color:#000;">
+      </div>
+    </div>
+  </div>
+
+  <!-- Planet Relations Chart Drawer -->
+  <div style="margin-top:0;border:1px solid var(--rule);border-top:none;">
+    <button onclick="togglePRelations()" id="pRelBtn" style="width:100%;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#fff;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;">
+      <span style="font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);">Planet Relations</span>
+      <span id="pRelArrow" style="font-size:12px;color:var(--muted);">↓</span>
+    </button>
+    <div id="pRelPanel" style="display:none;"></div>
+  </div>
 </div>
 
 <!-- SYNTHESIS -->
 <div class="section">
   <div class="sec-label">Daily Synthesis</div>
   <div class="syn-row">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
-      <div class="syn-lbl">Overall Bias</div>
-      <button class="why-toggle" onclick="toggleBiasWhy()" id="biasWhyBtn" style="font-size:7px;">WHY ↓</button>
+    <div class="syn-lbl">Trade Readiness Score</div>
+    <div style="display:flex;align-items:flex-end;gap:16px;margin:10px 0 8px;">
+      <div id="trsScore" style="font-family:'Cormorant Garamond',serif;font-size:72px;font-weight:600;line-height:1;color:#000;">—</div>
+      <div style="padding-bottom:10px;">
+        <div id="trsLabel" style="font-size:15px;font-weight:600;color:#000;margin-bottom:2px;">—</div>
+        <div id="trsTag" style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);">—</div>
+      </div>
     </div>
-    <div class="bias-big" id="synthBias">—</div>
-    <div id="synthBadge" style="margin-bottom:8px;"></div>
-    <!-- Bias Why Panel -->
-    <div id="biasWhyPanel" style="display:none;margin-top:8px;">
-      <div class="why-grid" id="biasWhyGrid"></div>
+    <!-- Score bar -->
+    <div style="height:6px;background:var(--rule);border-radius:0;margin-bottom:12px;overflow:hidden;">
+      <div id="trsBar" style="height:100%;width:0%;transition:width .6s ease;background:#000;"></div>
     </div>
+    <!-- Factor breakdown -->
+    <div id="trsFactors" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"></div>
   </div>
   <div class="syn-row">
     <div class="syn-lbl">Energy Read</div>
@@ -648,7 +724,6 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
 
   <div class="syn-row">
     <div class="syn-lbl">Moon Phase</div>
-    <div class="moon-chips" id="mChips"></div>
     <div id="synthMoonName" style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;color:var(--black);margin:12px 0 6px;">—</div>
     <div class="phase-grade-row">
       <div class="phase-grade-num" id="synthMoonGrade">—</div>
@@ -658,6 +733,7 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
       </div>
     </div>
     <div class="syn-txt" id="synthMoon">—</div>
+    <div class="moon-chips" id="mChips" style="margin-top:16px;"></div>
   </div>
 </div>
 
@@ -702,20 +778,23 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
 </div>
 
 <!-- NEWS -->
-<div class="section" style="border-bottom:1px solid var(--rule);">
-  <div class="sec-label">Alignment</div>
-  <div style="max-width:560px;margin:0 auto;text-align:center;padding:12px 0 28px;">
-    <p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:400;line-height:2;color:var(--black);margin:0 0 28px;">
-      News is checked. <strong>ENERGY</strong> is checked. Levels are checked.<br>
-      Now it's time to check the greatest indicator&nbsp;—&nbsp;<strong>yourself. Your CELLS.</strong><br><br>
-      Take 3 minutes before market opens and breathe in and out through your nose,<br>
-      eyes closed, no sound. Just aligned <strong>ENERGY.</strong>
-    </p>
-    <div style="border-top:1px solid var(--rule);padding-top:24px;">
-      <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:14px;line-height:1.9;color:var(--black);margin:0;">
+<div style="background:#000;padding:40px 24px;">
+  <div style="max-width:560px;margin:0 auto;">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:#fff;line-height:1.4;">
+      <div style="margin-bottom:20px;">News is checked.</div>
+      <div style="margin-bottom:20px;"><strong>ENERGY</strong> is checked.</div>
+      <div style="margin-bottom:20px;">Levels are checked.</div>
+      <div style="margin-bottom:20px;">Now check the greatest indicator —</div>
+      <div style="margin-bottom:40px;"><strong>yourself. Your CELLS.</strong></div>
+      <div style="margin-bottom:20px;">Take 3 minutes before market opens.</div>
+      <div style="margin-bottom:20px;">Breathe in and out through your nose.</div>
+      <div style="margin-bottom:40px;">Eyes closed. No sound. Just aligned <strong>ENERGY.</strong></div>
+    </div>
+    <div style="border-top:1px solid #333;padding-top:28px;text-align:center;">
+      <p style="font-family:'Playfair Display',serif;font-style:italic;font-size:15px;line-height:2;color:#aaa;margin:0;">
         &ldquo;Thank you for a calm spirit, a clear mind,<br>
-        the <strong style="font-style:normal;letter-spacing:1px;">PATIENCE</strong> to stay <strong style="font-style:normal;letter-spacing:1px;">DISCIPLINED</strong>,<br>
-        and the divine <strong style="font-style:normal;letter-spacing:1px;">TIMING</strong> to act.&rdquo;
+        the <strong style="font-style:normal;letter-spacing:2px;color:#fff;">PATIENCE</strong> to stay <strong style="font-style:normal;letter-spacing:2px;color:#fff;">DISCIPLINED</strong>,<br>
+        and the divine <strong style="font-style:normal;letter-spacing:2px;color:#fff;">TIMING</strong> to act.&rdquo;
       </p>
     </div>
   </div>
@@ -857,7 +936,7 @@ function loadDate(){
   if(ed.type){tb.textContent=typeLabels[ed.type]||ed.type;tb.className='type-badge '+ed.type;tb.style.display='inline-block';}
   else{tb.style.display='none';}
   document.getElementById('eKw').textContent=ed.kw;
-  document.getElementById('eDesc').textContent=ed.desc;
+  const edEl=document.getElementById('eDesc');if(edEl)edEl.textContent=ed.desc;
   document.getElementById('eMarket').textContent=ed.market;
 
   // Chips
@@ -920,6 +999,23 @@ function loadDate(){
   const en2=document.getElementById('elemNote');
   en2.textContent=elem.mkt;en2.className='elem-note '+elem.cls;
 
+  // Element chips
+  const ELEM_DATA=[
+    {key:'fire', sym:'🔥', name:'Fire', color:'#c0392b'},
+    {key:'earth',sym:'🌍', name:'Earth',color:'#27ae60'},
+    {key:'air',  sym:'💨', name:'Air',  color:'#2980b9'},
+    {key:'water',sym:'💧', name:'Water',color:'#8e44ad'},
+  ];
+  const eChipsEl=document.getElementById('elemChips');
+  eChipsEl.innerHTML='';
+  ELEM_DATA.forEach((e,i)=>{
+    const c=document.createElement('div');
+    c.className='elem-chip'+(sign.elem===e.key?' active':'');
+    c.innerHTML=`<span class="ec-sym">${e.sym}</span><span class="ec-name" style="color:${sign.elem===e.key?'#fff':e.color};">${e.name}</span>`;
+    c.onclick=()=>previewElemChip(i, ELEM_DATA);
+    eChipsEl.appendChild(c);
+  });
+
   // Alignment Grade Banner
   const agEl=document.getElementById('alignGradeBanner');
   if(agEl){
@@ -937,14 +1033,65 @@ function loadDate(){
       (ag&&ag.style?'<div style="font-size:12px;color:var(--muted);margin-top:2px;">Best style: '+ag.style+'</div>':'');
   }
 
-  // Synthesis
-  document.getElementById('synthBias').textContent=ed.bias;
-  document.getElementById('synthBadge').innerHTML=`<span class="badge ${ed.badge}">${ed.bias}</span>`;
+  // ── TRADE READINESS SCORE ──
+  // Factor 1: Energy Number (0-25)
+  const enScore = [1,3,8,22].includes(en)?25:[6,4].includes(en)?18:[11].includes(en)?12:[2,5,7].includes(en)?8:[9,33].includes(en)?5:10;
+  const enLabel = [1,3,8,22].includes(en)?'Strong trending energy':[6,4].includes(en)?'Structured day':[11].includes(en)?'Sensitive — trade light':[2,5,7].includes(en)?'Trap day':[9,33].includes(en)?'Reversal — caution':'Mixed energy';
+
+  // Factor 2: Moon Phase grade (0-25)
+  const moonGradeMap = {'A+':25,'A':22,'B+':18,'B':14,'C+':10,'C':8,'D':5,'D-':3};
+  const moonScore = moonGradeMap[phase.grade] || 10;
+
+  // Factor 3: Planetary Alignment grade (0-25)
+  const paKey = day.planet+'+'+sign.ruler.split('/')[0].trim();
+  const paData = ALIGN_GRADES[paKey] || ALIGN_GRADES[sign.ruler.split('/')[0].trim()+'+'+day.planet] || null;
+  const paGrade = paData ? paData.grade : (rel.allies.includes(sign.ruler.split('/')[0].trim())?'A':rel.enemies.includes(sign.ruler.split('/')[0].trim())?'C':'B');
+  const paScoreMap = {'A+':25,'A':20,'B':14,'C':6};
+  const paScore = paScoreMap[paGrade] || 10;
+  const paLabel = paData ? paData.mkt : (paGrade==='A'?'Ally alignment':'Enemy alignment');
+
+  // Factor 4: Day Ruler quality (0-25)
+  const dayScoreMap = {'Sun':22,'Jupiter':25,'Venus':20,'Mercury':18,'Moon':15,'Mars':12,'Saturn':10};
+  const dayScore = dayScoreMap[day.planet] || 15;
+  const dayLabel = day.planet+' rules today · '+day.quality;
+
+  const total = enScore + moonScore + paScore + dayScore;
+  const pct = Math.round(total);
+
+  // Label + color
+  let trsColor, trsLabelText, trsTagText;
+  if(pct >= 80){trsColor='#166534';trsLabelText='Prime Trading Day';trsTagText='High conviction · Trade full size';}
+  else if(pct >= 65){trsColor='#1d8a4a';trsLabelText='Good Conditions';trsTagText='Favorable · Normal size';}
+  else if(pct >= 50){trsColor='#92400e';trsLabelText='Mixed Day';trsTagText='Be selective · Reduce size';}
+  else if(pct >= 35){trsColor='#b91c1c';trsLabelText='Low Readiness';trsTagText='Choppy · Trade light or pass';}
+  else{trsColor='#7f1d1d';trsLabelText='Avoid Trading';trsTagText='Very low energy · Stay flat';}
+
+  document.getElementById('trsScore').textContent = pct;
+  document.getElementById('trsScore').style.color = trsColor;
+  document.getElementById('trsLabel').textContent = trsLabelText;
+  document.getElementById('trsLabel').style.color = trsColor;
+  document.getElementById('trsTag').textContent = trsTagText;
+  document.getElementById('trsBar').style.width = pct+'%';
+  document.getElementById('trsBar').style.background = trsColor;
+
+  // Factor breakdown grid
+  const factors = [
+    {label:'Energy #'+en, val:enScore, max:25, note:enLabel},
+    {label:'Moon Phase '+phase.grade, val:moonScore, max:25, note:phase.energyType},
+    {label:'Alignment '+paGrade, val:paScore, max:25, note:paLabel},
+    {label:day.planet+' Day', val:dayScore, max:25, note:dayLabel},
+  ];
+  document.getElementById('trsFactors').innerHTML = factors.map(f=>{
+    const fpct = Math.round(f.val/f.max*100);
+    const fc = fpct>=80?'#166534':fpct>=60?'#1d8a4a':fpct>=40?'#92400e':'#b91c1c';
+    return `<div style="padding:10px;border:1px solid var(--rule);">
+      <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">${f.label}</div>
+      <div style="font-size:20px;font-family:'Cormorant Garamond',serif;font-weight:600;color:${fc};">${f.val}<span style="font-size:11px;color:var(--muted);">/25</span></div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px;">${f.note}</div>
+    </div>`;
+  }).join('');
+
   document.getElementById('synthRead').textContent=`Energy #${en} (${ed.name}) with Moon in ${sign.name} (${sign.elem}) and ${day.planet} ruling the day. ${ed.desc}`;
-  // reset bias why panel on date change
-  document.getElementById('biasWhyPanel').style.display='none';
-  document.getElementById('biasWhyBtn').textContent='WHY ↓';
-  buildBiasWhy(en, ed, sign, phase, day);
 
   document.getElementById('synthMoon').textContent=phase.mkt;
   document.getElementById('synthMoonName').textContent=phase.name;
@@ -957,26 +1104,36 @@ function loadDate(){
   document.getElementById('synthMoonRange').textContent=phase.esRange?'ES '+phase.esRange:'';
 
   // Date bar meta
-  document.getElementById('sPhase').textContent=phase.sym+' '+phase.name;
-  document.getElementById('sRuler').textContent=day.sym+' '+day.planet;
 
-  // ── TRADE METRIC CARDS ─────────────────────────────────
-  // Card 1: Energy
-  document.getElementById('tcENum').textContent='#'+en+' — '+ed.name;
-  document.getElementById('tcEName').textContent=ed.kw;
-  const tcET=document.getElementById('tcEType');
-  const tcTypeLabels={trending:'Trending Day',technical:'Technical Day',trap:'Trap Day',reversal:'Reversal Day'};
-  tcET.textContent=tcTypeLabels[ed.type]||'—';
-  tcET.className='tc-tag '+(ed.type||'');
+  // ── SNAPSHOT CARD ──
+  const scAlignKey = day.planet+'+'+sign.ruler.split('/')[0].trim();
+  const scAlignData = ALIGN_GRADES[scAlignKey]||ALIGN_GRADES[sign.ruler.split('/')[0].trim()+'+'+day.planet]||null;
+  const scAlignGrade = scAlignData?scAlignData.grade:(rel.allies.includes(sign.ruler.split('/')[0].trim())?'A':rel.enemies.includes(sign.ruler.split('/')[0].trim())?'C':'B');
+  const scGC = g=>g==='A+'?'#166534':g==='A'?'#1d8a4a':g==='B'?'#92400e':'#b91c1c';
 
-  // Card 2: Moon Sign
-  document.getElementById('tcMSign').textContent=sign.sym+' '+sign.name+' · '+sign.elem.charAt(0).toUpperCase()+sign.elem.slice(1);
-  document.getElementById('tcMMkt').textContent=sign.mkt;
-  const tcME=document.getElementById('tcMElem');
-  tcME.textContent=sign.elem.charAt(0).toUpperCase()+sign.elem.slice(1)+' · '+sign.ruler;
-  tcME.className='tc-tag '+sign.elem;
+  document.getElementById('snapENum').textContent='#'+en;
+  document.getElementById('snapEName').textContent=ed.name;
+  document.getElementById('snapEBadge').innerHTML=`<span class="type-badge ${ed.type||'trending'}">${ed.type?ed.type.toUpperCase():ed.bias.toUpperCase()}</span>`;
+  document.getElementById('snapRuler').textContent=day.sym+' '+day.planet;
+  document.getElementById('snapRulerQ').textContent=day.quality;
+  document.getElementById('snapMoon').textContent=sign.sym+' '+sign.name;
+  document.getElementById('snapMoonSub').textContent=sign.elem.charAt(0).toUpperCase()+sign.elem.slice(1)+' · '+sign.ruler;
+  document.getElementById('snapPhaseVal').textContent=phase.sym+' '+phase.name;
+  document.getElementById('snapPhaseSub').innerHTML=`<span style="color:${phase.gradeColor};font-weight:600;">Grade ${phase.grade}</span> · ${phase.energyType}`;
+  document.getElementById('snapAlignVal').textContent=day.sym+' '+day.planet+' / '+sign.ruler.split('/')[0].trim();
+  document.getElementById('snapAlignMkt').textContent=scAlignData?scAlignData.mkt:(rel.allies.includes(sign.ruler.split('/')[0].trim())?'Ally — energy flows':'Enemy — friction');
+  document.getElementById('snapAlignGradeBig').textContent='Grade '+scAlignGrade;
+  document.getElementById('snapAlignGradeBig').style.color=scGC(scAlignGrade);
 
-  // Card 3: Planetary Alignment
+  // TRS in header
+  const scTRSEl = document.getElementById('snapTRS');
+  if(scTRSEl && document.getElementById('trsScore')){
+    const trsVal = document.getElementById('trsScore').textContent;
+    scTRSEl.textContent = 'TRS '+trsVal;
+    scTRSEl.style.color = document.getElementById('trsScore').style.color;
+  }
+
+  // Card 3: Planetary Alignment (kept for alignment grade calc)
   const signRulerNameTC=sign.ruler.split('/')[0].trim();
   const rel3=getPlanetRelations(day.planet);
   const isAlly3=rel3.allies.includes(signRulerNameTC);
@@ -993,12 +1150,7 @@ function loadDate(){
   const alignStyle=alignData?alignData.style:'';
   const alignGradeColor=alignGrade==='A+'?'#166534':alignGrade==='A'?'#1d8a4a':alignGrade==='B'?'#92400e':'#b91c1c';
 
-  document.getElementById('tcPAlign').textContent=day.sym+' '+day.planet+' / '+signRulerNameTC;
-  document.getElementById('tcPMkt').textContent=alignMkt+(alignStyle?' · '+alignStyle:'');
-  const tcPR=document.getElementById('tcPRel');
-  tcPR.textContent='Grade '+alignGrade;
-  tcPR.className='tc-tag '+(isAlly3?'ally':isEnemy3?'enemy':'neutral');
-  tcPR.style.cssText=`color:${alignGradeColor};border-color:${alignGradeColor};background:${alignGradeColor}11;font-weight:700;`;
+
   // ── MULTI-FACTOR ALERT ENGINE ─────────────────────────────
   let score = { flow:0, chop:0, volatile:0, shift:0 };
 
@@ -1044,10 +1196,10 @@ function loadDate(){
   const condition = Object.keys(score).reduce((a,b)=>score[a]>score[b]?a:b);
 
   const ALERT_LABELS = {
-    flow:     'FLOW',
-    chop:     'STEADY FLOW',
-    volatile: 'PROCEED WITH CAUTION',
-    shift:    'HIGH RISK',
+    flow:     'ALIGNED',
+    chop:     'STRUCTURED',
+    volatile: 'MEASURED',
+    shift:    'PRESERVE',
   };
 
   // ── Update banner
@@ -1102,7 +1254,7 @@ function previewChip(n){
   document.getElementById('eNum').className='e-num'+(d.master?' master':'');
   document.getElementById('eName').textContent=d.name;
   document.getElementById('eKw').textContent=d.kw;
-  document.getElementById('eDesc').textContent=d.desc;
+  const edEl2=document.getElementById('eDesc');if(edEl2)edEl2.textContent=d.desc;
   document.getElementById('eMarket').textContent=d.market;
 }
 function previewMoonChip(i){
@@ -1121,6 +1273,209 @@ function previewMoonChip(i){
   document.getElementById('synthMoonRange').textContent=p.esRange;
   document.getElementById('synthMoon').textContent=p.mkt;
 }
+// ── PLANETARY HOURS ──────────────────────────────────────────
+const CHALDEAN = ['Saturn','Sun','Moon','Mars','Mercury','Jupiter','Venus'];
+const DAY_START_PLANET = {0:'Sun',1:'Moon',2:'Mars',3:'Mercury',4:'Jupiter',5:'Venus',6:'Saturn'};
+
+function getPHourRuler(dayOfWeek, hourIndex){
+  // Day ruler index in Chaldean order
+  const dayRulerIdx = CHALDEAN.indexOf(DAY_START_PLANET[dayOfWeek]);
+  return CHALDEAN[(dayRulerIdx + hourIndex) % 7];
+}
+
+function getPHourGrade(dayRuler, hourRuler){
+  const key = dayRuler+'+'+hourRuler;
+  const ag = ALIGN_GRADES[key] || ALIGN_GRADES[hourRuler+'+'+dayRuler] || null;
+  if(ag) return ag;
+  const d = Object.values(DAYS).find(x=>x.planet===dayRuler);
+  if(!d) return {grade:'B',mkt:'Mixed conditions',style:''};
+  if(d.allies.includes(hourRuler)) return {grade:'A',mkt:'Ally hour — energy flows',style:'Trade with trend'};
+  if(d.enemies.includes(hourRuler)) return {grade:'C',mkt:'Enemy hour — friction',style:'Reduce size'};
+  return {grade:'B',mkt:'Neutral hour',style:'Be selective'};
+}
+
+function gradeColor(g){
+  return g==='A+'?'#166534':g==='A'?'#1d8a4a':g==='B'?'#92400e':'#b91c1c';
+}
+
+function buildPHours(){
+  const sunriseVal = document.getElementById('sunriseInput').value || '06:30';
+  const dateVal = document.getElementById('dateInput').value;
+  if(!dateVal) return;
+  const date = new Date(dateVal+'T12:00:00');
+  const dow = date.getDay();
+  const dayRuler = DAYS[dow].planet;
+
+  // Parse sunrise into today's date
+  const [srH, srM] = sunriseVal.split(':').map(Number);
+  const sunrise = new Date(date);
+  sunrise.setHours(srH, srM, 0, 0);
+
+  // Sunset approx 12 planetary hours after sunrise (use fixed ~13h day)
+  const sunsetMs = sunrise.getTime() + 13 * 60 * 60 * 1000;
+  const dayDuration = sunsetMs - sunrise.getTime();
+  const dayHourLen = dayDuration / 12; // ms per day hour
+
+  // Build all 24 planetary hours (12 day + 12 night)
+  const hours = [];
+  for(let i=0; i<24; i++){
+    const start = new Date(sunrise.getTime() + i * (i<12 ? dayHourLen : dayHourLen * 0.85));
+    const end = new Date(start.getTime() + (i<12 ? dayHourLen : dayHourLen * 0.85));
+    const ruler = getPHourRuler(dow, i);
+    const gradeData = getPHourGrade(dayRuler, ruler);
+    hours.push({start, end, ruler, gradeData, index:i});
+  }
+
+  const now = new Date();
+  const currentHour = hours.find(h => now >= h.start && now < h.end) || hours[0];
+
+  // Render current hour block
+  const gc = gradeColor(currentHour.gradeData.grade);
+  const planet = Object.values(DAYS).find(x=>x.planet===currentHour.ruler);
+  const sym = planet ? planet.sym : '';
+  const timeLeft = Math.max(0, currentHour.end - now);
+  const mins = Math.floor(timeLeft/60000);
+  const secs = Math.floor((timeLeft%60000)/1000);
+
+  document.getElementById('pHourCurrent').innerHTML =
+    `<div style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Current Hour</div>`+
+    `<div style="display:flex;align-items:center;gap:16px;">`+
+      `<div style="font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:600;color:${gc};line-height:1;">${currentHour.gradeData.grade}</div>`+
+      `<div>`+
+        `<div style="font-size:17px;font-weight:500;color:#000;">${sym} ${currentHour.ruler} Hour</div>`+
+        `<div style="font-size:13px;color:var(--muted);">${currentHour.gradeData.mkt}</div>`+
+        (currentHour.gradeData.style?`<div style="font-size:12px;color:${gc};margin-top:2px;">${currentHour.gradeData.style}</div>`:'')+
+      `</div>`+
+      `<div style="margin-left:auto;text-align:right;">`+
+        `<div style="font-size:11px;color:var(--muted);">Next in</div>`+
+        `<div id="phCountdown" style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#000;">${mins}:${String(secs).padStart(2,'0')}</div>`+
+      `</div>`+
+    `</div>`;
+
+  // Render session table 9:30–16:00
+  const sessionStart = new Date(date); sessionStart.setHours(9,30,0,0);
+  const sessionEnd = new Date(date); sessionEnd.setHours(16,0,0,0);
+  const sessionHours = hours.filter(h => h.start < sessionEnd && h.end > sessionStart);
+
+  let tableHTML = '';
+  sessionHours.forEach(h => {
+    const isCurrent = h === currentHour;
+    const gc2 = gradeColor(h.gradeData.grade);
+    const p2 = Object.values(DAYS).find(x=>x.planet===h.ruler);
+    const s2 = p2 ? p2.sym : '';
+    const startStr = h.start.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',hour12:true});
+    const endStr = h.end.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',hour12:true});
+    tableHTML +=
+      `<div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--rule);${isCurrent?'background:#f8f8f8;margin:0 -16px;padding:8px 16px;':''}">`+
+        `<div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:${gc2};min-width:36px;">${h.gradeData.grade}</div>`+
+        `<div style="flex:1;">`+
+          `<div style="font-size:14px;font-weight:${isCurrent?'600':'400'};color:#000;">${s2} ${h.ruler}</div>`+
+          `<div style="font-size:11px;color:var(--muted);">${startStr} – ${endStr}</div>`+
+        `</div>`+
+        `<div style="font-size:11px;color:var(--muted);text-align:right;">${h.gradeData.style}</div>`+
+      `</div>`;
+  });
+  document.getElementById('pHoursTable').innerHTML = tableHTML;
+
+  // Start countdown
+  clearInterval(window._phTimer);
+  window._phTimer = setInterval(()=>{
+    const tl = Math.max(0, currentHour.end - new Date());
+    const m = Math.floor(tl/60000);
+    const s = Math.floor((tl%60000)/1000);
+    const cd = document.getElementById('phCountdown');
+    if(cd) cd.textContent = m+':'+String(s).padStart(2,'0');
+    if(tl===0){ clearInterval(window._phTimer); buildPHours(); }
+  }, 1000);
+}
+
+function previewElemChip(i, ELEM_DATA){
+  const e = ELEM_DATA[i];
+  const elemData = ELEMS[e.key];
+  if(!elemData) return;
+
+  // Update active chip
+  document.querySelectorAll('.elem-chip').forEach((c,idx)=>{
+    c.classList.toggle('active', idx===i);
+    const nm = c.querySelector('.ec-name');
+    if(nm) nm.style.color = idx===i ? '#fff' : ELEM_DATA[idx].color;
+  });
+
+  // Update elem-note
+  const en2 = document.getElementById('elemNote');
+  en2.textContent = elemData.mkt;
+  en2.className = 'elem-note '+elemData.cls;
+
+  // Build signs row for this element
+  const signsOfElem = SIGNS.filter(s=>s.elem===e.key);
+  let signsHTML = `<div style="margin-top:10px;padding:10px 0 4px;border-top:1px solid var(--rule);">
+    <div style="font-size:8px;letter-spacing:3px;text-transform:uppercase;color:${e.color};margin-bottom:8px;">${e.name} Signs</div>
+    <div style="display:grid;grid-template-columns:repeat(${signsOfElem.length},1fr);gap:0;border:1px solid var(--rule);">`;
+  signsOfElem.forEach((s,idx)=>{
+    signsHTML += `<div style="text-align:center;padding:14px 4px;${idx<signsOfElem.length-1?'border-right:1px solid var(--rule);':''}">
+      <div style="font-size:28px;">${s.sym}</div>
+      <div style="font-size:13px;font-weight:500;color:#000;margin-top:4px;">${s.name}</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px;">${s.ruler}</div>
+    </div>`;
+  });
+  signsHTML += `</div></div>`;
+
+  // Inject or replace signs row
+  let signsRow = document.getElementById('elemSignsRow');
+  if(!signsRow){
+    signsRow = document.createElement('div');
+    signsRow.id = 'elemSignsRow';
+    en2.parentNode.insertBefore(signsRow, en2.nextSibling);
+  }
+  signsRow.innerHTML = signsHTML;
+}
+
+function togglePRelations(){
+  const panel = document.getElementById('pRelPanel');
+  const arrow = document.getElementById('pRelArrow');
+  const open = panel.style.display === 'block';
+  panel.style.display = open ? 'none' : 'block';
+  arrow.textContent = open ? '↓' : '↑';
+  if(!open) buildPRelations();
+}
+
+function buildPRelations(){
+  const planets = ['Sun','Moon','Mars','Mercury','Jupiter','Venus','Saturn'];
+  const panel = document.getElementById('pRelPanel');
+  const syms = {'Sun':'☉','Moon':'☽','Mars':'♂','Mercury':'☿','Jupiter':'♃','Venus':'♀','Saturn':'♄'};
+
+  let html = `<div style="padding:12px 16px 16px;">`;
+  planets.forEach(p=>{
+    const d = Object.values(DAYS).find(x=>x.planet===p);
+    if(!d) return;
+    html += `<div style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--rule);">`;
+    html += `<div style="font-size:13px;font-weight:600;color:#000;margin-bottom:6px;">${syms[p]} ${p}</div>`;
+    html += `<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;">`;
+    planets.filter(col=>col!==p).forEach(col=>{
+      const isAlly = d.allies.includes(col);
+      const isEnemy = d.enemies.includes(col);
+      const color = isAlly ? 'var(--green)' : isEnemy ? 'var(--red)' : 'var(--muted)';
+      const label = isAlly ? 'Ally' : isEnemy ? 'Enemy' : 'Neutral';
+      html += `<div style="padding:5px 6px;border:1px solid var(--rule);text-align:center;">
+        <div style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">${syms[col]} ${col}</div>
+        <div style="font-size:12px;font-weight:600;color:${color};margin-top:2px;">${label}</div>
+      </div>`;
+    });
+    html += `</div></div>`;
+  });
+  html += `</div>`;
+  panel.innerHTML = html;
+}
+
+function togglePHours(){
+  const panel = document.getElementById('pHoursPanel');
+  const arrow = document.getElementById('pHoursArrow');
+  const open = panel.style.display === 'block';
+  panel.style.display = open ? 'none' : 'block';
+  arrow.textContent = open ? '↓' : '↑';
+  if(!open) buildPHours();
+}
+
 function shiftDate(n){
   const inp=document.getElementById('dateInput');
   const d=inp.value?new Date(inp.value+'T12:00:00'):new Date();
