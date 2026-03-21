@@ -330,7 +330,6 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
 .elem-chip:hover{background:var(--off);}
 .elem-chip.active{background:var(--black);}
 .elem-chip.active .ec-name{color:#fff;}
-.elem-chip.active .ec-sym{filter:brightness(5);}
 .elem-chip.active::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--black);}
 .ec-sym{font-size:22px;line-height:1;}
 .ec-name{font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:600;}
@@ -386,12 +385,12 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
 .phase-grade-range{font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:2px;color:var(--muted);}
 
 /* ─── 4-LAYER SCORING ─── */
-.interp-cell{padding:10px 4px;text-align:center;border-right:1px solid var(--rule);transition:background .2s;min-width:0;overflow:hidden;cursor:pointer;}
+.interp-cell{padding:12px 2px;text-align:center;border-right:1px solid #222;transition:background .2s;min-width:0;overflow:hidden;cursor:pointer;}
 .interp-cell.interp-dark{border-right-color:#222;background:#0a0a0a;}
 .interp-cell.active{background:#000;}
 .interp-cell.active .interp-range,.interp-cell.active .interp-mode{color:#fff;}
-.interp-range{font-size:clamp(5px,1.5vw,7px);letter-spacing:0;color:var(--muted);margin-bottom:4px;white-space:nowrap;}
-.interp-mode{font-size:clamp(6px,1.8vw,9px);font-weight:700;color:#000;letter-spacing:0;text-transform:uppercase;white-space:nowrap;}
+.interp-range{font-size:7px;letter-spacing:1px;color:#777;margin-bottom:5px;white-space:nowrap;}
+.interp-mode{font-size:9px;font-weight:700;color:#ccc;letter-spacing:1px;text-transform:uppercase;white-space:nowrap;}
 
 /* ─── NEWS ─── */
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
@@ -532,13 +531,13 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
 <!-- ALERT BANNER -->
 <div class="alert-banner" id="alertBanner" style="cursor:pointer;" onclick="toggleWhy()">
   <div style="position:relative;z-index:1;text-align:center;">
-    <div id="alertLabel" style="font-size:14px;font-weight:700;letter-spacing:8px;text-transform:uppercase;line-height:1;margin-bottom:4px;">—</div>
-    <div id="alertSub" style="font-size:7px;letter-spacing:3px;text-transform:uppercase;opacity:0.45;font-weight:400;">Tap for breakdown</div>
+    <div id="alertLabel" style="font-size:14px;font-weight:700;letter-spacing:8px;text-transform:uppercase;line-height:1;margin-bottom:12px;">—</div>
+    <div id="alertSub" style="font-size:7px;letter-spacing:3px;text-transform:uppercase;opacity:0.45;font-weight:400;">Why?</div>
   </div>
 </div>
 <div class="why-panel" id="whyPanel">
   <div class="why-panel-title">
-    <span>Why this grade?</span>
+    <span>Why this energy?</span>
     <button class="why-toggle" onclick="toggleWhy()">Close ↑</button>
   </div>
   <div class="why-grid" id="whyGrid"></div>
@@ -557,7 +556,8 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
 <div class="datebar-spacer" id="datebarSpacer"></div>
 
 <!-- DAILY SNAPSHOT CARD -->
-<div id="snapshotCard" style="margin:20px 16px;border:1px solid var(--rule);background:#fff;">
+<div style="margin:20px 16px;padding:16px;background:#111;border-radius:4px;">
+<div id="snapshotCard" style="border:1px solid var(--rule);background:#fff;">
 
   <!-- Header -->
   <div style="padding:14px 20px;border-bottom:1px solid var(--rule);">
@@ -606,6 +606,7 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
     </div>
   </div>
 
+</div>
 </div>
 
 <!-- ENERGY NUMBER -->
@@ -664,7 +665,10 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
 
   <!-- Moon Phase Full Display -->
   <div style="margin-bottom:20px;margin-top:20px;">
-    <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Moon Phase</div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+      <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);">Moon Phase</div>
+      <div style="font-size:6px;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:#b8860b;background:#fdf8ee;border:1px solid #e8d5a0;padding:2px 8px;border-radius:2px;">⚡ Primary Market Driver</div>
+    </div>
     <div id="synthMoonName" style="font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:600;color:var(--black);margin-bottom:14px;line-height:1;">—</div>
     <div class="phase-grade-row">
       <div class="phase-grade-num" id="synthMoonGrade">—</div>
@@ -676,7 +680,8 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
     <div style="margin-top:14px;height:3px;background:var(--rule);">
       <div id="synthMoonBar" style="height:3px;width:30%;transition:width .4s;"></div>
     </div>
-    <div style="font-size:15px;color:var(--mid);line-height:1.8;margin-top:16px;margin-bottom:16px;" id="synthMoon">—</div>
+    <div style="font-size:15px;color:var(--mid);line-height:1.8;margin-top:16px;margin-bottom:12px;" id="synthMoon">—</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--muted);line-height:1.6;padding:10px 0;border-top:1px solid var(--rule);">The tide moves the market. The phase moves the tide.</div>
   </div>
 
   <!-- Moon Phase Chips -->
@@ -750,40 +755,36 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
 
       <!-- Layer 1 -->
       <div style="background:#0a0a0a;padding:16px 14px;">
-        <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px;">1 · Universal Day</div>
+        <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px;">1 · Universal Day <span style="color:#444;">20%</span></div>
         <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:4px;">
           <div id="l1Score" style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;line-height:1;color:#ccc;">—</div>
-          <div style="font-size:10px;color:#444;">/2</div>
         </div>
         <div id="l1Label" style="font-size:12px;color:#888;line-height:1.5;">—</div>
       </div>
 
       <!-- Layer 2 -->
       <div style="background:#0a0a0a;padding:16px 14px;">
-        <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px;">2 · Moon Phase</div>
+        <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px;">2 · Moon Phase <span style="color:#444;">35%</span></div>
         <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:4px;">
           <div id="l2Score" style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;line-height:1;color:#ccc;">—</div>
-          <div style="font-size:10px;color:#444;">/3</div>
         </div>
         <div id="l2Label" style="font-size:12px;color:#888;line-height:1.5;">—</div>
       </div>
 
       <!-- Layer 3 -->
       <div style="background:#0a0a0a;padding:16px 14px;">
-        <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px;">3 · Moon Sign</div>
+        <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px;">3 · Moon Sign <span style="color:#444;">15%</span></div>
         <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:4px;">
           <div id="l3Score" style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;line-height:1;color:#ccc;">—</div>
-          <div style="font-size:10px;color:#444;">/2</div>
         </div>
         <div id="l3Label" style="font-size:12px;color:#888;line-height:1.5;">—</div>
       </div>
 
       <!-- Layer 4 -->
       <div style="background:#0a0a0a;padding:16px 14px;">
-        <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px;">4 · Planetary Harmony</div>
+        <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px;">4 · Planetary Harmony <span style="color:#444;">30%</span></div>
         <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:4px;">
           <div id="l4Score" style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;line-height:1;color:#ccc;">—</div>
-          <div style="font-size:10px;color:#444;">/3</div>
         </div>
         <div id="l4Label" style="font-size:12px;color:#888;line-height:1.5;">—</div>
       </div>
@@ -799,37 +800,58 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
       <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;padding:10px 14px;border-bottom:1px solid #222;">Score Interpretation</div>
       <div id="interpGrid" style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0;overflow:hidden;">
         <div class="interp-cell interp-dark" data-range="8.5-10" onclick="showInterp(this)">
-          <div class="interp-range" style="color:#555;">8.5–10</div>
+          <div class="interp-range" style="color:#999;">8.5–10</div>
           <div class="interp-mode" style="color:#ccc;">Prime</div>
         </div>
         <div class="interp-cell interp-dark" data-range="7-8.5" onclick="showInterp(this)">
-          <div class="interp-range" style="color:#555;">7–8.5</div>
+          <div class="interp-range" style="color:#999;">7–8.5</div>
           <div class="interp-mode" style="color:#ccc;">Aligned</div>
         </div>
         <div class="interp-cell interp-dark" data-range="5-7" onclick="showInterp(this)">
-          <div class="interp-range" style="color:#555;">5–7</div>
+          <div class="interp-range" style="color:#999;">5–7</div>
           <div class="interp-mode" style="color:#ccc;">Grounded</div>
         </div>
         <div class="interp-cell interp-dark" data-range="3-5" onclick="showInterp(this)">
-          <div class="interp-range" style="color:#555;">3–5</div>
+          <div class="interp-range" style="color:#999;">3–5</div>
           <div class="interp-mode" style="color:#ccc;">Selective</div>
         </div>
         <div class="interp-cell interp-dark" data-range="0-3" style="border-right:none;" onclick="showInterp(this)">
-          <div class="interp-range" style="color:#555;">0–3</div>
+          <div class="interp-range" style="color:#999;">0–3</div>
           <div class="interp-mode" style="color:#ccc;">Preserve</div>
         </div>
       </div>
       <div id="interpDesc" style="display:none;padding:14px 16px;border-top:1px solid #222;background:#0a0a0a;font-size:14px;color:#999;line-height:1.75;"></div>
+
+      <!-- Scoring Weight Breakdown Dropdown -->
+      <div style="border-top:1px solid #222;">
+        <div onclick="toggleScoreBreakdown()" style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;cursor:pointer;">
+          <span style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;">How the score is weighted</span>
+          <span id="scoreBreakdownArrow" style="font-size:11px;color:#555;transition:transform .2s;">▼</span>
+        </div>
+        <div id="scoreBreakdownPanel" style="display:none;padding:0 14px 16px;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:#666;line-height:1.6;margin-bottom:14px;">The score is a weighted sum of four layers, each normalized to 10.</div>
+
+          <!-- Weight bars -->
+          <div id="weightBreakdownBars"></div>
+
+          <div style="margin-top:16px;padding-top:12px;border-top:1px solid #222;">
+            <div style="font-size:11px;color:#888;line-height:1.8;">
+              <strong style="color:#ccc;">Why weighted?</strong> Not all energy is equal. Moon Phase has the strongest documented correlation with market volatility and sentiment cycles. Planetary Alignment determines whether the dominant forces cooperate or clash — it's the weather your trades execute in. Universal Number shapes the day's character but doesn't control conditions. Moon Sign is a modifier — it colors the energy but doesn't drive it.
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
 </div>
-<div style="height:36px;"></div>
+<div style="height:20px;"></div>
 </div>
 
-<!-- NEWS -->
-<div style="background:#000;padding:40px 24px;">
+<!-- NEWS / ALIGNMENT RITUAL -->
+<div style="background:#000;padding:20px 24px 40px 24px;">
   <div style="max-width:560px;margin:0 auto;">
+    <div style="font-size:8px;letter-spacing:6px;text-transform:uppercase;color:#555;margin-bottom:24px;">Alignment Ritual</div>
     <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:#fff;line-height:1.4;">
       <div style="margin-bottom:20px;">News checked.</div>
       <div style="margin-bottom:20px;"><strong>ENERGY</strong> checked.</div>
@@ -1142,39 +1164,46 @@ function loadDate(){
     if(pRelDrawer) agEl.appendChild(pRelDrawer);
   }
 
-  // ── PDT 4-LAYER SCORING ──
+  // ── PDT 4-LAYER SCORING (WEIGHTED) ──
+  // Weights: Moon Phase 35%, Alignment 30%, Universal 20%, Moon Sign 15%
+  // Each layer normalized to 0–1, then weighted sum × 10
 
-  // Layer 1: Universal Day (Direction) /2
+  // Layer 1: Universal Day (Direction) — raw /2, normalized /1
   const L1_MAP = {1:2, 3:2, 8:2, 22:2, 4:1.5, 6:1.5, 2:1, 7:1, 5:0.5, 9:0.5};
-  const l1Score = L1_MAP[en] !== undefined ? L1_MAP[en] : 1;
+  const l1Raw = L1_MAP[en] !== undefined ? L1_MAP[en] : 1;
+  const l1Score = l1Raw / 2;
   const l1Label = [1,3,8,22].includes(en) ? 'Energy '+en+' · Strong direction'
     : [4,6].includes(en) ? 'Energy '+en+' · Structured'
     : [2,7].includes(en) ? 'Energy '+en+' · Mixed'
     : 'Energy '+en+' · Low direction';
 
-  // Layer 2: Moon Phase (Strength) /3
+  // Layer 2: Moon Phase (Strength) — raw /3, normalized /1
   const L2_MAP = {
     'Waxing Gibbous':3, 'Full Moon':2.5, 'First Quarter':2,
     'Waxing Crescent':1.5, 'Waning Gibbous':1.5,
     'Last Quarter':1, 'New Moon':1, 'Waning Crescent':0.5
   };
-  const l2Score = L2_MAP[phase.name] !== undefined ? L2_MAP[phase.name] : 1;
+  const l2Raw = L2_MAP[phase.name] !== undefined ? L2_MAP[phase.name] : 1;
+  const l2Score = l2Raw / 3;
   const l2Label = phase.name + ' · ' + phase.energyType;
 
-  // Layer 3: Moon Sign (Behavior) /2
+  // Layer 3: Moon Sign (Behavior) — raw /2, normalized /1
   const L3_MAP = {fire:2, earth:1.5, water:1.2, air:1};
-  const l3Score = L3_MAP[sign.elem] !== undefined ? L3_MAP[sign.elem] : 1;
+  const l3Raw = L3_MAP[sign.elem] !== undefined ? L3_MAP[sign.elem] : 1;
+  const l3Score = l3Raw / 2;
   const l3Label = sign.name + ' · ' + sign.elem.charAt(0).toUpperCase()+sign.elem.slice(1)+' sign';
 
-  // Layer 4: Planetary Harmony (Quality) /3
+  // Layer 4: Planetary Harmony (Quality) — raw /3, normalized /1
   const paKey = day.planet+'+'+sign.ruler.split('/')[0].trim();
   const paData = ALIGN_GRADES[paKey] || ALIGN_GRADES[sign.ruler.split('/')[0].trim()+'+'+day.planet] || null;
   const paGrade = paData ? paData.grade : (rel.allies.includes(sign.ruler.split('/')[0].trim())?'A':rel.enemies.includes(sign.ruler.split('/')[0].trim())?'C':'B');
   const L4_MAP = {'A+':3,'A':2.5,'B':1.5,'C':0.5};
-  const l4Score = L4_MAP[paGrade] !== undefined ? L4_MAP[paGrade] : 1.5;
+  const l4Raw = L4_MAP[paGrade] !== undefined ? L4_MAP[paGrade] : 1.5;
+  const l4Score = l4Raw / 3;
   const l4Label = 'Grade ' + paGrade + (paData ? ' · ' + paData.mkt : '');
 
-  const pdtTotal = Math.round((l1Score + l2Score + l3Score + l4Score) * 10) / 10;
+  // Weighted total (Moon Phase 35%, Alignment 30%, Universal 20%, Sign 15%)
+  const pdtTotal = Math.round((l2Score * 0.35 + l4Score * 0.30 + l1Score * 0.20 + l3Score * 0.15) * 100) / 10;
 
   // Mode interpretation
   let pdtMode, pdtColor, pdtTag;
@@ -1193,19 +1222,23 @@ function loadDate(){
   document.getElementById('pdt4Bar').style.width = (pdtTotal/10*100)+'%';
   document.getElementById('pdt4Bar').style.background = pdtColor;
 
-  // Render layers
+  // Render layers — show weighted contribution to /10 total
+  const l1Display = Math.round(l1Score * 0.20 * 100) / 10;
+  const l2Display = Math.round(l2Score * 0.35 * 100) / 10;
+  const l3Display = Math.round(l3Score * 0.15 * 100) / 10;
+  const l4Display = Math.round(l4Score * 0.30 * 100) / 10;
   const layerScoreColor = s => s >= 2.5 ? '#166534' : s >= 1.5 ? '#92400e' : '#b91c1c';
-  document.getElementById('l1Score').textContent = l1Score.toFixed(1);
-  document.getElementById('l1Score').style.color = layerScoreColor(l1Score/2*3);
+  document.getElementById('l1Score').textContent = l1Display.toFixed(1);
+  document.getElementById('l1Score').style.color = layerScoreColor(l1Display);
   document.getElementById('l1Label').textContent = l1Label;
-  document.getElementById('l2Score').textContent = l2Score.toFixed(1);
-  document.getElementById('l2Score').style.color = layerScoreColor(l2Score);
+  document.getElementById('l2Score').textContent = l2Display.toFixed(1);
+  document.getElementById('l2Score').style.color = layerScoreColor(l2Display);
   document.getElementById('l2Label').textContent = l2Label;
-  document.getElementById('l3Score').textContent = l3Score.toFixed(1);
-  document.getElementById('l3Score').style.color = layerScoreColor(l3Score/2*3);
+  document.getElementById('l3Score').textContent = l3Display.toFixed(1);
+  document.getElementById('l3Score').style.color = layerScoreColor(l3Display);
   document.getElementById('l3Label').textContent = l3Label;
-  document.getElementById('l4Score').textContent = l4Score.toFixed(1);
-  document.getElementById('l4Score').style.color = layerScoreColor(l4Score);
+  document.getElementById('l4Score').textContent = l4Display.toFixed(1);
+  document.getElementById('l4Score').style.color = layerScoreColor(l4Display);
   document.getElementById('l4Label').textContent = l4Label;
 
   // Energy Read — Tactical Synthesis
@@ -1380,49 +1413,49 @@ function loadDate(){
     shift:    'PRESERVE',
   };
 
-  // ── Build WHY breakdown using 4-Layer Scoring
+  // ── Build WHY breakdown using 4-Layer Scoring (ordered by weight)
   const layerData = [
     {
-      label: '1 · Universal Day',
-      val: 'Energy #' + en + ' — ' + ed.name,
-      score: l1Score,
-      max: 2,
-      note: l1Label,
-      color: l1Score >= 1.5 ? '#166534' : l1Score >= 1 ? '#92400e' : '#b91c1c'
-    },
-    {
-      label: '2 · Moon Phase',
+      label: '◆◆◆◆ Moon Phase',
+      wt: '35%',
       val: phase.name,
-      score: l2Score,
-      max: 3,
+      score: l2Display,
       note: l2Label,
-      color: l2Score >= 2 ? '#166534' : l2Score >= 1.5 ? '#92400e' : '#b91c1c'
+      color: l2Display >= 2.5 ? '#166534' : l2Display >= 1.5 ? '#92400e' : '#b91c1c'
     },
     {
-      label: '3 · Moon Sign',
-      val: sign.name + ' (' + sign.elem.charAt(0).toUpperCase()+sign.elem.slice(1) + ')',
-      score: l3Score,
-      max: 2,
-      note: l3Label,
-      color: l3Score >= 1.5 ? '#166534' : l3Score >= 1.2 ? '#92400e' : '#b91c1c'
-    },
-    {
-      label: '4 · Planetary Harmony',
+      label: '◆◆◆ Planetary Harmony',
+      wt: '30%',
       val: day.planet + ' / ' + signRulerName + ' — Grade ' + paGrade,
-      score: l4Score,
-      max: 3,
+      score: l4Display,
       note: l4Label,
-      color: l4Score >= 2 ? '#166534' : l4Score >= 1.5 ? '#92400e' : '#b91c1c'
+      color: l4Display >= 2.5 ? '#166534' : l4Display >= 1.5 ? '#92400e' : '#b91c1c'
+    },
+    {
+      label: '◆◆ Universal Day',
+      wt: '20%',
+      val: 'Energy #' + en + ' — ' + ed.name,
+      score: l1Display,
+      note: l1Label,
+      color: l1Display >= 2.5 ? '#166534' : l1Display >= 1.5 ? '#92400e' : '#b91c1c'
+    },
+    {
+      label: '◆ Moon Sign',
+      wt: '15%',
+      val: sign.name + ' (' + sign.elem.charAt(0).toUpperCase()+sign.elem.slice(1) + ')',
+      score: l3Display,
+      note: l3Label,
+      color: l3Display >= 2.5 ? '#166534' : l3Display >= 1.5 ? '#92400e' : '#b91c1c'
     }
   ];
 
   const grid = document.getElementById('whyGrid');
   grid.innerHTML = layerData.map(f => {
     return '<div class="wf" style="border-top-color:'+f.color+';">' +
-      '<div class="wf-lbl">'+f.label+'</div>' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;"><div class="wf-lbl">'+f.label+'</div><div style="font-size:9px;letter-spacing:1px;color:var(--muted);font-weight:600;">'+f.wt+'</div></div>' +
       '<div class="wf-val">'+f.val+'</div>' +
       '<div style="display:flex;align-items:center;gap:10px;margin-top:8px;">' +
-        '<div style="font-family:\'Cormorant Garamond\',serif;font-size:28px;font-weight:600;color:'+f.color+';line-height:1;">'+f.score.toFixed(1)+'<span style="font-size:11px;color:var(--muted);">/'+f.max+'</span></div>' +
+        '<div style="font-family:\'Cormorant Garamond\',serif;font-size:28px;font-weight:600;color:'+f.color+';line-height:1;">'+f.score.toFixed(1)+'</div>' +
         '<div style="font-size:12px;color:var(--muted);line-height:1.5;">'+f.note+'</div>' +
       '</div>' +
       '</div>';
@@ -1818,24 +1851,24 @@ function toggleSessionDay(dow){
 
 // ── ASTRO MARKET ALERTS ──────────────────────────────────────
 const ASTRO_EVENTS = [
-  // MERCURY RETROGRADE (verified dates)
-  {name:'Mercury Retrograde',type:'retrograde',planet:'Mercury',start:'2025-03-15',end:'2025-04-07',impact:'high',desc:'Communication breakdowns, false breakouts, tech glitches. Whipsaws on data releases. Reversals common — confirmation is everything. Size down on news-driven setups.'},
-  {name:'Mercury Retrograde',type:'retrograde',planet:'Mercury',start:'2025-07-18',end:'2025-08-11',impact:'high',desc:'Communication breakdowns, false breakouts, tech glitches. Whipsaws on data releases. Reversals common — confirmation is everything. Size down on news-driven setups.'},
-  {name:'Mercury Retrograde',type:'retrograde',planet:'Mercury',start:'2025-11-09',end:'2025-11-29',impact:'high',desc:'Communication breakdowns, false breakouts, tech glitches. Whipsaws on data releases. Reversals common — confirmation is everything. Size down on news-driven setups.'},
-  {name:'Mercury Retrograde',type:'retrograde',planet:'Mercury',start:'2026-02-26',end:'2026-03-20',impact:'high',desc:'Mercury Rx in Pisces. Foggy price action, unclear signals. Emotional overreactions to news. Avoid chasing. Wait for clean setups with confluence.'},
-  {name:'Mercury Retrograde',type:'retrograde',planet:'Mercury',start:'2026-06-29',end:'2026-07-23',impact:'high',desc:'Mercury Rx in Cancer. Sentiment-driven whipsaws. Earnings season overlap increases noise. Fade emotional extremes, tighten stops, confirm every entry.'},
-  {name:'Mercury Retrograde',type:'retrograde',planet:'Mercury',start:'2026-10-24',end:'2026-11-13',impact:'high',desc:'Mercury Rx in Scorpio. Hidden moves, deceptive price action. Institutions may reposition quietly. Trust volume over price. False breakouts likely.'},
-  {name:'Mercury Retrograde',type:'retrograde',planet:'Mercury',start:'2027-02-09',end:'2027-03-03',impact:'high',desc:'Communication breakdowns, false breakouts, tech glitches. Whipsaws on data releases. Reversals common — confirmation is everything. Size down on news-driven setups.'},
+  // MERCURY RETROGRADE (with shadow phases)
+  {name:'Mercury Retrograde',type:'retrograde',planet:'Mercury',start:'2025-03-15',end:'2025-04-07',impact:'high',desc:'Communication breakdowns, false breakouts, tech glitches. Whipsaws on data releases. Reversals common — confirmation is everything. Size down on news-driven setups.',preShadow:'2025-02-25',postShadow:'2025-04-18'},
+  {name:'Mercury Retrograde',type:'retrograde',planet:'Mercury',start:'2025-07-18',end:'2025-08-11',impact:'high',desc:'Communication breakdowns, false breakouts, tech glitches. Whipsaws on data releases. Reversals common — confirmation is everything. Size down on news-driven setups.',preShadow:'2025-07-02',postShadow:'2025-08-26'},
+  {name:'Mercury Retrograde',type:'retrograde',planet:'Mercury',start:'2025-11-09',end:'2025-11-29',impact:'high',desc:'Communication breakdowns, false breakouts, tech glitches. Whipsaws on data releases. Reversals common — confirmation is everything. Size down on news-driven setups.',preShadow:'2025-10-24',postShadow:'2025-12-15'},
+  {name:'Mercury Retrograde',type:'retrograde',planet:'Mercury',start:'2026-02-26',end:'2026-03-20',impact:'high',desc:'Mercury Rx in Pisces. Foggy price action, unclear signals. Emotional overreactions to news. Avoid chasing. Wait for clean setups with confluence.',preShadow:'2026-02-10',postShadow:'2026-04-03'},
+  {name:'Mercury Retrograde',type:'retrograde',planet:'Mercury',start:'2026-06-29',end:'2026-07-23',impact:'high',desc:'Mercury Rx in Cancer. Sentiment-driven whipsaws. Earnings season overlap increases noise. Fade emotional extremes, tighten stops, confirm every entry.',preShadow:'2026-06-13',postShadow:'2026-08-07'},
+  {name:'Mercury Retrograde',type:'retrograde',planet:'Mercury',start:'2026-10-24',end:'2026-11-13',impact:'high',desc:'Mercury Rx in Scorpio. Hidden moves, deceptive price action. Institutions may reposition quietly. Trust volume over price. False breakouts likely.',preShadow:'2026-10-08',postShadow:'2026-11-28'},
+  {name:'Mercury Retrograde',type:'retrograde',planet:'Mercury',start:'2027-02-09',end:'2027-03-03',impact:'high',desc:'Communication breakdowns, false breakouts, tech glitches. Whipsaws on data releases. Reversals common — confirmation is everything. Size down on news-driven setups.',preShadow:'2027-01-24',postShadow:'2027-03-18'},
 
-  // VENUS RETROGRADE (verified dates)
-  {name:'Venus Retrograde',type:'retrograde',planet:'Venus',start:'2025-03-01',end:'2025-04-12',impact:'medium',desc:'Venus Rx in Aries/Pisces. Value and sentiment distorted. Risk-off bias creeps in. Fades and mean-reversion setups favored. Avoid chasing momentum blindly.'},
-  {name:'Venus Retrograde',type:'retrograde',planet:'Venus',start:'2026-10-03',end:'2026-11-13',impact:'medium',desc:'Venus Rx in Scorpio/Libra. Deep sentiment shifts, hidden buying/selling pressure. Price discovery feels unreliable. Trade defensively and trust volume signals.'},
+  // VENUS RETROGRADE (with shadow phases)
+  {name:'Venus Retrograde',type:'retrograde',planet:'Venus',start:'2025-03-01',end:'2025-04-12',impact:'medium',desc:'Venus Rx in Aries/Pisces. Value and sentiment distorted. Risk-off bias creeps in. Fades and mean-reversion setups favored. Avoid chasing momentum blindly.',preShadow:'2025-01-31',postShadow:'2025-05-13'},
+  {name:'Venus Retrograde',type:'retrograde',planet:'Venus',start:'2026-10-03',end:'2026-11-13',impact:'medium',desc:'Venus Rx in Scorpio/Libra. Deep sentiment shifts, hidden buying/selling pressure. Price discovery feels unreliable. Trade defensively and trust volume signals.',preShadow:'2026-09-02',postShadow:'2026-12-14'},
 
-  // MARS RETROGRADE (verified dates)
-  {name:'Mars Retrograde',type:'retrograde',planet:'Mars',start:'2024-12-06',end:'2025-02-23',impact:'high',desc:'Mars Rx in Leo/Cancer. Momentum stalls. Aggressive breakout plays fail or reverse. Energy is low and scattered. Reduce size on momentum entries, favor patience.'},
-  {name:'Mars Retrograde',type:'retrograde',planet:'Mars',start:'2027-01-10',end:'2027-04-01',impact:'high',desc:'Mars Rx in Virgo/Leo. Momentum stalls. Breakouts reverse. Aggression backfires. Reduce size, avoid forcing entries. Let setups come to you.'},
+  // MARS RETROGRADE (with shadow phases)
+  {name:'Mars Retrograde',type:'retrograde',planet:'Mars',start:'2024-12-06',end:'2025-02-23',impact:'high',desc:'Mars Rx in Leo/Cancer. Momentum stalls. Aggressive breakout plays fail or reverse. Energy is low and scattered. Reduce size on momentum entries, favor patience.',preShadow:'2024-10-04',postShadow:'2025-05-02'},
+  {name:'Mars Retrograde',type:'retrograde',planet:'Mars',start:'2027-01-10',end:'2027-04-01',impact:'high',desc:'Mars Rx in Virgo/Leo. Momentum stalls. Breakouts reverse. Aggression backfires. Reduce size, avoid forcing entries. Let setups come to you.',preShadow:'2026-11-04',postShadow:'2027-06-01'},
 
-  // SOLAR ECLIPSES (verified dates)
+  // SOLAR ECLIPSES
   {name:'Solar Eclipse',type:'eclipse',planet:'Sun',start:'2025-03-29',end:'2025-03-29',impact:'high',desc:'Partial Solar Eclipse. Major intraday trend shifts possible. New directional cycles can begin. Expect gap opens and high volatility. ±3 trading days sensitive.'},
   {name:'Solar Eclipse',type:'eclipse',planet:'Sun',start:'2025-09-21',end:'2025-09-21',impact:'high',desc:'Partial Solar Eclipse. Watch for sudden directional shifts. Trend reversals or accelerations common around eclipse windows. ±3 trading days sensitive.'},
   {name:'Solar Eclipse',type:'eclipse',planet:'Sun',start:'2026-02-17',end:'2026-02-17',impact:'high',desc:'Annular Solar Eclipse. Powerful reset energy. New intraday trends can emerge. Gap opens and sharp directional moves likely. ±3 trading days sensitive.'},
@@ -1843,7 +1876,7 @@ const ASTRO_EVENTS = [
   {name:'Solar Eclipse',type:'eclipse',planet:'Sun',start:'2027-02-06',end:'2027-02-06',impact:'high',desc:'Annular Solar Eclipse. New cycles initiate. Gap opens and trend shifts possible. High-impact intraday volatility window. ±3 trading days sensitive.'},
   {name:'Solar Eclipse',type:'eclipse',planet:'Sun',start:'2027-08-02',end:'2027-08-02',impact:'high',desc:'Total Solar Eclipse. Peak reset energy. Expect extreme intraday volatility, gap opens, and decisive trend shifts. ±3 trading days sensitive.'},
 
-  // LUNAR ECLIPSES (verified dates)
+  // LUNAR ECLIPSES
   {name:'Lunar Eclipse',type:'eclipse',planet:'Moon',start:'2025-03-14',end:'2025-03-14',impact:'high',desc:'Total Lunar Eclipse. Emotional extremes in the tape. Sentiment reversals and exhaustion signals peak. Volatility spike ±3 days. Watch for trend exhaustion.'},
   {name:'Lunar Eclipse',type:'eclipse',planet:'Moon',start:'2025-09-07',end:'2025-09-07',impact:'high',desc:'Total Lunar Eclipse. Hidden trends get fully exposed. Emotional trading peaks. Watch for sharp intraday reversals and sentiment flips. ±3 days sensitive.'},
   {name:'Lunar Eclipse',type:'eclipse',planet:'Moon',start:'2026-03-03',end:'2026-03-03',impact:'high',desc:'Total Lunar Eclipse. Maximum emotional intensity. Sharp reversals from key levels. Exhaustion signals and sentiment flips dominate. ±3 days sensitive.'},
@@ -1861,6 +1894,7 @@ function getAstroAlerts(dateStr){
   const date = new Date(dateStr+'T12:00:00');
   const active = [];
   const upcoming = [];
+  const shadows = [];
 
   ASTRO_EVENTS.forEach(ev=>{
     const start = new Date(ev.start+'T00:00:00');
@@ -1872,15 +1906,34 @@ function getAstroAlerts(dateStr){
 
     if(date >= buffStart && date <= buffEnd){
       active.push(ev);
-    } else {
+    } else if(ev.preShadow && ev.postShadow){
+      // Check shadow phases for retrogrades
+      const preShadowStart = new Date(ev.preShadow+'T00:00:00');
+      const postShadowEnd = new Date(ev.postShadow+'T23:59:59');
+      if(date >= preShadowStart && date < buffStart){
+        const daysToRx = Math.ceil((start-date)/86400000);
+        shadows.push({...ev, shadowType:'pre', daysToRx, shadowStart:ev.preShadow, shadowEnd:ev.start});
+      } else if(date > buffEnd && date <= postShadowEnd){
+        const daysSinceRx = Math.ceil((date-end)/86400000);
+        const daysLeft = Math.ceil((postShadowEnd-date)/86400000);
+        shadows.push({...ev, shadowType:'post', daysSinceRx, daysLeft, shadowStart:ev.end, shadowEnd:ev.postShadow});
+      }
+    }
+
+    // Upcoming (not in shadow, not active)
+    if(date < buffStart){
       const daysUntil = Math.ceil((start-date)/86400000);
       if(daysUntil>0 && daysUntil<=30){
-        upcoming.push({...ev, daysUntil});
+        // Don't double-show if already in pre-shadow
+        const inPreShadow = ev.preShadow && date >= new Date(ev.preShadow+'T00:00:00');
+        if(!inPreShadow){
+          upcoming.push({...ev, daysUntil});
+        }
       }
     }
   });
 
-  return {active, upcoming};
+  return {active, upcoming, shadows};
 }
 
 const INTERP_DESC = {
@@ -1890,6 +1943,41 @@ const INTERP_DESC = {
   '3-5': {title:'Selective', color:'#c2570a', desc:'The environment is working against clean execution. Multiple layers are misaligned — expect choppy, indecisive, or deceptive price action. This is a capital preservation day. Reduce size significantly or stay flat entirely. If you must trade, use minimal risk and tight stops. Focus on protecting your account and your mental capital. Review your journal, refine your plan, and prepare for better conditions ahead.'},
   '0-3': {title:'Preserve', color:'#b91c1c', desc:'Nearly all layers are conflicting or suppressed. The energy does not support day trading. False breakouts, whipsaws, and low-conviction moves dominate. The best trade today is no trade. Step back from the screen, observe the tape without acting, and use this time for deep analysis, journaling, meditation, or strategy development. Protect your capital and your mindset — the next Prime day is coming.'}
 };
+
+function toggleScoreBreakdown(){
+  const p = document.getElementById('scoreBreakdownPanel');
+  const a = document.getElementById('scoreBreakdownArrow');
+  const open = p.style.display === 'block';
+  p.style.display = open ? 'none' : 'block';
+  a.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
+  if(!open) renderWeightBars();
+}
+
+function renderWeightBars(){
+  const el = document.getElementById('weightBreakdownBars');
+  if(!el) return;
+  const layers = [
+    {name:'Moon Phase', weight:35, color:'#b8860b', icon:'☽', role:'Macro energy driver — strongest market correlation'},
+    {name:'Planetary Alignment', weight:30, color:'#166534', icon:'⚹', role:'Market conditions — ally/enemy friction directly affects execution'},
+    {name:'Universal Number', weight:20, color:'#1a56a0', icon:'#', role:'Day character — shapes approach, not conditions'},
+    {name:'Moon Sign', weight:15, color:'#92400e', icon:'△', role:'Element modifier — colors the energy, doesn\'t drive it'}
+  ];
+  el.innerHTML = layers.map(l => `
+    <div style="margin-bottom:12px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+        <div style="display:flex;align-items:center;gap:6px;">
+          <span style="font-size:14px;">${l.icon}</span>
+          <span style="font-size:12px;font-weight:600;color:#ccc;">${l.name}</span>
+        </div>
+        <span style="font-size:14px;font-weight:600;color:${l.color};">${l.weight}%</span>
+      </div>
+      <div style="height:4px;background:#222;border-radius:2px;overflow:hidden;">
+        <div style="height:4px;width:${l.weight}%;background:${l.color};border-radius:2px;transition:width .4s;"></div>
+      </div>
+      <div style="font-size:10px;color:#666;margin-top:3px;">${l.role}</div>
+    </div>
+  `).join('');
+}
 
 function showInterp(el){
   const range = el.getAttribute('data-range');
@@ -1932,22 +2020,23 @@ function showInterp(el){
 function renderAstroAlerts(dateStr){
   const el = document.getElementById('astroAlerts');
   if(!el) return;
-  const {active, upcoming} = getAstroAlerts(dateStr);
+  const {active, upcoming, shadows} = getAstroAlerts(dateStr);
 
   const typeColor = {retrograde:'#92400e', eclipse:'#7f1d1d', ingress:'#1d4ed8'};
   const typeBg = {retrograde:'#fdf3e7', eclipse:'#fef2f2', ingress:'#eff6ff'};
   const typeIcon = {retrograde:'☿', eclipse:'🌑', ingress:'→'};
+  const fmtD = d => new Date(d+'T12:00:00').toLocaleDateString([],{month:'short',day:'numeric'});
 
   let html = '';
 
-  if(active.length===0 && upcoming.length===0){
+  if(active.length===0 && upcoming.length===0 && shadows.length===0){
     html = `<div style="padding:12px;background:var(--off);border-left:3px solid var(--green);font-size:13px;color:var(--mid);">✓ No major astro events active. Clear conditions for next 30 days.</div>`;
   }
 
   active.forEach(ev=>{
     const c = typeColor[ev.type]||'#333';
     const bg = typeBg[ev.type]||'#fafafa';
-    const duration = ev.start===ev.end ? '' : ` · ends ${new Date(ev.end+'T12:00:00').toLocaleDateString([],{month:'short',day:'numeric'})}`;
+    const duration = ev.start===ev.end ? '' : ` · ends ${fmtD(ev.end)}`;
     html += `<div style="padding:12px 14px;background:${bg};border-left:3px solid ${c};margin-bottom:8px;">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
         <span style="font-size:16px;">${typeIcon[ev.type]}</span>
@@ -1955,6 +2044,30 @@ function renderAstroAlerts(dateStr){
       </div>
       <div style="font-size:13px;color:#000;line-height:1.6;">${ev.desc}</div>
     </div>`;
+  });
+
+  // Shadow phases
+  shadows.forEach(ev=>{
+    const shadowColor = '#6b5b3a';
+    const shadowBg = '#faf6ee';
+    const planetIcon = ev.planet==='Mercury'?'☿':ev.planet==='Venus'?'♀':ev.planet==='Mars'?'♂':'☿';
+    if(ev.shadowType==='pre'){
+      html += `<div style="padding:12px 14px;background:${shadowBg};border-left:3px solid ${shadowColor};margin-bottom:8px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+          <span style="font-size:16px;">${planetIcon}</span>
+          <span style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:${shadowColor};">PRE-SHADOW · ${ev.name}</span>
+        </div>
+        <div style="font-size:13px;color:#000;line-height:1.6;">Pre-retrograde shadow phase active since ${fmtD(ev.preShadow)}. ${ev.planet} stations retrograde in <strong>${ev.daysToRx} days</strong> (${fmtD(ev.start)}). Themes are building — watch for early signal distortion, miscommunication, and false starts. Begin tightening risk parameters now.</div>
+      </div>`;
+    } else {
+      html += `<div style="padding:12px 14px;background:${shadowBg};border-left:3px solid ${shadowColor};margin-bottom:8px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+          <span style="font-size:16px;">${planetIcon}</span>
+          <span style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:${shadowColor};">POST-SHADOW · ${ev.name}</span>
+        </div>
+        <div style="font-size:13px;color:#000;line-height:1.6;">${ev.planet} went direct but is still in post-retrograde shadow until ${fmtD(ev.postShadow)} (<strong>${ev.daysLeft} days left</strong>). Residual effects linger — signals are clearing but not fully clean yet. Gradually increase conviction as shadow clears.</div>
+      </div>`;
+    }
   });
 
   if(upcoming.length>0){
