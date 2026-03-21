@@ -97,9 +97,9 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
 }
 .alert-banner.prime{background:#b8860b;}
 .alert-banner.aligned{background:#166534;}
-.alert-banner.grounded{background:#1a56a0;}
-.alert-banner.selective{background:#c2570a;}
-.alert-banner.preserve{background:#b91c1c;}
+.alert-banner.ambient{background:#1a56a0;}
+.alert-banner.tempered{background:#c2570a;}
+.alert-banner.conserve{background:#b91c1c;}
 
 /* ─── DATE BAR ─── */
 .datebar{
@@ -406,43 +406,30 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
 /* ── WHY PANEL ── */
 .why-panel{
   display:none;
-  background:var(--off);
-  border-bottom:1px solid var(--rule);
+  background:#0a0a0a;
+  border-bottom:1px solid #222;
   padding:20px 32px 28px;
 }
 .why-panel-title{
   font-size:7px;letter-spacing:5px;text-transform:uppercase;
-  color:var(--muted);margin-bottom:16px;padding-bottom:10px;
-  border-bottom:1px solid var(--rule);
+  color:#555;margin-bottom:16px;padding-bottom:10px;
+  border-bottom:1px solid #222;
   display:flex;align-items:center;justify-content:space-between;
 }
 .why-toggle{
-  background:none;border:1px solid var(--rule);
+  background:none;border:1px solid #333;
   font-family:'DM Sans',sans-serif;font-size:7px;letter-spacing:2px;
-  text-transform:uppercase;color:var(--muted);cursor:pointer;
+  text-transform:uppercase;color:#666;cursor:pointer;
   padding:4px 10px;transition:all .15s;
 }
-.why-toggle:hover{border-color:var(--dark);color:var(--dark);}
+.why-toggle:hover{border-color:#888;color:#888;}
 .why-grid{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:8px;
+  gap:1px;
+  background:#222;
+  border:1px solid #222;
 }
-.wf{
-  background:#fff;border:1px solid var(--rule);
-  border-top:3px solid var(--rule);padding:14px 16px;
-}
-.wf.f{border-top-color:var(--green);}
-.wf.c{border-top-color:var(--blue);}
-.wf.v{border-top-color:var(--amber);}
-.wf.s{border-top-color:var(--red);}
-.wf-lbl{font-size:7px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
-.wf-val{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--black);line-height:1.3;margin-bottom:10px;}
-.wf-badge{font-size:8px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:3px 9px;border:1px solid;display:inline-block;}
-.wf-badge.f{color:var(--green);border-color:var(--green);background:#eaf5ee;}
-.wf-badge.c{color:var(--blue);border-color:var(--blue);background:#e8f0f8;}
-.wf-badge.v{color:var(--amber);border-color:var(--amber);background:#fdf3e7;}
-.wf-badge.s{color:var(--red);border-color:var(--red);background:#faeaea;}
 
 /* ── LINKS BUTTON & DRAWER ── */
 .links-btn-wrap{
@@ -754,39 +741,43 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#222;margin-bottom:32px;border:1px solid #222;">
 
       <!-- Layer 1 -->
-      <div style="background:#0a0a0a;padding:16px 14px;">
-        <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px;">1 · Universal Day <span style="color:#444;">20%</span></div>
-        <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:4px;">
+      <div id="l1Cell" style="background:#0a0a0a;padding:16px 14px;border-top:3px solid #b91c1c;">
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px;"><span>◆◆ Universal Day</span><span style="color:#444;">20%</span></div>
+        <div id="l1Val" style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#ccc;line-height:1.3;margin-bottom:10px;">—</div>
+        <div style="display:flex;align-items:baseline;gap:8px;">
           <div id="l1Score" style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;line-height:1;color:#ccc;">—</div>
+          <div id="l1Label" style="font-size:12px;color:#888;line-height:1.5;">—</div>
         </div>
-        <div id="l1Label" style="font-size:12px;color:#888;line-height:1.5;">—</div>
       </div>
 
       <!-- Layer 2 -->
-      <div style="background:#0a0a0a;padding:16px 14px;">
-        <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px;">2 · Moon Phase <span style="color:#444;">35%</span></div>
-        <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:4px;">
+      <div id="l2Cell" style="background:#0a0a0a;padding:16px 14px;border-top:3px solid #b91c1c;">
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px;"><span>◆◆◆◆ Moon Phase</span><span style="color:#444;">35%</span></div>
+        <div id="l2Val" style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#ccc;line-height:1.3;margin-bottom:10px;">—</div>
+        <div style="display:flex;align-items:baseline;gap:8px;">
           <div id="l2Score" style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;line-height:1;color:#ccc;">—</div>
+          <div id="l2Label" style="font-size:12px;color:#888;line-height:1.5;">—</div>
         </div>
-        <div id="l2Label" style="font-size:12px;color:#888;line-height:1.5;">—</div>
       </div>
 
       <!-- Layer 3 -->
-      <div style="background:#0a0a0a;padding:16px 14px;">
-        <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px;">3 · Moon Sign <span style="color:#444;">15%</span></div>
-        <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:4px;">
+      <div id="l3Cell" style="background:#0a0a0a;padding:16px 14px;border-top:3px solid #b91c1c;">
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px;"><span>◆ Moon Sign</span><span style="color:#444;">15%</span></div>
+        <div id="l3Val" style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#ccc;line-height:1.3;margin-bottom:10px;">—</div>
+        <div style="display:flex;align-items:baseline;gap:8px;">
           <div id="l3Score" style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;line-height:1;color:#ccc;">—</div>
+          <div id="l3Label" style="font-size:12px;color:#888;line-height:1.5;">—</div>
         </div>
-        <div id="l3Label" style="font-size:12px;color:#888;line-height:1.5;">—</div>
       </div>
 
       <!-- Layer 4 -->
-      <div style="background:#0a0a0a;padding:16px 14px;">
-        <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px;">4 · Planetary Harmony <span style="color:#444;">30%</span></div>
-        <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:4px;">
+      <div id="l4Cell" style="background:#0a0a0a;padding:16px 14px;border-top:3px solid #b91c1c;">
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px;"><span>◆◆◆ Planetary Harmony</span><span style="color:#444;">30%</span></div>
+        <div id="l4Val" style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#ccc;line-height:1.3;margin-bottom:10px;">—</div>
+        <div style="display:flex;align-items:baseline;gap:8px;">
           <div id="l4Score" style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;line-height:1;color:#ccc;">—</div>
+          <div id="l4Label" style="font-size:12px;color:#888;line-height:1.5;">—</div>
         </div>
-        <div id="l4Label" style="font-size:12px;color:#888;line-height:1.5;">—</div>
       </div>
     </div>
 
@@ -809,15 +800,15 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
         </div>
         <div class="interp-cell interp-dark" data-range="5-7" onclick="showInterp(this)">
           <div class="interp-range" style="color:#999;">5–7</div>
-          <div class="interp-mode" style="color:#ccc;">Grounded</div>
+          <div class="interp-mode" style="color:#ccc;">Ambient</div>
         </div>
         <div class="interp-cell interp-dark" data-range="3-5" onclick="showInterp(this)">
           <div class="interp-range" style="color:#999;">3–5</div>
-          <div class="interp-mode" style="color:#ccc;">Selective</div>
+          <div class="interp-mode" style="color:#ccc;">Tempered</div>
         </div>
         <div class="interp-cell interp-dark" data-range="0-3" style="border-right:none;" onclick="showInterp(this)">
           <div class="interp-range" style="color:#999;">0–3</div>
-          <div class="interp-mode" style="color:#ccc;">Preserve</div>
+          <div class="interp-mode" style="color:#ccc;">Conserve</div>
         </div>
       </div>
       <div id="interpDesc" style="display:none;padding:14px 16px;border-top:1px solid #222;background:#0a0a0a;font-size:14px;color:#999;line-height:1.75;"></div>
@@ -1209,9 +1200,9 @@ function loadDate(){
   let pdtMode, pdtColor, pdtTag;
   if(pdtTotal >= 8.5){pdtMode='Prime';pdtColor='#b8860b';pdtTag='8.5–10';}
   else if(pdtTotal >= 7){pdtMode='Aligned';pdtColor='#166534';pdtTag='7–8.5';}
-  else if(pdtTotal >= 5){pdtMode='Grounded';pdtColor='#1a56a0';pdtTag='5–7';}
-  else if(pdtTotal >= 3){pdtMode='Selective';pdtColor='#c2570a';pdtTag='3–5';}
-  else{pdtMode='Preserve';pdtColor='#b91c1c';pdtTag='0–3';}
+  else if(pdtTotal >= 5){pdtMode='Ambient';pdtColor='#1a56a0';pdtTag='5–7';}
+  else if(pdtTotal >= 3){pdtMode='Tempered';pdtColor='#c2570a';pdtTag='3–5';}
+  else{pdtMode='Conserve';pdtColor='#b91c1c';pdtTag='0–3';}
 
   // Render total
   document.getElementById('pdt4Score').textContent = pdtTotal.toFixed(1);
@@ -1228,18 +1219,34 @@ function loadDate(){
   const l3Display = Math.round(l3Score * 0.15 * 100) / 10;
   const l4Display = Math.round(l4Score * 0.30 * 100) / 10;
   const layerScoreColor = s => s >= 2.5 ? '#166534' : s >= 1.5 ? '#92400e' : '#b91c1c';
+
+  // Layer 1
   document.getElementById('l1Score').textContent = l1Display.toFixed(1);
   document.getElementById('l1Score').style.color = layerScoreColor(l1Display);
   document.getElementById('l1Label').textContent = l1Label;
+  document.getElementById('l1Val').textContent = 'Energy #' + en + ' — ' + ed.name;
+  document.getElementById('l1Cell').style.borderTopColor = layerScoreColor(l1Display);
+
+  // Layer 2
   document.getElementById('l2Score').textContent = l2Display.toFixed(1);
   document.getElementById('l2Score').style.color = layerScoreColor(l2Display);
   document.getElementById('l2Label').textContent = l2Label;
+  document.getElementById('l2Val').textContent = phase.name;
+  document.getElementById('l2Cell').style.borderTopColor = layerScoreColor(l2Display);
+
+  // Layer 3
   document.getElementById('l3Score').textContent = l3Display.toFixed(1);
   document.getElementById('l3Score').style.color = layerScoreColor(l3Display);
   document.getElementById('l3Label').textContent = l3Label;
+  document.getElementById('l3Val').textContent = sign.name + ' (' + sign.elem.charAt(0).toUpperCase()+sign.elem.slice(1) + ')';
+  document.getElementById('l3Cell').style.borderTopColor = layerScoreColor(l3Display);
+
+  // Layer 4
   document.getElementById('l4Score').textContent = l4Display.toFixed(1);
   document.getElementById('l4Score').style.color = layerScoreColor(l4Display);
   document.getElementById('l4Label').textContent = l4Label;
+  document.getElementById('l4Val').textContent = day.planet + ' / ' + sign.ruler.split('/')[0].trim() + ' — Grade ' + paGrade;
+  document.getElementById('l4Cell').style.borderTopColor = layerScoreColor(l4Display);
 
   // Energy Read — Tactical Synthesis
   const erEl = document.getElementById('energyRead');
@@ -1410,53 +1417,55 @@ function loadDate(){
     flow:     'ALIGNED',
     chop:     'STRUCTURED',
     volatile: 'MEASURED',
-    shift:    'PRESERVE',
+    shift:    'CONSERVE',
   };
 
-  // ── Build WHY breakdown using 4-Layer Scoring (ordered by weight)
+  // ── Build WHY breakdown — matches Energy Pulse 4-Layer grid
   const layerData = [
     {
-      label: '◆◆◆◆ Moon Phase',
-      wt: '35%',
-      val: phase.name,
-      score: l2Display,
-      note: l2Label,
-      color: l2Display >= 2.5 ? '#166534' : l2Display >= 1.5 ? '#92400e' : '#b91c1c'
-    },
-    {
-      label: '◆◆◆ Planetary Harmony',
-      wt: '30%',
-      val: day.planet + ' / ' + signRulerName + ' — Grade ' + paGrade,
-      score: l4Display,
-      note: l4Label,
-      color: l4Display >= 2.5 ? '#166534' : l4Display >= 1.5 ? '#92400e' : '#b91c1c'
-    },
-    {
-      label: '◆◆ Universal Day',
+      label: 'Universal Day',
       wt: '20%',
       val: 'Energy #' + en + ' — ' + ed.name,
       score: l1Display,
       note: l1Label,
-      color: l1Display >= 2.5 ? '#166534' : l1Display >= 1.5 ? '#92400e' : '#b91c1c'
+      color: layerScoreColor(l1Display)
     },
     {
-      label: '◆ Moon Sign',
+      label: 'Moon Phase',
+      wt: '35%',
+      val: phase.name,
+      score: l2Display,
+      note: l2Label,
+      color: layerScoreColor(l2Display)
+    },
+    {
+      label: 'Moon Sign',
       wt: '15%',
       val: sign.name + ' (' + sign.elem.charAt(0).toUpperCase()+sign.elem.slice(1) + ')',
       score: l3Display,
       note: l3Label,
-      color: l3Display >= 2.5 ? '#166534' : l3Display >= 1.5 ? '#92400e' : '#b91c1c'
+      color: layerScoreColor(l3Display)
+    },
+    {
+      label: 'Planetary Harmony',
+      wt: '30%',
+      val: day.planet + ' / ' + signRulerName + ' — Grade ' + paGrade,
+      score: l4Display,
+      note: l4Label,
+      color: layerScoreColor(l4Display)
     }
   ];
 
   const grid = document.getElementById('whyGrid');
   grid.innerHTML = layerData.map(f => {
-    return '<div class="wf" style="border-top-color:'+f.color+';">' +
-      '<div style="display:flex;justify-content:space-between;align-items:center;"><div class="wf-lbl">'+f.label+'</div><div style="font-size:9px;letter-spacing:1px;color:var(--muted);font-weight:600;">'+f.wt+'</div></div>' +
-      '<div class="wf-val">'+f.val+'</div>' +
-      '<div style="display:flex;align-items:center;gap:10px;margin-top:8px;">' +
-        '<div style="font-family:\'Cormorant Garamond\',serif;font-size:28px;font-weight:600;color:'+f.color+';line-height:1;">'+f.score.toFixed(1)+'</div>' +
-        '<div style="font-size:12px;color:var(--muted);line-height:1.5;">'+f.note+'</div>' +
+    const diamonds = {'20%':'◆◆','35%':'◆◆◆◆','15%':'◆','30%':'◆◆◆'};
+    const dm = diamonds[f.wt] || '';
+    return '<div style="background:#0a0a0a;padding:16px 14px;border-top:3px solid '+f.color+';">' +
+      '<div style="display:flex;justify-content:space-between;align-items:center;font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px;"><span>'+dm+' '+f.label+'</span><span style="color:#444;">'+f.wt+'</span></div>' +
+      '<div style="font-family:\'Cormorant Garamond\',serif;font-size:22px;font-weight:600;color:#ccc;line-height:1.3;margin-bottom:10px;">'+f.val+'</div>' +
+      '<div style="display:flex;align-items:baseline;gap:8px;">' +
+        '<div style="font-family:\'Cormorant Garamond\',serif;font-size:36px;font-weight:600;line-height:1;color:'+f.color+';">'+f.score.toFixed(1)+'</div>' +
+        '<div style="font-size:12px;color:#888;line-height:1.5;">'+f.note+'</div>' +
       '</div>' +
       '</div>';
   }).join('');
@@ -1937,11 +1946,11 @@ function getAstroAlerts(dateStr){
 }
 
 const INTERP_DESC = {
-  '8.5-10': {title:'Prime', color:'#b8860b', desc:'All four layers are firing in unison. Universal Day energy is directional, Moon phase supports strong momentum, Moon sign element favors action, and planetary harmony is high. This is the ideal day trading environment — full conviction entries, trend-following setups, and breakout plays are all on the table. Size up with confidence, ride momentum, and trust the tape. These sessions are rare — capitalize when they arrive.'},
-  '7-8.5': {title:'Aligned', color:'#166534', desc:'Most layers are working together with only minor friction. The energy supports clean intraday setups with good follow-through. Trend trades and momentum plays are favored, but one layer may require extra attention. Trade with confidence but stay disciplined on entries — wait for confirmation rather than anticipating. A strong day to execute your A+ setups with normal to slightly increased size.'},
-  '5-7': {title:'Grounded', color:'#1a56a0', desc:'The energy is mixed — some layers support action while others urge caution. This is a selective day. Only take your highest-conviction setups with clear technical confluence. Reduce position size, tighten stops, and avoid overtrading. The tape may chop or give mixed signals. Patience is the edge today. If nothing clean presents itself, sitting out is a valid strategy. Quality over quantity.'},
-  '3-5': {title:'Selective', color:'#c2570a', desc:'The environment is working against clean execution. Multiple layers are misaligned — expect choppy, indecisive, or deceptive price action. This is a capital preservation day. Reduce size significantly or stay flat entirely. If you must trade, use minimal risk and tight stops. Focus on protecting your account and your mental capital. Review your journal, refine your plan, and prepare for better conditions ahead.'},
-  '0-3': {title:'Preserve', color:'#b91c1c', desc:'Nearly all layers are conflicting or suppressed. The energy does not support day trading. False breakouts, whipsaws, and low-conviction moves dominate. The best trade today is no trade. Step back from the screen, observe the tape without acting, and use this time for deep analysis, journaling, meditation, or strategy development. Protect your capital and your mindset — the next Prime day is coming.'}
+  '8.5-10': {title:'Prime', color:'#b8860b', desc:'All four layers are firing together. The tide is with you, the alignment is clean, and the day\'s character supports decisive action. This is the session you prepare for — full conviction entries, momentum plays, and breakout trades all have wind at their back. Size up. Trust the tape. Execute your best setups without hesitation. Prime days are rare. When they arrive, you trade.'},
+  '7-8.5': {title:'Aligned', color:'#166534', desc:'The energy is working in your favor with only minor friction. Most layers support clean execution — trend trades and momentum setups should follow through well. One layer may be slightly off, so wait for confirmation before entering. Trade your A+ setups with confidence and normal size. This is a solid session to be active, disciplined, and present.'},
+  '5-7': {title:'Ambient', color:'#1a56a0', desc:'The energy is present like background noise — there, but not loud. Normal operating conditions. No edge is given, no barrier is raised. The layers are neither fully aligned nor working against you. Some support action, some pull back. This is the day you see most often. Your system, your preparation, and your read on what the market offers will define the session — not the energy itself.'},
+  '3-5': {title:'Tempered', color:'#c2570a', desc:'The energy is present but not at full strength. Multiple layers are pulling in different directions — signals may lack clarity, and follow-through is unreliable. The environment isn\'t hostile, but it isn\'t helping either. You\'re in a middle ground where awareness matters more than aggression. Read the tape, trust your system, and let your preparation speak.'},
+  '0-3': {title:'Conserve', color:'#b91c1c', desc:'The energy is working against you. Nearly all layers are in conflict or suppressed — the market will feel heavy, unpredictable, or dead. The best trade today is no trade. Step away from the screen. Use this session for deep analysis, meditation, journaling, or strategy refinement. Conserve your capital and your focus. The next Prime day is coming — be ready for it, not drained by today.'}
 };
 
 function toggleScoreBreakdown(){
