@@ -137,13 +137,13 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
 #dayLabel{display:block;font-size:8px;letter-spacing:6px;color:var(--muted);text-transform:uppercase;margin-bottom:4px;}
 #dateInput{
   background:none;border:none;border-bottom:2px solid transparent;
-  color:var(--black);font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:600;
+  color:var(--black);font-family:'Playfair Display',serif;font-size:40px;font-weight:900;
   text-align:center;padding:0 8px;outline:none;cursor:pointer;line-height:1;
   transition:border-bottom-color .2s;
 }
 #dateInput:focus{border-bottom-color:var(--dark);}
 .datebar.fixed #dayLabel{display:none;}
-.datebar.fixed #dateInput{font-size:22px;}
+.datebar.fixed #dateDisplay{font-size:22px;}
 .datebar.fixed .today-btn-wrap{display:none;}
 .datebar.fixed .arr{width:32px;height:32px;font-size:16px;}
 .today-btn{
@@ -204,12 +204,12 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
 .cat-badge{display:inline-block;font-size:7px;letter-spacing:2px;font-weight:600;text-transform:uppercase;padding:3px 8px;border:1px solid;border-radius:2px;}
 .cat-badge.cat-clarity{background:rgba(91,155,213,0.12);color:#5b9bd5;border-color:rgba(91,155,213,0.3);}
 .cat-badge.cat-illusion{background:rgba(107,107,107,0.12);color:#8a8a8a;border-color:rgba(107,107,107,0.3);}
-.cat-badge.cat-transition{background:rgba(184,115,51,0.12);color:#b87333;border-color:rgba(184,115,51,0.3);}
+.cat-badge.cat-transition{background:rgba(201,162,39,0.12);color:#c9a227;border-color:rgba(201,162,39,0.3);}
 .cat-tab{background:#fff;border:none;font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer;padding:12px 14px;border-radius:0;transition:all .15s;text-align:center;}
 .cat-tab:hover{color:#000;background:var(--off);}
 .cat-tab.active-clarity{color:#5b9bd5;background:rgba(91,155,213,0.08);}
 .cat-tab.active-illusion{color:#6b6b6b;background:rgba(107,107,107,0.08);}
-.cat-tab.active-transition{color:#b87333;background:rgba(184,115,51,0.08);}
+.cat-tab.active-transition{color:#c9a227;background:rgba(201,162,39,0.08);}
 .e-subname{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
 
   display:inline-block;
@@ -543,7 +543,8 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
   <button class="arr" onclick="shiftDate(-1)">←</button>
   <div class="date-center">
     <span id="dayLabel">—</span>
-    <input type="date" id="dateInput" onchange="loadDate()">
+    <div id="dateDisplay" style="font-family:'Playfair Display',serif;font-size:40px;font-weight:900;color:var(--black);cursor:pointer;line-height:1;" onclick="document.getElementById('dateInput').click()">—</div>
+    <input type="date" id="dateInput" onchange="loadDate()" style="position:absolute;opacity:0;width:1px;height:1px;overflow:hidden;">
     <div class="today-btn-wrap" style="margin-top:8px;"><button class="today-btn" onclick="goToday()">Today</button></div>
   </div>
   <button class="arr" onclick="shiftDate(1)">→</button>
@@ -627,13 +628,13 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
   <div style="margin-top:20px;border-top:1px solid var(--rule);padding-top:16px;">
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);">
       <button class="cat-tab" data-cat="clarity" onclick="toggleCatPanel('clarity')">
-        <span style="color:#5b9bd5;">●</span> Clarity
+        <div style="color:#5b9bd5;font-size:8px;margin-bottom:4px;">●</div>Clarity
       </button>
       <button class="cat-tab" data-cat="illusion" onclick="toggleCatPanel('illusion')">
-        <span style="color:#6b6b6b;">●</span> Illusion
+        <div style="color:#6b6b6b;font-size:8px;margin-bottom:4px;">●</div>Illusion
       </button>
       <button class="cat-tab" data-cat="transition" onclick="toggleCatPanel('transition')">
-        <span style="color:#b87333;">●</span> Transition
+        <div style="color:#c9a227;font-size:8px;margin-bottom:4px;">●</div>Transition
       </button>
     </div>
     <div id="catPanel" style="display:none;margin-top:12px;"></div>
@@ -679,10 +680,8 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
 
   <!-- Moon Phase Full Display -->
   <div style="margin-bottom:20px;margin-top:20px;">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
-      <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);">Moon Phase</div>
-      <div style="font-size:6px;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:#b8860b;background:#fdf8ee;border:1px solid #e8d5a0;padding:2px 8px;border-radius:2px;">⚡ Primary Market Driver</div>
-    </div>
+    <div style="margin-bottom:10px;"><div style="display:inline-block;font-size:8px;letter-spacing:3px;text-transform:uppercase;font-weight:600;color:#b8860b;background:#fdf8ee;border:1px solid #e8d5a0;padding:4px 12px;border-radius:2px;">⚡ Primary Market Driver</div></div>
+    <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Moon Phase</div>
     <div id="synthMoonName" style="font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:600;color:var(--black);margin-bottom:14px;line-height:1;">—</div>
     <div class="phase-grade-row">
       <div class="phase-grade-num" id="synthMoonGrade">—</div>
@@ -705,22 +704,22 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
   <!-- Lunar Cycle Stages -->
   <div style="margin-bottom:20px;">
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule);">
-      <div id="lcStage1" class="lc-stage" style="padding:12px 8px;text-align:center;border-right:1px solid var(--rule);">
+      <div id="lcStage1" class="lc-stage" style="padding:12px 8px;text-align:center;border-right:1px solid var(--rule);cursor:pointer;" onclick="toggleLcStage(1)">
         <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#000;">1</div>
         <div style="font-size:10px;font-weight:600;color:#000;margin:3px 0;">Build</div>
         <div style="font-size:9px;color:var(--muted);line-height:1.4;">New Moon → Waxing Crescent</div>
       </div>
-      <div id="lcStage2" class="lc-stage" style="padding:12px 8px;text-align:center;border-right:1px solid var(--rule);">
+      <div id="lcStage2" class="lc-stage" style="padding:12px 8px;text-align:center;border-right:1px solid var(--rule);cursor:pointer;" onclick="toggleLcStage(2)">
         <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#000;">2</div>
         <div style="font-size:10px;font-weight:600;color:#000;margin:3px 0;">Expansion</div>
         <div style="font-size:9px;color:var(--muted);line-height:1.4;">First Quarter → Waxing Gibbous</div>
       </div>
-      <div id="lcStage3" class="lc-stage" style="padding:12px 8px;text-align:center;border-right:1px solid var(--rule);">
+      <div id="lcStage3" class="lc-stage" style="padding:12px 8px;text-align:center;border-right:1px solid var(--rule);cursor:pointer;" onclick="toggleLcStage(3)">
         <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#000;">3</div>
         <div style="font-size:10px;font-weight:600;color:#000;margin:3px 0;">Peak</div>
         <div style="font-size:9px;color:var(--muted);line-height:1.4;">Full Moon</div>
       </div>
-      <div id="lcStage4" class="lc-stage" style="padding:12px 8px;text-align:center;">
+      <div id="lcStage4" class="lc-stage" style="padding:12px 8px;text-align:center;cursor:pointer;" onclick="toggleLcStage(4)">
         <div style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#000;">4</div>
         <div style="font-size:10px;font-weight:600;color:#000;margin:3px 0;">Reset</div>
         <div style="font-size:9px;color:var(--muted);line-height:1.4;">Waning Gibbous → Waning Crescent</div>
@@ -1018,6 +1017,13 @@ function loadDate(){
   renderAstroAlerts(val);
   const wdn=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   document.getElementById('dayLabel').textContent=wdn[dow].toUpperCase();
+
+  // Update numbered date display
+  const mm=String(date.getMonth()+1).padStart(2,'0');
+  const dd=String(date.getDate()).padStart(2,'0');
+  const yyyy=date.getFullYear();
+  const dateDisp=document.getElementById('dateDisplay');
+  if(dateDisp) dateDisp.textContent=mm+'.'+dd+'.'+yyyy;
 
   const en=calcNum(val),ed=EN[en],sign=getMoonSign(date),phase=getMoonPhase(date),day=DAYS[dow],elem=ELEMS[sign.elem];
 
@@ -1519,7 +1525,7 @@ function toggleCatPanel(cat){
   // Activate clicked
   clickedTab.classList.add('active-'+cat);
 
-  const catColors = {clarity:'#5b9bd5', illusion:'#6b6b6b', transition:'#b87333'};
+  const catColors = {clarity:'#5b9bd5', illusion:'#6b6b6b', transition:'#c9a227'};
   const catDescs = {
     clarity:'Energy you can read clearly. The signal is clean, the direction is visible, and the tape tends to do what it looks like it will do. Structure holds. Patterns resolve. What you see is what you get.',
     illusion:'Energy that bends or hides. The signal is present but not trustworthy at face value. What appears obvious may invert. What looks dead may be coiling. The truth is underneath — not on the surface.',
@@ -1598,6 +1604,32 @@ function previewElemChip(i, ELEM_DATA){
   const e = ELEM_DATA[i];
   const elemData = ELEMS[e.key];
   if(!elemData) return;
+
+  // Check if clicking the already-active chip — toggle off
+  const alreadyActive = document.querySelector('.elem-chip.active');
+  const clickedIdx = i;
+  let wasActive = false;
+  if(alreadyActive){
+    const allChips = Array.from(document.querySelectorAll('.elem-chip'));
+    const activeIdx = allChips.indexOf(alreadyActive) % ELEM_DATA.length;
+    if(activeIdx === clickedIdx) wasActive = true;
+  }
+
+  if(wasActive){
+    // Close: deactivate all chips, clear note and signs
+    document.querySelectorAll('.elem-chip').forEach((c,idx)=>{
+      c.classList.remove('active');
+      const nm = c.querySelector('.ec-name');
+      if(nm) nm.style.color = ELEM_DATA[idx % ELEM_DATA.length].color;
+    });
+    const en2 = document.getElementById('elemNote');
+    if(en2){ en2.textContent = ''; en2.className = 'elem-note'; }
+    const en2d = document.getElementById('elemNoteDisplay');
+    if(en2d){ en2d.textContent = ''; en2d.className = 'elem-note'; }
+    const signsRow = document.getElementById('elemSignsRow');
+    if(signsRow) signsRow.innerHTML = '';
+    return;
+  }
 
   // Update active chip — only update chips that have matching ELEM_DATA entries
   document.querySelectorAll('.elem-chip').forEach((c,idx)=>{
@@ -2040,6 +2072,33 @@ const INTERP_DESC = {
   '3-5': {title:'Tempered', color:'#c2570a', desc:'The energy is present but not at full strength. Multiple layers are pulling in different directions — signals may lack clarity, and follow-through is unreliable. The environment isn\'t hostile, but it isn\'t helping either. You\'re in a middle ground where awareness matters more than aggression. Read the tape, trust your system, and let your preparation speak.'},
   '0-3': {title:'Conserve', color:'#b91c1c', desc:'The energy is working against you. Nearly all layers are in conflict or suppressed — the market will feel heavy, unpredictable, or dead. The best trade today is no trade. Step away from the screen. Use this session for deep analysis, meditation, journaling, or strategy refinement. Conserve your capital and your focus. The next Prime day is coming — be ready for it, not drained by today.'}
 };
+
+var _lcSelectedStage = 0;
+function toggleLcStage(stage){
+  const descEl = document.getElementById('lcStageDesc');
+  const stageColors = {1:'#2563eb',2:'#166534',3:'#92400e',4:'#7f1d1d'};
+  const stageNames = ['Build','Expansion','Peak','Reset'];
+  const LC_DESC_FULL = {
+    1:'Build phase — energy is accumulating. Markets are setting up. New Moon resets the cycle and Waxing Crescent begins to stir momentum. Sentiment is low-conviction but directional bias is starting to form beneath the surface. This is the foundation of the next move.',
+    2:'Expansion phase — momentum is accelerating. First Quarter brings breakout pressure and Waxing Gibbous extends trends with strong follow-through. Conviction is rising, volume picks up, and the market begins to show its hand. The strongest sustained moves of the cycle happen here.',
+    3:'Peak phase — maximum energy and volatility. Full Moon amplifies everything. Moves are large, emotional, and often reach extremes. Sentiment runs hot on both sides. Reversals at key levels are common. This is the climax of the cycle — the highest energy and the highest risk.',
+    4:'Reset phase — the cycle is winding down. Waning Gibbous begins distribution, Last Quarter brings chop and conflict, and Waning Crescent goes quiet. The market is releasing what it was carrying. Old trends fade, new ones haven\'t formed yet. The energy is spent.'
+  };
+
+  // If clicking same stage, toggle off
+  if(_lcSelectedStage === stage){
+    _lcSelectedStage = 0;
+    if(descEl) descEl.style.display = 'none';
+    return;
+  }
+
+  _lcSelectedStage = stage;
+  if(descEl){
+    descEl.style.display = 'block';
+    descEl.style.borderLeftColor = stageColors[stage];
+    descEl.textContent = 'Stage ' + stage + ' · ' + stageNames[stage-1] + ': ' + LC_DESC_FULL[stage];
+  }
+}
 
 function toggleScoreBreakdown(){
   const p = document.getElementById('scoreBreakdownPanel');
