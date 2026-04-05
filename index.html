@@ -244,6 +244,8 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
   gap:5px;
   margin-top:20px;
   width:100%;
+  padding:3px;
+  box-sizing:border-box;
 }
 .chip{
   font-family:'Cormorant Garamond',serif;
@@ -265,7 +267,7 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
 .chip.active{background:#f3f4f6;color:var(--dark);border-color:#555;border-width:2px;border-radius:8px;}
 .chip.active::after{display:none;}
 .chip.mc{color:var(--gold);}
-.chip.mc.active{background:#f3f4f6;color:var(--gold);border-color:var(--gold);border-width:2px;border-radius:8px;}
+.chip.mc.active{background:#f3f4f6;color:var(--gold);border-color:var(--gold);border-width:2px;border-radius:8px;border-right:2px solid var(--gold)!important;}
 .chip.mc.active::after{display:none;}
 
 .moon-chips{
@@ -694,7 +696,6 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
   <div class="sec-label">Cosmic Pulse</div>
   <!-- ── PLANETARY DAY WEEK STRIP ── -->
   <div style="margin-bottom:18px;">
-    <div style="font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Planetary Day Guide</div>
     <div id="pdwStrip" style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;"></div>
     <div id="pdwPanel" style="display:none;margin-top:12px;border:1px solid var(--rule);"></div>
   </div>
@@ -993,6 +994,7 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
       <!-- PHASE 1: CHECK-IN -->
       <div style="border-left:2px solid #333;padding-left:16px;margin-bottom:32px;">
         <div style="margin-bottom:6px;font-size:15px;color:#888;">ALIGNMENT has been checked. ✅</div>
+        <div style="margin-bottom:6px;font-size:15px;color:#888;">News has been checked. ✅</div>
         <div style="margin-bottom:6px;font-size:15px;color:#888;">Levels checked. ✅</div>
         <div style="margin-bottom:6px;font-size:15px;color:#888;">Now the most important and powerful indicator there is has to be checked —</div>
         <div style="font-size:22px;font-weight:600;color:#fff;letter-spacing:1px;">YOURSELF/CELLS!</div>
