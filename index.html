@@ -100,7 +100,7 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
 .alert-banner.prime{background:#b8860b;}
 .alert-banner.aligned{background:#166534;}
 .alert-banner.ambient{background:#1a56a0;}
-.alert-banner.selective{background:#c2570a;}
+.alert-banner.selective{background:#1a56a0;}
 .alert-banner.conserve{background:#b91c1c;}
 
 /* ─── DATE BAR ─── */
@@ -1457,7 +1457,7 @@ function loadDate(){
   let pdtMode, pdtColor, pdtTag;
   if(pdtPct >= 80){pdtMode='Prime';pdtColor='#b8860b';pdtTag='80–100%';}
   else if(pdtPct >= 55){pdtMode='Aligned';pdtColor='#166534';pdtTag='55–79%';}
-  else if(pdtPct >= 30){pdtMode='Selective';pdtColor='#c2570a';pdtTag='30–54%';}
+  else if(pdtPct >= 30){pdtMode='Selective';pdtColor='#1a56a0';pdtTag='30–54%';}
   else{pdtMode='Conserve';pdtColor='#b91c1c';pdtTag='0–29%';}
 
   // Render total
@@ -2964,25 +2964,27 @@ function renderLpChart(){
 
   // ── PLANETARY DAY ALIGNMENT CHEAT SHEET (static, all signs) ──
   const CS_ROWS = [
-    {sign:'Cancer',      ruler:'Moon',    mon:'PRESS',   tue:'REDUCE',  wed:'NORMAL', thu:'LEAN IN', fri:'PRESS'},
-    {sign:'Aries',       ruler:'Mars',    mon:'NORMAL',  tue:'PRESS',   wed:'NORMAL', thu:'LEAN IN', fri:'REDUCE'},
-    {sign:'Taurus',      ruler:'Venus',   mon:'LEAN IN', tue:'REDUCE',  wed:'LEAN IN',thu:'NORMAL',  fri:'PRESS'},
-    {sign:'Gemini',      ruler:'Mercury', mon:'NORMAL',  tue:'NORMAL',  wed:'PRESS',  thu:'LEAN IN', fri:'LEAN IN'},
-    {sign:'Leo',         ruler:'Sun',     mon:'LEAN IN', tue:'PRESS',   wed:'NORMAL', thu:'PRESS',   fri:'LEAN IN'},
-    {sign:'Virgo',       ruler:'Mercury', mon:'NORMAL',  tue:'NORMAL',  wed:'PRESS',  thu:'LEAN IN', fri:'LEAN IN'},
-    {sign:'Libra',       ruler:'Venus',   mon:'LEAN IN', tue:'REDUCE',  wed:'LEAN IN',thu:'NORMAL',  fri:'PRESS'},
-    {sign:'Scorpio',     ruler:'Mars',    mon:'NORMAL',  tue:'PRESS',   wed:'NORMAL', thu:'LEAN IN', fri:'REDUCE'},
-    {sign:'Sagittarius', ruler:'Jupiter', mon:'LEAN IN', tue:'LEAN IN', wed:'NORMAL', thu:'PRESS',   fri:'LEAN IN'},
-    {sign:'Capricorn',   ruler:'Saturn',  mon:'REDUCE',  tue:'LEAN IN', wed:'NORMAL', thu:'LEAN IN', fri:'NORMAL'},
-    {sign:'Aquarius',    ruler:'Saturn',  mon:'REDUCE',  tue:'LEAN IN', wed:'NORMAL', thu:'LEAN IN', fri:'NORMAL'},
-    {sign:'Pisces',      ruler:'Jupiter', mon:'PRESS',   tue:'REDUCE',  wed:'NORMAL', thu:'PRESS',   fri:'LEAN IN'}
+    {sign:'Cancer',      ruler:'Moon',    mon:'PRESS',   tue:'REDUCE',  wed:'NORMAL', thu:'LEAN IN', fri:'PRESS',    sat:'LEAN IN', sun:'PRESS'},
+    {sign:'Aries',       ruler:'Mars',    mon:'NORMAL',  tue:'PRESS',   wed:'NORMAL', thu:'LEAN IN', fri:'REDUCE',   sat:'NORMAL',  sun:'LEAN IN'},
+    {sign:'Taurus',      ruler:'Venus',   mon:'LEAN IN', tue:'REDUCE',  wed:'LEAN IN',thu:'NORMAL',  fri:'PRESS',    sat:'NORMAL',  sun:'LEAN IN'},
+    {sign:'Gemini',      ruler:'Mercury', mon:'NORMAL',  tue:'NORMAL',  wed:'PRESS',  thu:'LEAN IN', fri:'LEAN IN',  sat:'NORMAL',  sun:'LEAN IN'},
+    {sign:'Leo',         ruler:'Sun',     mon:'LEAN IN', tue:'PRESS',   wed:'NORMAL', thu:'PRESS',   fri:'LEAN IN',  sat:'NORMAL',  sun:'PRESS'},
+    {sign:'Virgo',       ruler:'Mercury', mon:'NORMAL',  tue:'NORMAL',  wed:'PRESS',  thu:'LEAN IN', fri:'LEAN IN',  sat:'NORMAL',  sun:'LEAN IN'},
+    {sign:'Libra',       ruler:'Venus',   mon:'LEAN IN', tue:'REDUCE',  wed:'LEAN IN',thu:'NORMAL',  fri:'PRESS',    sat:'NORMAL',  sun:'LEAN IN'},
+    {sign:'Scorpio',     ruler:'Mars',    mon:'NORMAL',  tue:'PRESS',   wed:'NORMAL', thu:'LEAN IN', fri:'REDUCE',   sat:'NORMAL',  sun:'LEAN IN'},
+    {sign:'Sagittarius', ruler:'Jupiter', mon:'LEAN IN', tue:'LEAN IN', wed:'NORMAL', thu:'PRESS',   fri:'LEAN IN',  sat:'NORMAL',  sun:'LEAN IN'},
+    {sign:'Capricorn',   ruler:'Saturn',  mon:'REDUCE',  tue:'LEAN IN', wed:'NORMAL', thu:'LEAN IN', fri:'NORMAL',   sat:'PRESS',   sun:'REDUCE'},
+    {sign:'Aquarius',    ruler:'Saturn',  mon:'REDUCE',  tue:'LEAN IN', wed:'NORMAL', thu:'LEAN IN', fri:'NORMAL',   sat:'PRESS',   sun:'REDUCE'},
+    {sign:'Pisces',      ruler:'Jupiter', mon:'PRESS',   tue:'REDUCE',  wed:'NORMAL', thu:'PRESS',   fri:'LEAN IN',  sat:'NORMAL',  sun:'LEAN IN'}
   ];
   const CS_DAYS = [
     {key:'mon',label:'Mon',planet:'Moon'},
     {key:'tue',label:'Tue',planet:'Mars'},
     {key:'wed',label:'Wed',planet:'Merc'},
     {key:'thu',label:'Thu',planet:'Jup'},
-    {key:'fri',label:'Fri',planet:'Venus'}
+    {key:'fri',label:'Fri',planet:'Venus'},
+    {key:'sat',label:'Sat',planet:'Saturn'},
+    {key:'sun',label:'Sun',planet:'Sun'}
   ];
   const CS_DOW_KEY = ['sun','mon','tue','wed','thu','fri','sat'];
   const csTodayKey = CS_DOW_KEY[new Date().getDay()];
@@ -2996,10 +2998,10 @@ function renderLpChart(){
   html += '<table style="width:100%;border-collapse:collapse;font-size:11px;table-layout:fixed;">';
   // Header — no Ruler column, use fixed layout
   html += '<tr style="background:#f5f5f5;">';
-  html += '<th style="text-align:left;padding:6px 6px;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--rule);width:34%;">Sign</th>';
+  html += '<th style="text-align:left;padding:6px 6px;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:600;border-bottom:1px solid var(--rule);width:28%;">Sign</th>';
   CS_DAYS.forEach(function(col){
     const isToday = col.key === csTodayKey;
-    html += '<th style="text-align:center;padding:6px 2px;font-size:8px;letter-spacing:0px;text-transform:uppercase;color:'+(isToday?'#000':'var(--muted)')+';font-weight:'+(isToday?'700':'600')+';border-bottom:1px solid var(--rule);background:'+(isToday?'#e5e7eb':'transparent')+';width:13.2%;">'
+    html += '<th style="text-align:center;padding:6px 2px;font-size:8px;letter-spacing:0px;text-transform:uppercase;color:'+(isToday?'#000':'var(--muted)')+';font-weight:'+(isToday?'700':'600')+';border-bottom:1px solid var(--rule);background:'+(isToday?'#e5e7eb':'transparent')+';width:10.3%;">'
       +col.label+'<br><span style="font-size:7px;font-weight:400;opacity:0.65;">'+col.planet+'</span></th>';
   });
   html += '</tr>';
