@@ -2608,7 +2608,9 @@ const ECON_EVENTS = [
   // FOMC Meetings (decision day)
   {name:'FOMC Decision',type:'fomc',date:'2026-01-28',time:'2:00 PM',impact:'high',desc:'Federal Reserve interest rate decision and press conference. Expect elevated volatility around 2:00 PM ET. Widen stops or reduce size ahead of the announcement.'},
   {name:'FOMC Decision',type:'fomc',date:'2026-03-18',time:'2:00 PM',impact:'high',desc:'Federal Reserve interest rate decision with Summary of Economic Projections (Dot Plot). Major volatility event. Expect sharp moves in both directions.'},
-  {name:'FOMC Decision',type:'fomc',date:'2026-05-06',time:'2:00 PM',impact:'high',desc:'Federal Reserve interest rate decision and press conference. Expect elevated volatility around 2:00 PM ET.'},
+  {name:'FOMC Meeting Minutes',type:'fomc',date:'2026-04-08',time:'1:00 PM',impact:'high',desc:'Release of minutes from the March 18–19 FOMC meeting. Markets parse language for rate cut signals and policy shifts. Expect volatility around 1:00 PM ET — moves can be sharp and reversing.'},
+  {name:'FOMC Meeting Day 1',type:'fomc',date:'2026-04-28',time:'All Day',impact:'high',desc:'FOMC two-day meeting begins. Markets may see increased volatility as traders position ahead of Wednesday\'s rate decision.'},
+  {name:'FOMC Decision',type:'fomc',date:'2026-04-29',time:'2:00 PM',impact:'high',desc:'Federal Reserve interest rate decision and press conference. Expect elevated volatility around 2:00 PM ET. Widen stops or reduce size ahead of the announcement.'},
   {name:'FOMC Decision',type:'fomc',date:'2026-06-17',time:'2:00 PM',impact:'high',desc:'Federal Reserve interest rate decision with Summary of Economic Projections. Major volatility event.'},
   {name:'FOMC Decision',type:'fomc',date:'2026-07-29',time:'2:00 PM',impact:'high',desc:'Federal Reserve interest rate decision and press conference. Expect elevated volatility around 2:00 PM ET.'},
   {name:'FOMC Decision',type:'fomc',date:'2026-09-16',time:'2:00 PM',impact:'high',desc:'Federal Reserve interest rate decision with Summary of Economic Projections. Major volatility event.'},
@@ -3817,9 +3819,9 @@ function renderAstroAlerts(dateStr){
         const evDate = new Date(ev.date+'T12:00:00');
         const diff = Math.ceil((evDate - econDate) / 86400000);
         return diff > 0 && diff <= 7;
-      });
+      }).sort((a,b) => new Date(a.date) - new Date(b.date));
       if(upcomingEcon.length > 0){
-        upHtml += '<div style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#555;margin:4px 0 8px;">Upcoming (7 days)</div>';
+        upHtml += '<div style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#555;margin:4px 0 8px;">Upcoming Events</div>';
         upcomingEcon.forEach(ev => {
           const isHigh = ev.impact === 'high';
           const c = isHigh ? (typeColor[ev.type]||'#b8860b') : '#c2570a';
