@@ -655,6 +655,13 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
         <input type="text" id="lpYear" placeholder="YYYY" maxlength="4" inputmode="numeric" style="width:68px;padding:10px 8px;border:1px solid var(--rule);font-family:'DM Sans',sans-serif;font-size:14px;color:#000;background:#fff;text-align:center;" />
         <button onclick="calcLifePathAlignment()" style="padding:10px 16px;background:#000;color:#fff;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;">Align</button>
       </div>
+
+      <!-- Save / Unsave row -->
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+        <button id="lpSaveBtn" onclick="saveLp()" style="display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:#b8860b;color:#000;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;">⬇ Save Life Path</button>
+        <button id="lpUnsaveBtn" onclick="unsaveLp()" style="display:none;align-items:center;gap:6px;padding:8px 14px;background:transparent;color:#b91c1c;border:1px solid #b91c1c;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;">✕ Unsave</button>
+        <span id="lpSavedBadge" style="display:none;align-items:center;gap:4px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#b8860b;font-weight:700;padding:4px 8px;border:1px solid #b8860b;background:#fffbeb;"></span>
+      </div>
       <div id="lpResult" style="display:none;"></div>
 
       <!-- Life Path Calendar (shows after alignment) -->
@@ -893,7 +900,13 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
 
     <!-- Be Aware -->
     <div id="beAwareWrap" style="display:none;margin-bottom:32px;">
-      <div style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#b8860b;margin-bottom:14px;">⚠ Be Aware</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+        <div style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#b8860b;">⚠ Be Aware</div>
+        <button onclick="refreshNews(this)" title="Refresh news & alerts" style="display:flex;align-items:center;gap:5px;padding:5px 10px;background:transparent;border:1px solid #333;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#555;transition:color 0.2s;" onmouseover="this.style.color='#b8860b';this.style.borderColor='#b8860b'" onmouseout="this.style.color='#555';this.style.borderColor='#333'">
+          <span id="newsRefreshIcon" style="font-size:13px;display:inline-block;transition:transform 0.5s ease;">↻</span>
+          <span>Refresh</span>
+        </button>
+      </div>
       <!-- Modifier Conflicts + Astro Conflicts -->
       <div id="beAwareContent" style="margin-bottom:12px;"></div>
       <!-- Today's Economic News -->
@@ -901,6 +914,20 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
       <div id="astroAlerts" style="display:none;"></div>
       <!-- Upcoming (econ + astro combined) -->
       <div id="upcomingAlerts" style=""></div>
+    </div>
+
+    <!-- Week Ahead -->
+    <div style="border:1px solid #222;margin-bottom:16px;">
+      <!-- Snapshot bar (rendered on load) -->
+      <div id="weekAheadSnapshot" style="padding:10px 14px;border-bottom:1px solid #222;display:flex;gap:12px;align-items:flex-start;"></div>
+      <!-- Toggle row -->
+      <div onclick="toggleWeekAhead()" style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;cursor:pointer;">
+        <span style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;">◎ Week Ahead · 3-Week Outlook</span>
+        <span id="weekAheadToggleBtn" style="font-size:11px;color:#555;transition:transform .2s;">▼</span>
+      </div>
+      <div id="weekAheadPanel" style="display:none;border-top:1px solid #222;">
+        <div id="weekAheadContent"></div>
+      </div>
     </div>
 
     <!-- Score Interpretation -->
@@ -993,7 +1020,8 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
     <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:400;color:#fff;line-height:1.4;">
       <!-- PHASE 1: CHECK-IN -->
       <div style="border-left:2px solid #333;padding-left:16px;margin-bottom:32px;">
-        <div style="margin-bottom:6px;font-size:15px;color:#888;">ALIGNMENT has been checked. ✅</div>
+        <div style="margin-bottom:6px;font-size:15px;color:#888;">Moon Phase has been checked. ✅</div>
+        <div style="margin-bottom:6px;font-size:15px;color:#888;">Planetary Placements has been checked. ✅</div>
         <div style="margin-bottom:6px;font-size:15px;color:#888;">News has been checked. ✅</div>
         <div style="margin-bottom:6px;font-size:15px;color:#888;">Levels checked. ✅</div>
         <div style="margin-bottom:6px;font-size:15px;color:#888;">Now the most important and powerful indicator there is has to be checked —</div>
@@ -1001,6 +1029,14 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
       </div>
       <!-- QUOTE -->
       <div style="text-align:center;margin-bottom:32px;font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:#b8860b;letter-spacing:1px;">the greatest indicator is your <strong style="font-style:normal;letter-spacing:2px;">ENERGY.</strong></div>
+
+      <!-- BODY AWARENESS -->
+      <div style="border-left:2px solid #333;padding-left:16px;margin-bottom:32px;color:#bbb;font-size:16px;line-height:1.8;">
+        <div style="margin-bottom:18px;">Although being confident and positive towards your trading and the market — your chest still tightens up, fear and anxiety can arise and emotions can take over, or you feel a bit of desperation and scarcity is present. It's very important to be <strong style="color:#fff;">AWARE</strong> and ask yourself <em style="color:#b8860b;">what's going on and why?</em></div>
+        <div style="margin-bottom:18px;">Enthusiasm towards the market is in the mind — but sometimes your body tells you something is wrong. It's real data that is imperative that you pay attention to, and you have to deal with that <strong style="color:#fff;">before</strong> you deal with the market. If not — <strong style="color:#fff;">the market will expose it.</strong></div>
+        <div style="font-size:17px;font-weight:600;color:#fff;letter-spacing:0.3px;">Your body knows things your mind hasn't processed yet.</div>
+      </div>
+
       <!-- PHASE 2: THE PRACTICE -->
       <div style="margin-bottom:36px;color:#bbb;font-size:17px;line-height:1.7;">
         <div style="margin-bottom:20px;">Take a moment before the market opens and do some <strong style="color:#fff;">alternative nostril breathing.</strong></div>
@@ -1199,8 +1235,8 @@ function loadDate(){
   const sn=document.getElementById('eSubname');
   if(sn){sn.textContent=ed.subname||'';}
   document.getElementById('eKw').textContent=ed.kw;
-  const edEl=document.getElementById('eDesc');if(edEl)edEl.textContent=ed.desc;
-  document.getElementById('eMarket').textContent=ed.market;
+  const edEl=document.getElementById('eDesc');if(edEl)edEl.textContent=personalizeMarket(ed.desc, getUserLP());
+  document.getElementById('eMarket').textContent=personalizeMarket(ed.market, getUserLP());
 
   // Chips
   const chips=document.getElementById('eChips');chips.innerHTML='';
@@ -1951,8 +1987,8 @@ function previewChip(n){
   const enNameEl2=document.getElementById('eName');
   if(enNameEl2) enNameEl2.textContent=d.name;
   document.getElementById('eKw').textContent=d.kw;
-  const edEl2=document.getElementById('eDesc');if(edEl2)edEl2.textContent=d.desc;
-  document.getElementById('eMarket').textContent=d.market;
+  const edEl2=document.getElementById('eDesc');if(edEl2)edEl2.textContent=personalizeMarket(d.desc, getUserLP());
+  document.getElementById('eMarket').textContent=personalizeMarket(d.market, getUserLP());
   const cb=document.getElementById('catBadge');
   if(cb&&d.category){cb.textContent=d.category;cb.style.display='inline-block';cb.className='cat-badge cat-'+d.category.toLowerCase();}
   const sn=document.getElementById('eSubname');
@@ -2290,6 +2326,17 @@ function changeTimezone(val){
   }
 }
 
+function refreshPlanetaryHours(btn){
+  if(btn){
+    btn.style.transform = 'rotate(360deg)';
+    setTimeout(()=>{ btn.style.transform='rotate(0deg)'; btn.style.transition='none'; setTimeout(()=>{ btn.style.transition='transform 0.4s ease'; },50); },420);
+  }
+  const panel = document.getElementById('pRelPanel');
+  if(panel && panel.style.display === 'block'){
+    buildPRelations();
+  }
+}
+
 function buildPlanetaryHours(){
   const chaldean = ['Saturn','Jupiter','Mars','Sun','Venus','Mercury','Moon'];
   const dayRulers = {'0':'Sun','1':'Moon','2':'Mars','3':'Mercury','4':'Jupiter','5':'Venus','6':'Saturn'};
@@ -2387,11 +2434,13 @@ function buildPlanetaryHours(){
   const tzLabel = TZ_OPTIONS[_phTimezone].label;
   html += `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
     <div style="font-size:7px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);">Planetary Hours</div>
+    <div style="display:flex;align-items:center;gap:6px;">
+    <button onclick="refreshPlanetaryHours(this)" title="Refresh planetary hours" style="display:flex;align-items:center;justify-content:center;width:26px;height:26px;border:1px solid var(--rule);background:#fff;cursor:pointer;color:var(--mid);font-size:13px;padding:0;transition:transform 0.4s ease;flex-shrink:0;">↻</button>
     <select onchange="changeTimezone(this.value)" style="padding:4px 8px;border:1px solid var(--rule);font-family:'DM Sans',sans-serif;font-size:11px;color:var(--mid);background:#fff;cursor:pointer;">`;
   Object.keys(TZ_OPTIONS).forEach(k=>{
     html += `<option value="${k}"${k===_phTimezone?' selected':''}>${TZ_OPTIONS[k].label}</option>`;
   });
-  html += `</select></div>`;
+  html += `</select></div></div>`;
 
   // Current Hour Hero (if today)
   if(currentPlanet && currentHourData){
@@ -2904,6 +2953,18 @@ function toggleLifePathCalc(){
   if(!open){
     const chartPanel = document.getElementById('lpChartPanel');
     if(chartPanel && chartPanel.innerHTML === '') renderLpChart();
+    // Restore saved birthdate into fields if present
+    if(_savedBD){
+      const parts = _savedBD.split('/');
+      const mo = document.getElementById('lpMonth');
+      const dy = document.getElementById('lpDay');
+      const yr = document.getElementById('lpYear');
+      if(mo) mo.value = parts[0] || '';
+      if(dy) dy.value = parts[1] || '';
+      if(yr) yr.value = parts[2] || '';
+    }
+    // Sync button state
+    updateLpSaveButtons(!!_savedLP);
     // Auto-tab between fields
     const mo = document.getElementById('lpMonth');
     const dy = document.getElementById('lpDay');
@@ -3112,6 +3173,81 @@ function calcLifePath(dateStr){
   let total = m + d + y;
   while(total > 9 && total !== 11 && total !== 22 && total !== 33) total = String(total).split('').map(Number).reduce((a,b)=>a+b,0);
   return total;
+}
+
+// Saved Life Path state (persisted to localStorage)
+var _savedLP = null;
+var _savedBD = null; // "MM/DD/YYYY" string for restoring fields
+
+(function loadSavedLP(){
+  try {
+    const s = localStorage.getItem('pdt_lp_saved');
+    if(s){
+      const obj = JSON.parse(s);
+      _savedLP = obj.lp || null;
+      _savedBD = obj.bd || null;
+    }
+  } catch(e){}
+})();
+
+// Returns the user's Life Path number — prefers saved LP, falls back to live inputs
+function getUserLP(){
+  if(_savedLP) return _savedLP;
+  const mm = document.getElementById('lpMonth').value.trim();
+  const dd = document.getElementById('lpDay').value.trim();
+  const yy = document.getElementById('lpYear').value.trim();
+  if(!mm || !dd || !yy || yy.length < 4) return null;
+  const bd = yy + '-' + mm.padStart(2,'0') + '-' + dd.padStart(2,'0');
+  return calcLifePath(bd);
+}
+
+function saveLp(){
+  const mm = document.getElementById('lpMonth').value.trim();
+  const dd = document.getElementById('lpDay').value.trim();
+  const yy = document.getElementById('lpYear').value.trim();
+  if(!mm || !dd || !yy || yy.length < 4) return;
+  const bd = yy + '-' + mm.padStart(2,'0') + '-' + dd.padStart(2,'0');
+  _savedLP = calcLifePath(bd);
+  _savedBD = mm + '/' + dd + '/' + yy;
+  try { localStorage.setItem('pdt_lp_saved', JSON.stringify({lp:_savedLP, bd:_savedBD})); } catch(e){}
+  updateLpSaveButtons(true);
+  // Re-trigger date render so Market Read reflects saved LP immediately
+  const dateVal = document.getElementById('dateInput').value;
+  if(dateVal) updateDateDisplay();
+}
+
+function unsaveLp(){
+  _savedLP = null;
+  _savedBD = null;
+  try { localStorage.removeItem('pdt_lp_saved'); } catch(e){}
+  updateLpSaveButtons(false);
+  const dateVal = document.getElementById('dateInput').value;
+  if(dateVal) updateDateDisplay();
+}
+
+function updateLpSaveButtons(saved){
+  const saveBtn = document.getElementById('lpSaveBtn');
+  const unsaveBtn = document.getElementById('lpUnsaveBtn');
+  const savedBadge = document.getElementById('lpSavedBadge');
+  if(!saveBtn || !unsaveBtn) return;
+  if(saved){
+    saveBtn.style.display = 'none';
+    unsaveBtn.style.display = 'inline-flex';
+    if(savedBadge){ savedBadge.style.display = 'inline-flex'; savedBadge.textContent = 'LP ' + _savedLP + ' locked'; }
+  } else {
+    saveBtn.style.display = 'inline-flex';
+    unsaveBtn.style.display = 'none';
+    if(savedBadge){ savedBadge.style.display = 'none'; }
+  }
+}
+
+// Replaces generic "Life Path X or Y" references in market text with the user's actual LP
+function personalizeMarket(text, userLP){
+  if(!userLP) return text;
+  // Pattern: "Life Path N or M individuals" / "Life Path N and M" / "Life Path N or Destiny N" etc.
+  // Replace any "Life Path [numbers/words]" mention with the user's own LP
+  const lpPattern = /Life Path(?:\s+(?:\d+|[A-Za-z]+)(?:\s+(?:or|and)\s+(?:\d+|[A-Za-z]+))?)+(?:\s+(?:individuals|personalities|traders|people))?/gi;
+  return text.replace(lpPattern, `Life Path ${userLP}`);
 }
 
 function calcLifePathAlignment(){
@@ -3736,6 +3872,32 @@ function showInterp(el){
   panel.style.padding = '18px 18px';
 }
 
+function refreshNews(btn){
+  // Spin the icon
+  const icon = document.getElementById('newsRefreshIcon');
+  if(icon){
+    icon.style.transform = 'rotate(360deg)';
+    setTimeout(()=>{
+      icon.style.transition = 'none';
+      icon.style.transform = 'rotate(0deg)';
+      setTimeout(()=>{ icon.style.transition = 'transform 0.5s ease'; }, 50);
+    }, 520);
+  }
+  // Flash a quick "Updating…" state
+  const econEl = document.getElementById('econAlerts');
+  const upcomingEl = document.getElementById('upcomingAlerts');
+  if(econEl) econEl.innerHTML = '<div style="font-size:11px;color:#555;padding:8px 0;letter-spacing:1px;">Updating…</div>';
+
+  setTimeout(()=>{
+    const dateVal = document.getElementById('dateInput').value;
+    if(!dateVal) return;
+    // Re-run astro alerts
+    renderAstroAlerts(dateVal);
+    // Re-run economic news block by triggering loadDate
+    loadDate();
+  }, 400);
+}
+
 function renderAstroAlerts(dateStr){
   const el = document.getElementById('astroAlerts');
   if(!el) return;
@@ -4188,7 +4350,352 @@ function toggleWhy(){
     </div>
   </div>
 </div>
-<script>initDateDropdowns();goToday();</script>
+<script>initDateDropdowns();goToday();
+// Init LP save button state after DOM ready
+(function(){ if(_savedLP) setTimeout(function(){ updateLpSaveButtons(true); }, 100); })();
+// Render week ahead snapshot bar after page settles
+setTimeout(buildWeekAheadSnapshot, 200);
+// ── WEEK AHEAD ENGINE ──
+function scoreDay(dateStr){
+  const date = new Date(dateStr+'T12:00:00');
+  const dow = date.getDay();
+  // Skip weekends
+  if(dow === 0 || dow === 6) return null;
+
+  const phase = getMoonPhase(date);
+  const sign  = getMoonSign(date);
+  const day   = DAYS[dow];
+  const en    = calcNum(dateStr);
+  const ed    = EN[en];
+
+  // Moon Phase score (same L2_MAP as loadDate)
+  const L2_MAP = {'Waxing Gibbous':3,'Full Moon':2.5,'First Quarter':2,'Waxing Crescent':1.5,'Waning Gibbous':1.5,'Last Quarter':1,'New Moon':1,'Waning Crescent':0.5};
+  const l2Score = (L2_MAP[phase.name] !== undefined ? L2_MAP[phase.name] : 1) / 3;
+
+  // Planetary alignment score (same L4_MAP)
+  const rel    = getPlanetRelations(day.planet);
+  const paKey  = day.planet+'+'+sign.ruler.split('/')[0].trim();
+  const paData = ALIGN_GRADES[paKey] || ALIGN_GRADES[sign.ruler.split('/')[0].trim()+'+'+day.planet] || null;
+  const paGrade = paData ? paData.grade : (rel.allies.includes(sign.ruler.split('/')[0].trim())?'A':rel.enemies.includes(sign.ruler.split('/')[0].trim())?'C':'B');
+  const L4_MAP = {'A+':3,'A':2.5,'B':1.5,'C':0.5};
+  const l4Score = (L4_MAP[paGrade] !== undefined ? L4_MAP[paGrade] : 1.5) / 3;
+
+  const pdt = Math.round((l2Score * _wtMoon + l4Score * _wtAlign) * 100);
+
+  // LP tier alignment
+  const lp = getUserLP();
+  let lpTier = null, lpTierLabel = null, lpTierColor = null;
+  if(lp){
+    const TIERS = {
+      1:{a:[1,3,5,9,11],b:[8,6,4],c:[2,7,22,33]},
+      2:{a:[2,4,6,8,11],b:[3,9,22],c:[1,5,7,33]},
+      3:{a:[1,3,5,6,9],b:[8,11,22],c:[2,4,7,33]},
+      4:{a:[2,4,6,8,22],b:[1,3,9,11],c:[5,7,33]},
+      5:{a:[1,3,5,7,9],b:[8,11,22],c:[2,4,6,33]},
+      6:{a:[2,3,6,9,33],b:[4,8,11],c:[1,5,7,22]},
+      7:{a:[1,5,7,11,22],b:[3,8,9],c:[2,4,6,33]},
+      8:{a:[1,4,8,9,22],b:[3,6,11],c:[2,5,7,33]},
+      9:{a:[2,3,6,9,11],b:[1,8,22],c:[4,5,7,33]},
+      11:{a:[1,2,7,11,33],b:[3,8,9],c:[4,5,6,22]},
+      22:{a:[4,6,8,22],b:[1,3,9,11],c:[2,5,7,33]},
+      33:{a:[3,6,9,11,33],b:[2,8,22],c:[1,4,5,7]}
+    };
+    const lpR = lp===11?2:lp===22?4:lp===33?6:lp;
+    const t  = TIERS[lp]  || {a:[],b:[],c:[]};
+    const tr = TIERS[lpR] || {a:[],b:[],c:[]};
+    const rawA = [...new Set([...t.a,...tr.a])];
+    const rawB = [...new Set([...t.b,...tr.b])].filter(x=>!rawA.includes(x));
+    const enR  = en===11?2:en===22?4:en===33?6:en;
+    if(rawA.includes(en)||rawA.includes(enR)){lpTier='A';lpTierLabel='Aligned';lpTierColor='#166534';}
+    else if(rawB.includes(en)||rawB.includes(enR)){lpTier='B';lpTierLabel='Optimistic';lpTierColor='#92400e';}
+    else{lpTier='C';lpTierLabel='Friction';lpTierColor='#b91c1c';}
+  }
+
+  // Moon phase flags
+  const isMoonEvent = ['New Moon','Full Moon'].includes(phase.name);
+  const isHighVolPhase = ['Full Moon','First Quarter','Waxing Gibbous'].includes(phase.name);
+
+  // Overall label
+  let mode, color;
+  if(pdt>=80){mode='Prime';color='#b8860b';}
+  else if(pdt>=55){mode='Aligned';color='#166534';}
+  else if(pdt>=30){mode='Selective';color='#1a56a0';}
+  else{mode='Conserve';color='#b91c1c';}
+
+  return {dateStr, date, dow, pdt, mode, color, phase, sign, day, en, ed, paGrade, lpTier, lpTierLabel, lpTierColor, isMoonEvent, isHighVolPhase, lp};
+}
+
+function getWeekKey(date){
+  // Returns Monday of the week containing date
+  const d = new Date(date);
+  const day = d.getDay();
+  const diff = day===0 ? -6 : 1-day;
+  d.setDate(d.getDate()+diff);
+  return d.toISOString().split('T')[0];
+}
+
+function buildWeekAhead(){
+  const container = document.getElementById('weekAheadContent');
+  if(!container) return;
+
+  // Build 21 days starting from today's Monday
+  const today = new Date();
+  const todayStr = today.toISOString().split('T')[0];
+  const startMon = new Date(today);
+  const sd = startMon.getDay();
+  startMon.setDate(startMon.getDate() + (sd===0?1:sd===1?0:1-(sd)));
+  // Actually always start from current Monday
+  const diff = today.getDay()===0?-6:1-today.getDay();
+  startMon.setDate(today.getDate()+diff);
+
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const DAY_NAMES = ['','Mon','Tue','Wed','Thu','Fri','',''];
+
+  // Collect 3 weeks of trading days
+  const weeks = [];
+  for(let w=0;w<3;w++){
+    const weekDays = [];
+    for(let d=0;d<7;d++){
+      const cur = new Date(startMon);
+      cur.setDate(startMon.getDate() + w*7 + d);
+      if(cur.getDay()===0||cur.getDay()===6) continue;
+      const ds = cur.toISOString().split('T')[0];
+      const scored = scoreDay(ds);
+      if(scored) weekDays.push(scored);
+    }
+    weeks.push(weekDays);
+  }
+
+  // Analyze each week for narrative
+  function analyzeWeek(days){
+    const avgPdt = Math.round(days.reduce((s,d)=>s+d.pdt,0)/days.length);
+    const primeCount  = days.filter(d=>d.pdt>=80).length;
+    const conserveCount = days.filter(d=>d.pdt<30).length;
+    const selectiveCount = days.filter(d=>d.pdt>=30&&d.pdt<55).length;
+    const alignedCount = days.filter(d=>d.pdt>=55&&d.pdt<80).length;
+    const moonEvents  = days.filter(d=>d.isMoonEvent);
+    const highVolDays = days.filter(d=>d.isHighVolPhase);
+
+    // LP friction count
+    const lpFrictionCount = days.filter(d=>d.lpTier==='C').length;
+    const lpAlignedCount  = days.filter(d=>d.lpTier==='A').length;
+    const hasLP = days[0].lp;
+
+    // Week grade
+    let weekGrade, weekColor, weekTitle, weekNarrative;
+    if(avgPdt>=75){
+      weekGrade='Prime Week';weekColor='#b8860b';
+      weekTitle='High-conviction week.';
+    } else if(avgPdt>=55){
+      weekGrade='Aligned Week';weekColor='#166534';
+      weekTitle='Solid week — conditions generally support active trading.';
+    } else if(avgPdt>=38){
+      weekGrade='Selective Week';weekColor='#1a56a0';
+      weekTitle='Mixed week — pick your spots carefully.';
+    } else {
+      weekGrade='Challenging Week';weekColor='#b91c1c';
+      weekTitle='Difficult conditions across the week.';
+    }
+
+    // Build narrative bullets
+    const bullets = [];
+
+    if(primeCount>=3) bullets.push({icon:'⚡',color:'#b8860b',text:`${primeCount} of 5 days score Prime — this is a week to be fully engaged.`});
+    else if(primeCount>=1) bullets.push({icon:'⚡',color:'#b8860b',text:`${primeCount} Prime day${primeCount>1?'s':''} this week — those are your highest-conviction windows.`});
+
+    if(conserveCount>=3) bullets.push({icon:'⚠',color:'#b91c1c',text:`${conserveCount} of 5 days score Conserve — the energy is broadly unfavorable. Consider pulling back sizing for the week.`});
+    else if(conserveCount>=2) bullets.push({icon:'⚠',color:'#b91c1c',text:`${conserveCount} Conserve days — expect at least 2 difficult sessions. Size down accordingly.`});
+
+    if(moonEvents.length>0){
+      moonEvents.forEach(me=>{
+        const mn = DAY_NAMES[me.dow];
+        if(me.phase.name==='Full Moon') bullets.push({icon:'🌕',color:'#374151',text:`Full Moon on ${mn} (${MONTHS[me.date.getMonth()]} ${me.date.getDate()}) — expect peak volatility and sharp sentiment swings. This is a day to manage risk, not maximize size.`});
+        if(me.phase.name==='New Moon') bullets.push({icon:'🌑',color:'#374151',text:`New Moon on ${mn} (${MONTHS[me.date.getMonth()]} ${me.date.getDate()}) — cycle resets. Low conviction and thin conditions likely. Good for planning, not execution.`});
+      });
+    }
+
+    if(highVolDays.length>=3) bullets.push({icon:'📈',color:'#1a56a0',text:`High-momentum moon phase covers ${highVolDays.length} days — conditions favor trend plays but volatility will be elevated.`});
+
+    if(hasLP){
+      if(lpFrictionCount>=3) bullets.push({icon:'🔴',color:'#b91c1c',text:`${lpFrictionCount} of 5 days are Friction for your Life Path ${days[0].lp} — the universal energy works against your natural rhythm most of this week. Reduce size, tighten risk, stay patient.`});
+      else if(lpAlignedCount>=3) bullets.push({icon:'🟢',color:'#166534',text:`${lpAlignedCount} of 5 days are Aligned for your Life Path ${days[0].lp} — the week resonates with your personal energy. Trust your reads more.`});
+      else if(lpFrictionCount>=2) bullets.push({icon:'🔶',color:'#92400e',text:`${lpFrictionCount} friction days for Life Path ${days[0].lp} — be selective. Your best windows are the other ${5-lpFrictionCount} days.`});
+    }
+
+    return {avgPdt,primeCount,conserveCount,weekGrade,weekColor,weekTitle,weekNarrative,bullets};
+  }
+
+  let html = '';
+
+  weeks.forEach((days,wi)=>{
+    const wStart = days[0];
+    const wEnd   = days[days.length-1];
+    const wLabel = wi===0?'This Week':wi===1?'Next Week':'Week of '+MONTHS[wStart.date.getMonth()]+' '+wStart.date.getDate();
+    const ana    = analyzeWeek(days);
+
+    const isCurrentWeek = wi===0;
+    const borderColor   = ana.weekColor;
+
+    html += `<div style="margin-bottom:0;border-bottom:1px solid #222;border-top:3px solid ${borderColor};">`;
+
+    // Week header
+    html += `<div style="padding:12px 14px;border-bottom:1px solid #222;display:flex;align-items:center;justify-content:space-between;">
+      <div>
+        <div style="font-size:8px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:3px;">${wLabel}</div>
+        <div style="font-size:13px;font-weight:700;color:${borderColor};">${ana.weekGrade}</div>
+        <div style="font-size:11px;color:#555;margin-top:2px;">${MONTHS[wStart.date.getMonth()]} ${wStart.date.getDate()} – ${MONTHS[wEnd.date.getMonth()]} ${wEnd.date.getDate()}</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;color:${borderColor};line-height:1;">${ana.avgPdt}%</div>
+        <div style="font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#555;">avg score</div>
+      </div>
+    </div>`;
+
+    // Day strip
+    html += `<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-bottom:1px solid #222;">`;
+    days.forEach(d=>{
+      const isToday = d.dateStr===todayStr;
+      const bg      = isToday?d.color:'transparent';
+      const txtClr  = isToday?'#fff':d.color;
+      const dayClr  = isToday?'rgba(255,255,255,0.6)':'#555';
+      const lpDot   = d.lpTier?`<span style="width:5px;height:5px;border-radius:50%;background:${d.lpTierColor};display:inline-block;margin-top:3px;" title="LP ${d.lpTierLabel}"></span>`:'';
+      const moonMk  = d.isMoonEvent?`<span style="font-size:9px;" title="${d.phase.name}">${d.phase.name==='Full Moon'?'🌕':'🌑'}</span>`:'';
+      html += `<div style="padding:9px 6px;text-align:center;border-right:1px solid #222;background:${bg};">
+        <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:${dayClr};margin-bottom:3px;">${DAY_NAMES[d.dow]}</div>
+        <div style="font-size:8px;color:${dayClr};margin-bottom:4px;">${MONTHS[d.date.getMonth()]} ${d.date.getDate()}</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:700;color:${txtClr};line-height:1;">${d.pdt}%</div>
+        <div style="font-size:8px;font-weight:600;color:${txtClr};margin-top:2px;letter-spacing:0.5px;">${d.mode}</div>
+        <div style="display:flex;align-items:center;justify-content:center;gap:3px;margin-top:3px;">${moonMk}${lpDot}</div>
+      </div>`;
+    });
+    html += `</div>`;
+
+    // Narrative bullets
+    if(ana.bullets.length>0){
+      html += `<div style="padding:12px 14px;">`;
+      ana.bullets.forEach(b=>{
+        html += `<div style="display:flex;gap:8px;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid #222;align-items:flex-start;">
+          <span style="font-size:13px;flex-shrink:0;margin-top:1px;">${b.icon}</span>
+          <span style="font-size:12px;color:#999;line-height:1.6;">${b.text}</span>
+        </div>`;
+      });
+      html += `</div>`;
+    } else {
+      html += `<div style="padding:12px 14px;font-size:12px;color:#555;">${ana.weekTitle}</div>`;
+    }
+
+    html += `</div>`;
+  });
+
+  // LP reminder if not saved
+  if(!getUserLP()){
+    html += `<div style="padding:12px 14px;border-top:1px solid #222;font-size:11px;color:#555;line-height:1.6;">
+      💡 Save your Life Path in the <strong style="color:#888;">Life Path Alignment</strong> section to see personal LP alignment overlaid on this outlook.
+    </div>`;
+  }
+
+  container.innerHTML = html;
+}
+
+function buildWeekAheadSnapshot(){
+  const container = document.getElementById('weekAheadSnapshot');
+  if(!container) return;
+
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const DAY_INIT = ['','M','T','W','T','F'];
+  const today = new Date();
+  const todayStr = today.toISOString().split('T')[0];
+
+  // Find Monday of current week
+  const startMon = new Date(today);
+  const dd = today.getDay();
+  startMon.setDate(today.getDate() + (dd===0?1:dd===1?0:1-dd));
+
+  const WEEK_LABELS = ['This Week','Next Week','Week 3'];
+
+  let html = '';
+  for(let w=0;w<3;w++){
+    const days = [];
+    for(let d=0;d<7;d++){
+      const cur = new Date(startMon);
+      cur.setDate(startMon.getDate() + w*7 + d);
+      if(cur.getDay()===0||cur.getDay()===6) continue;
+      const ds = cur.toISOString().split('T')[0];
+      const scored = scoreDay(ds);
+      if(scored) days.push(scored);
+    }
+    if(!days.length) continue;
+
+    const avgPdt = Math.round(days.reduce((s,d)=>s+d.pdt,0)/days.length);
+    let avgColor;
+    if(avgPdt>=80) avgColor='#b8860b';
+    else if(avgPdt>=55) avgColor='#166534';
+    else if(avgPdt>=30) avgColor='#1a56a0';
+    else avgColor='#b91c1c';
+
+    const wStart = days[0];
+    const wEnd   = days[days.length-1];
+    const dateRange = `${MONTHS[wStart.date.getMonth()]} ${wStart.date.getDate()}–${wEnd.date.getDate()}`;
+
+    html += `<div style="flex:1;min-width:0;">`;
+    // Week label + avg
+    html += `<div style="display:flex;align-items:baseline;gap:5px;margin-bottom:5px;">
+      <span style="font-size:7px;letter-spacing:2px;text-transform:uppercase;color:#555;">${WEEK_LABELS[w]}</span>
+      <span style="font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:700;color:${avgColor};">${avgPdt}%</span>
+    </div>`;
+    // Day dots
+    html += `<div style="display:flex;gap:3px;align-items:flex-end;">`;
+    days.forEach(d=>{
+      const isToday = d.dateStr===todayStr;
+      // Dot color by score
+      let dotColor;
+      if(d.pdt>=80) dotColor='#b8860b';
+      else if(d.pdt>=55) dotColor='#166534';
+      else if(d.pdt>=30) dotColor='#1a56a0';
+      else dotColor='#b91c1c';
+
+      // Dot height proportional to score
+      const barH = Math.max(8, Math.round(d.pdt * 0.28));
+      const moonIcon = d.isMoonEvent ? (d.phase.name==='Full Moon'?'🌕':'🌑') : '';
+      const lpDotClr = d.lpTier ? d.lpTierColor : null;
+
+      html += `<div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1;" title="${['','Mon','Tue','Wed','Thu','Fri'][d.dow]} ${MONTHS[d.date.getMonth()]} ${d.date.getDate()} · ${d.pdt}% ${d.mode}${d.lpTier?' · LP '+d.lpTierLabel:''}">`;
+      // Moon event icon above bar
+      html += `<div style="font-size:8px;line-height:1;min-height:10px;">${moonIcon}</div>`;
+      // Bar
+      html += `<div style="width:100%;height:${barH}px;background:${dotColor};opacity:${isToday?'1':'0.7'};${isToday?'outline:1px solid #fff;':''};min-height:4px;"></div>`;
+      // LP dot below
+      html += `<div style="width:4px;height:4px;border-radius:50%;background:${lpDotClr||'transparent'};flex-shrink:0;"></div>`;
+      // Day initial
+      html += `<div style="font-size:7px;color:${isToday?'#fff':'#444'};letter-spacing:0;">${DAY_INIT[d.dow]}</div>`;
+      html += `</div>`;
+    });
+    html += `</div>`;
+    // Date range
+    html += `<div style="font-size:8px;color:#444;margin-top:4px;letter-spacing:0;">${dateRange}</div>`;
+    html += `</div>`;
+
+    // Divider between weeks (not after last)
+    if(w<2) html += `<div style="width:1px;background:#222;align-self:stretch;flex-shrink:0;"></div>`;
+  }
+
+  container.innerHTML = html;
+}
+
+function toggleWeekAhead(){
+  const panel = document.getElementById('weekAheadPanel');
+  const btn   = document.getElementById('weekAheadToggleBtn');
+  const open  = panel.style.display==='block';
+  if(!open){
+    buildWeekAhead();
+    panel.style.display='block';
+    if(btn) btn.style.transform='rotate(180deg)';
+  } else {
+    panel.style.display='none';
+    if(btn) btn.style.transform='rotate(0deg)';
+  }
+}
+</script>
 
 <!-- BACK TO TOP -->
 <div style="text-align:center;padding:12px 0 20px;">
