@@ -639,10 +639,10 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
     <div id="catPanel" style="display:none;margin-top:12px;"></div>
   </div>
 
-  <!-- Life Path Alignment Calculator -->
+  <!-- Soul Alignment Calculator -->
   <div style="margin-top:16px;">
     <button onclick="toggleLifePathCalc()" id="lpCalcBtn" style="width:100%;display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#fff;border:1px solid var(--rule);cursor:pointer;font-family:'DM Sans',sans-serif;">
-      <span style="font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);">Life Path Alignment</span>
+      <span style="font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);">Soul Alignment</span>
       <span id="lpCalcArrow" style="font-size:12px;color:var(--muted);transition:transform .2s;">↓</span>
     </button>
     <div id="lpCalcPanel" style="display:none;border:1px solid var(--rule);border-top:none;padding:16px;background:#fff;">
@@ -831,44 +831,63 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
       <div style="height:1px;flex:1;background:#333;"></div>
     </div>
 
-    <!-- Score Hero -->
-    <div style="text-align:center;margin-bottom:8px;">
-      <div id="pdt4Score" style="font-family:'Cormorant Garamond',serif;font-size:100px;font-weight:600;line-height:1;color:#b8860b;">—</div>
-    </div>
-    <div style="text-align:center;margin-bottom:6px;">
-      <div id="pdt4Mode" style="font-size:14px;font-weight:700;letter-spacing:6px;text-transform:uppercase;color:#b8860b;">—</div>
-    </div>
-    <div style="text-align:center;margin-bottom:20px;">
-      <div id="pdt4Tag" style="font-size:8px;letter-spacing:4px;text-transform:uppercase;color:#555;">— / 10</div>
+    <!-- ── COSMIC PULSE ── -->
+    <div style="margin-bottom:32px;">
+
+      <!-- Score hero -->
+      <div style="display:flex;align-items:baseline;gap:14px;margin-bottom:6px;">
+        <div id="pdt4Score" style="font-family:'Cormorant Garamond',serif;font-size:80px;font-weight:600;line-height:1;color:#b8860b;">—</div>
+        <div>
+          <div id="pdt4Mode" style="font-size:13px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:#b8860b;">—</div>
+          <div id="pdt4Tag" style="font-size:8px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-top:3px;">—</div>
+        </div>
+      </div>
+
+      <!-- Score bar -->
+      <div style="height:3px;background:#222;margin-bottom:20px;overflow:hidden;">
+        <div id="pdt4Bar" style="height:100%;width:0%;transition:width .7s ease;background:#b8860b;"></div>
+      </div>
+
+      <!-- What makes this score — explanation -->
+      <div style="padding:14px 16px;border-left:3px solid #333;background:#0a0a0a;margin-bottom:20px;">
+        <div style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:8px;">What drives this score</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:15px;color:#888;line-height:1.75;">The Cosmic Pulse score is a weighted probability reading built from two celestial drivers — the current <span style="color:#aaa;font-style:italic;">Moon Phase</span> (60%) and the <span style="color:#aaa;font-style:italic;">Planetary Alignment</span> grade between the day ruler and moon sign ruler (40%). Together they measure how much raw market energy the cosmos is channelling on any given session.</div>
+      </div>
+
+      <!-- Two driver cells -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#222;border:1px solid #222;">
+
+        <!-- Moon Phase -->
+        <div id="l2Cell" style="background:#0a0a0a;padding:16px 14px;border-top:3px solid #b91c1c;">
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px;"><span>Moon Phase</span><span id="l2WtLabel" style="color:#444;">60%</span></div>
+          <div id="l2Val" style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#ccc;line-height:1.3;margin-bottom:10px;">—</div>
+          <div style="display:flex;align-items:baseline;gap:8px;">
+            <div id="l2Score" style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;line-height:1;color:#ccc;">—</div>
+            <div id="l2Label" style="font-size:12px;color:#888;line-height:1.5;">—</div>
+          </div>
+        </div>
+
+        <!-- Planetary Alignment -->
+        <div id="l4Cell" style="background:#0a0a0a;padding:16px 14px;border-top:3px solid #b91c1c;">
+          <div style="display:flex;justify-content:space-between;align-items:center;font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px;"><span>Planetary Alignment</span><span id="l4WtLabel" style="color:#444;">40%</span></div>
+          <div id="l4Val" style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#ccc;line-height:1.3;margin-bottom:10px;">—</div>
+          <div style="display:flex;align-items:baseline;gap:8px;">
+            <div id="l4Score" style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;line-height:1;color:#ccc;">—</div>
+            <div id="l4Label" style="font-size:12px;color:#888;line-height:1.5;">—</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Score Bar -->
-    <div style="height:3px;background:#222;margin-bottom:32px;overflow:hidden;">
-      <div id="pdt4Bar" style="height:100%;width:0%;transition:width .7s ease;background:#b8860b;"></div>
+
+    <!-- ── MOONSHOT ── -->
+    <div id="confluenceWrap" style="display:none;margin-bottom:32px;">
+      <div style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#555;margin-bottom:14px;">Moonshot</div>
+      <div id="confluenceInner"></div>
     </div>
 
-    <!-- 4 Layer Breakdown -->
+    <!-- Moonshot modifier layers (behavior + style — context only) -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#222;margin-bottom:32px;border:1px solid #222;">
-
-      <!-- Moon Phase (scored) -->
-      <div id="l2Cell" style="background:#0a0a0a;padding:16px 14px;border-top:3px solid #b91c1c;">
-        <div style="display:flex;justify-content:space-between;align-items:center;font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px;"><span>Moon Phase</span><span id="l2WtLabel" style="color:#444;">60%</span></div>
-        <div id="l2Val" style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#ccc;line-height:1.3;margin-bottom:10px;">—</div>
-        <div style="display:flex;align-items:baseline;gap:8px;">
-          <div id="l2Score" style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;line-height:1;color:#ccc;">—</div>
-          <div id="l2Label" style="font-size:12px;color:#888;line-height:1.5;">—</div>
-        </div>
-      </div>
-
-      <!-- Planetary Harmony (scored) -->
-      <div id="l4Cell" style="background:#0a0a0a;padding:16px 14px;border-top:3px solid #b91c1c;">
-        <div style="display:flex;justify-content:space-between;align-items:center;font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:10px;"><span>Planetary Harmony</span><span id="l4WtLabel" style="color:#444;">40%</span></div>
-        <div id="l4Val" style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#ccc;line-height:1.3;margin-bottom:10px;">—</div>
-        <div style="display:flex;align-items:baseline;gap:8px;">
-          <div id="l4Score" style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;line-height:1;color:#ccc;">—</div>
-          <div id="l4Label" style="font-size:12px;color:#888;line-height:1.5;">—</div>
-        </div>
-      </div>
 
       <!-- Universal Energy (modifier) -->
       <div id="l1Cell" style="background:#0a0a0a;padding:16px 14px;border-top:3px solid #b91c1c;">
@@ -896,6 +915,10 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
       <div style="font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#555;margin-bottom:14px;">Market Read</div>
       <div id="energyRead" style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:#ccc;line-height:1.8;letter-spacing:0.3px;margin-bottom:16px;">—</div>
       <div id="eMarket" style="font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:#ccc;line-height:1.8;letter-spacing:0.3px;">—</div>
+      <div id="moonSignTone" style="display:none;margin-top:16px;padding-top:14px;border-top:1px solid #333;">
+        <div style="font-size:8px;letter-spacing:3px;text-transform:uppercase;color:#555;margin-bottom:8px;white-space:nowrap;"><span id="moonToneSignName"></span> Moon · Trading Tone</div>
+        <div id="moonToneText" style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:#aaa;line-height:1.8;"></div>
+      </div>
     </div>
 
     <!-- Be Aware -->
@@ -946,7 +969,7 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
           <div class="interp-range" style="color:#999;">30–54%</div>
           <div class="interp-mode" style="color:#1a56a0;">Selective</div>
         </div>
-        <div class="interp-cell interp-dark" data-range="0-29" style="border-right:none;" onclick="showInterp(this)">
+        <div class="interp-cell interp-dark" data-range="0-29" onclick="showInterp(this)">
           <div class="interp-range" style="color:#999;">0–29%</div>
           <div class="interp-mode" style="color:#c0392b;">Conserve</div>
         </div>
@@ -996,12 +1019,31 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
             </div>
           </div>
 
-          <!-- Apply + Reset -->
+          <!-- Before / After -->
+          <div id="wtBeforeAfter" style="display:none;border:1px solid #333;margin-bottom:16px;overflow:hidden;">
+            <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:#555;padding:8px 12px;border-bottom:1px solid #333;">Today's Score · Before & After</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+              <div style="padding:12px;border-right:1px solid #333;text-align:center;">
+                <div style="font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#555;margin-bottom:6px;">Before</div>
+                <div id="wtBeforeScore" style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;line-height:1;">—</div>
+                <div id="wtBeforeMode" style="font-size:9px;letter-spacing:2px;text-transform:uppercase;margin-top:4px;">—</div>
+                <div id="wtBeforeWeights" style="font-size:9px;color:#444;margin-top:4px;">—</div>
+              </div>
+              <div style="padding:12px;text-align:center;">
+                <div style="font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#555;margin-bottom:6px;">After</div>
+                <div id="wtAfterScore" style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;line-height:1;">—</div>
+                <div id="wtAfterMode" style="font-size:9px;letter-spacing:2px;text-transform:uppercase;margin-top:4px;">—</div>
+                <div id="wtAfterWeights" style="font-size:9px;color:#444;margin-top:4px;">—</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Save + Reset -->
           <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:1px solid #222;">
             <div style="font-size:11px;color:#888;">Total: <span id="wtTotal" style="color:#ccc;font-weight:600;">100%</span></div>
             <div style="display:flex;gap:8px;">
               <button onclick="resetWeights()" style="padding:8px 14px;background:transparent;color:#888;border:1px solid #333;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;">Reset</button>
-              <button onclick="applyWeights()" style="padding:8px 14px;background:#b8860b;color:#000;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:600;">Apply</button>
+              <button onclick="saveWeights()" style="padding:8px 14px;background:#b8860b;color:#000;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:600;">Save</button>
             </div>
           </div>
         </div>
@@ -1099,18 +1141,18 @@ const EN={
   33:{name:"Crescendo",kw:"Peak · Rare · Witness",desc:"The peak of the cycle. Maximum expression of everything in play. Rare energy — witness it more than trade it.",market:"Look for pattern completions. Rare energy — observe carefully before acting.",bias:"Peak",badge:"neut",master:true,type:"reversal",category:"Transition",subname:"Overextension Transition"},
 };
 const SIGNS=[
-  {name:"Aries",sym:"♈",elem:"fire",ruler:"Mars",mkt:"Aggressive, fast-moving. Impulse moves. Wide opening ranges. Bold, quick trades favored."},
-  {name:"Taurus",sym:"♉",elem:"earth",ruler:"Venus",mkt:"Slow, steady grind. Patient holding rewarded. Value-driven. Less volatility."},
-  {name:"Gemini",sym:"♊",elem:"air",ruler:"Mercury",mkt:"Choppy, news-driven. Multiple reversals. Information overload. Don't overtrade."},
-  {name:"Cancer",sym:"♋",elem:"water",ruler:"Moon",mkt:"Emotional swings. Sentiment-driven. Gaps can reverse sharply. Watch psychological levels."},
-  {name:"Leo",sym:"♌",elem:"fire",ruler:"Sun",mkt:"Confident, expressive energy. Showtime conditions. The market wants to perform. Sentiment runs bold and decisive."},
-  {name:"Virgo",sym:"♍",elem:"earth",ruler:"Mercury",mkt:"Analytical, detail-driven. Data matters. Precise setups work well. Low emotion."},
-  {name:"Libra",sym:"♎",elem:"air",ruler:"Venus",mkt:"Balanced, indecisive. Breakouts often fail. Wait for decisive confirmation."},
-  {name:"Scorpio",sym:"♏",elem:"water",ruler:"Pluto / Mars",mkt:"Deep, intense momentum. Major reversals possible. Power plays below the surface."},
-  {name:"Sagittarius",sym:"♐",elem:"fire",ruler:"Jupiter",mkt:"Expansive, optimistic. Trend days possible. Global macro themes amplified."},
-  {name:"Capricorn",sym:"♑",elem:"earth",ruler:"Saturn",mkt:"Serious, institutional tone. Levels well-respected. Slow but reliable follow-through."},
-  {name:"Aquarius",sym:"♒",elem:"air",ruler:"Uranus / Saturn",mkt:"Surprise moves. Tech themes. Unconventional breakouts. Stay flexible."},
-  {name:"Pisces",sym:"♓",elem:"water",ruler:"Neptune / Jupiter",mkt:"Unclear direction. Thin liquidity. False breakouts. Not all moves are real."},
+  {name:"Aries",sym:"♈",elem:"fire",ruler:"Mars",mkt:"Moon in Aries: Aggressive, fast-moving tape. Impulse moves dominate and opening ranges tend to break hard. The market wants to act now — hesitation gets punished. Bold directional entries favored early in the session. Watch for burnout and reversal near ATR extremes as initial energy exhausts itself."},
+  {name:"Taurus",sym:"♉",elem:"earth",ruler:"Venus",mkt:"Moon in Taurus: Slow, steady grind. Price respects levels with unusual precision — support holds, resistance holds. Patient setups are rewarded and chasing rarely works. Value-driven tape with low volatility. Let the setup come to you. Ideal for holding winners rather than scalping."},
+  {name:"Gemini",sym:"♊",elem:"air",ruler:"Mercury",mkt:"Moon in Gemini: Choppy, news-driven tape. Multiple reversals within the session — the market changes its mind often. Information overload creates indecision. Confirm every entry before executing. Data releases carry amplified weight. Avoid overtrading; quality over frequency."},
+  {name:"Cancer",sym:"♋",elem:"water",ruler:"Moon",mkt:"Moon in Cancer: Highly emotional, sentiment-driven price action. Crowd psychology dominates — gaps can reverse sharply as the herd shifts. Psychological levels matter more than technicals. Watch for reactive moves on news. Defensive and protective energy; the tape can be sensitive and unpredictable near key levels."},
+  {name:"Leo",sym:"♌",elem:"fire",ruler:"Sun",mkt:"Moon in Leo: Confident, expressive energy. The market wants to perform and put on a show. Sentiment runs bold and decisive — momentum and breakout plays are favored. Strong follow-through on directional moves. Watch for theatrical reversals if the 'performance' gets overdone near resistance."},
+  {name:"Virgo",sym:"♍",elem:"earth",ruler:"Mercury",mkt:"Moon in Virgo: Analytical, detail-oriented tape. Data and precision matter — setups that are technically clean tend to work well. Low emotional noise. The market is methodical and deliberate. Key levels respected. Strong for structured, rules-based trading. News releases get scrutinized rather than reacted to impulsively."},
+  {name:"Libra",sym:"♎",elem:"air",ruler:"Venus",mkt:"Moon in Libra: Balanced and indecisive. The market seeks equilibrium — breakouts frequently fail and fade back. Wait for decisive confirmation before entering. Fading extremes tends to work better than chasing momentum. Two-sided tape with neither bulls nor bears gaining clear control."},
+  {name:"Scorpio",sym:"♏",elem:"water",ruler:"Pluto / Mars",mkt:"Moon in Scorpio: Deep, intense momentum beneath the surface. Major reversals are possible — this is not a light tape. Power moves develop slowly then hit hard. Institutional activity may be driving price behind the scenes. Volume tells the real story. When a level breaks, it tends to break decisively."},
+  {name:"Sagittarius",sym:"♐",elem:"fire",ruler:"Jupiter",mkt:"Moon in Sagittarius: Expansive, optimistic energy. Trend days are more likely — the tape wants to move in one direction and follow through. Macro and global themes get amplified. The market is optimistic and broad. Good for trend-following entries. Watch for overextension and gaps that reflect exuberance rather than fundamentals."},
+  {name:"Capricorn",sym:"♑",elem:"earth",ruler:"Saturn",mkt:"Moon in Capricorn: Serious, institutional tone. Price levels are well-respected and the tape moves deliberately. Slow but reliable follow-through — this is a discipline-rewarded session. Institutional activity tends to dominate. Less reactivity, more structure. Patience and precise entries are your edge."},
+  {name:"Aquarius",sym:"♒",elem:"air",ruler:"Uranus / Saturn",mkt:"Moon in Aquarius: Unconventional and unpredictable. Surprise moves and breakouts appear from nowhere. Tech and sector rotation themes are amplified. The tape doesn't behave as expected — flexibility and adaptability are essential. Expect the unexpected and keep stops tight on conventional setups."},
+  {name:"Pisces",sym:"♓",elem:"water",ruler:"Neptune / Jupiter",mkt:"Moon in Pisces: Unclear direction with foggy, low-conviction price action. False breakouts are common — moves that look real often dissolve. Thin participation and illusive signals. Size down and verify every setup before committing. Not a day for bold directional trades; wait for clarity or sit out."},
 ];
 const ELEMS={
   fire:{cls:"fire",mkt:"Fire energy: High-momentum trending conditions. Aggressive directional moves. Opening ranges break and hold. Good for momentum plays. Watch for burnout near ATR exhaustion."},
@@ -1174,6 +1216,16 @@ const DAYS={
 
 const ALL_PLANETS=["Sun","Moon","Mars","Mercury","Jupiter","Venus","Saturn"];
 
+// Always grade using traditional rulers only (no Uranus, Neptune, Pluto)
+const OUTER_TO_TRAD = {"Uranus":"Saturn","Neptune":"Jupiter","Pluto":"Mars"};
+function getTraditionalRuler(rulerStr){
+  const parts = rulerStr.split('/').map(s=>s.trim());
+  // Find first part that is a traditional planet
+  for(const p of parts){ if(ALL_PLANETS.includes(p)) return p; }
+  // Fallback: map outer planet to its traditional equivalent
+  return OUTER_TO_TRAD[parts[0]] || parts[0];
+}
+
 function getPlanetRelations(dayRuler){
   const d=Object.values(DAYS).find(x=>x.planet===dayRuler);
   if(!d)return{allies:[],neutral:[],enemies:[]};
@@ -1189,12 +1241,77 @@ function calcNum(s){
   return n;
 }
 function getMoonSign(date){
-  const d=(date-new Date('2025-01-30T00:00:00'))/86400000;
-  return SIGNS[(((Math.floor((((d%29.5)+29.5)%29.5)/29.5*12))%12)+12)%12];
+  // Accurate Moon longitude — Meeus "Astronomical Algorithms" Ch.47, full 60-term series
+  function jd(d){ return d.getTime()/86400000 + 2440587.5; }
+  const dateStr = (date.toISOString ? date.toISOString() : String(date)).slice(0,10);
+  const d = new Date(dateStr + 'T17:00:00Z'); // noon ET (EDT) representative moment
+  const JD = jd(d);
+  const T  = (JD - 2451545.0) / 36525;
+  const r  = Math.PI / 180;
+  const L0 = 218.3164477 + 481267.88123421*T - 0.0015786*T*T + T*T*T/538841 - T*T*T*T/65194000;
+  const D  = 297.8501921 + 445267.1114034*T  - 0.0018819*T*T + T*T*T/545868  - T*T*T*T/113065000;
+  const M  = 357.5291092 + 35999.0502909*T   - 0.0001536*T*T + T*T*T/24490000;
+  const Mp = 134.9633964 + 477198.8675055*T  + 0.0087414*T*T + T*T*T/69699   - T*T*T*T/14712000;
+  const F  = 93.2720950  + 483202.0175233*T  - 0.0036539*T*T - T*T*T/3526000 + T*T*T*T/863310000;
+  const A1 = 119.75 + 131.849*T;
+  const A2 = 53.09  + 479264.290*T;
+  const E  = 1 - 0.002516*T - 0.0000074*T*T;
+  // Full longitude table — Meeus Table 47.A (60 terms)
+  const lt = [
+    [0,0,1,0,6288774],[2,0,-1,0,1274027],[2,0,0,0,658314],[0,0,2,0,213618],
+    [0,1,0,0,-185116],[0,0,0,2,-114332],[2,0,-2,0,58793],[2,-1,-1,0,57066],
+    [2,0,1,0,53322],[2,-1,0,0,45758],[0,1,-1,0,-40923],[1,0,0,0,-34720],
+    [0,1,1,0,-30383],[2,0,0,-2,15327],[0,0,1,2,-12528],[0,0,1,-2,10980],
+    [4,0,-1,0,10675],[0,0,3,0,10034],[4,0,-2,0,8548],[2,1,-1,0,-7888],
+    [2,1,0,0,-6766],[1,0,-1,0,-5163],[1,1,0,0,4987],[2,-1,1,0,4036],
+    [2,0,2,0,3994],[4,0,0,0,3861],[2,0,-3,0,3665],[0,1,-2,0,-2689],
+    [2,0,-1,2,-2602],[2,-1,-2,0,2390],[1,0,1,0,-2348],[2,-2,0,0,2236],
+    [0,1,2,0,-2120],[0,2,0,0,-2069],[2,-2,-1,0,2048],[2,0,1,-2,-1773],
+    [2,0,0,2,-1595],[4,-1,-1,0,1215],[0,0,2,2,-1110],[3,0,-1,0,-892],
+    [2,1,1,0,-810],[4,-1,-2,0,759],[0,2,-1,0,-713],[2,2,-1,0,-700],
+    [2,1,-2,0,691],[2,-1,0,-2,596],[4,0,1,0,549],[0,0,4,0,537],
+    [4,-1,0,0,520],[1,0,-2,0,-487],[2,1,0,-2,-399],[0,0,2,-2,-381],
+    [1,1,1,0,351],[3,0,-2,0,-340],[4,0,-3,0,330],[2,-1,2,0,327],
+    [0,2,1,0,-323],[1,1,-1,0,299],[2,0,3,0,294],[2,0,-1,-2,0]
+  ];
+  let Sl = 0;
+  for(const [dd,m,mp,f,sl] of lt){
+    const Ec = Math.abs(m)===1 ? E : Math.abs(m)===2 ? E*E : 1;
+    Sl += sl * Ec * Math.sin(r*(dd*D + m*M + mp*Mp + f*F));
+  }
+  Sl += 3958*Math.sin(r*A1) + 1962*Math.sin(r*(L0-F)) + 318*Math.sin(r*A2);
+  const lon = ((L0 + Sl/1000000) % 360 + 360) % 360;
+  return SIGNS[Math.floor(lon/30) % 12];
 }
 function getMoonPhase(date){
-  const d=(date-new Date('2025-01-30T00:00:00'))/86400000;
-  return PHASES[Math.floor((((d%29.5)+29.5)%29.5)/29.5*8)%8];
+  // Accurate Moon phase via Jean Meeus "Astronomical Algorithms" Ch.49
+  function jd(d){ return d.getTime()/86400000 + 2440587.5; }
+  function newMoonJDE(k){
+    const T = k/1236.85;
+    let J = 2451550.09766 + 29.530588861*k + 0.00015437*T*T - 0.000000150*T*T*T + 0.00000000073*T*T*T*T;
+    const r = Math.PI/180;
+    const M  = (2.5534 + 29.10535670*k - 0.0000014*T*T)*r;
+    const Mp = (201.5643 + 385.81693528*k + 0.0107582*T*T)*r;
+    const F  = (160.7108 + 390.67050284*k - 0.0016118*T*T)*r;
+    const Om = (124.7746 - 1.56375588*k + 0.0020672*T*T)*r;
+    return J + (-0.40720*Math.sin(Mp)+0.17241*Math.sin(M)+0.01608*Math.sin(2*Mp)
+      +0.01039*Math.sin(2*F)+0.00739*Math.sin(Mp-M)-0.00514*Math.sin(Mp+M)
+      +0.00208*Math.sin(2*M)-0.00111*Math.sin(Mp-2*F)-0.00057*Math.sin(Mp+2*F)
+      +0.00056*Math.sin(2*Mp+M)-0.00042*Math.sin(3*Mp)+0.00042*Math.sin(M+2*F)
+      +0.00038*Math.sin(M-2*F)-0.00024*Math.sin(2*Mp-M)-0.00017*Math.sin(Om)
+      -0.00007*Math.sin(Mp+2*M));
+  }
+  // Use noon ET (17:00 UTC) as the representative moment for the selected date
+  const dateStr = date.toISOString ? date.toISOString().slice(0,10) : String(date).slice(0,10);
+  const d = new Date(dateStr + 'T17:00:00Z');
+  const JD = jd(d);
+  // Find k such that newMoonJDE(k) <= JD < newMoonJDE(k+1)
+  let k = Math.round((JD - 2451549.5) / 29.53059) - 1;
+  while(newMoonJDE(k+1) <= JD) k++;
+  while(newMoonJDE(k) > JD) k--;
+  const daysIn = JD - newMoonJDE(k);
+  const idx = Math.min(7, Math.floor(daysIn / 29.53059 * 8));
+  return PHASES[idx];
 }
 
 function loadDate(){
@@ -1272,6 +1389,58 @@ function loadDate(){
   document.getElementById('signRuler').textContent=sign.ruler;
   document.getElementById('signRulerSub').textContent=sign.name+' ruler';
 
+  // ── MOON SIGN TRADING TONE ──
+  const SIGN_TRADING_TONE = {
+    Aries:'Fast, aggressive energy. Impulse moves and wide opening ranges. Bold, quick trades favored. Watch for burnout near ATR extremes.',
+    Taurus:'Slow, steady grind. Patient holding rewarded. Key levels well-respected. Less volatility — let setups come to you.',
+    Gemini:'Choppy, news-driven. Multiple reversals likely. Information overload. Confirm before every entry — don\'t overtrade.',
+    Cancer:'Emotional swings. Sentiment-driven tape. Gaps can reverse sharply. Watch psychological levels and crowd psychology closely.',
+    Leo:'Bold, expressive energy. Market wants to perform. Confidence runs high — momentum and breakout plays favored.',
+    Virgo:'Analytical, detail-driven. Precise setups work well. Low emotion, data-sensitive. Let the chart tell the story.',
+    Libra:'Indecisive, balanced. Breakouts tend to fail. The market seeks equilibrium — fade extremes and wait for decisive confirmation.',
+    Scorpio:'Deep, intense momentum. Major reversals possible. Power moves below the surface — size matters when a level breaks.',
+    Sagittarius:'Expansive, optimistic. Trend days more likely. Macro and global themes amplify moves. Follow the big picture.',
+    Capricorn:'Serious, institutional tone. Levels hold precisely. Slow but reliable follow-through. Discipline rewarded.',
+    Aquarius:'Surprise moves. Unconventional breakouts. Tech and sector themes amplified. Stay flexible — expect the unexpected.',
+    Pisces:'Unclear direction. False breakouts common. Thin, foggy conditions. Not all moves are real — size down and verify.'
+  };
+
+  // Day Ruler ↔ Moon Sign Ruler relationship
+  const moonSignRuler = getTraditionalRuler(sign.ruler);
+  const dayRulerRel = getPlanetRelations(day.planet);
+  const isRulerSame   = day.planet === moonSignRuler;
+  const isRulerAlly   = dayRulerRel.allies.includes(moonSignRuler);
+  const isRulerEnemy  = dayRulerRel.enemies.includes(moonSignRuler);
+
+  const RULER_REL_DESC = {
+    same:  { label:'Ruler × Ruler', color:'#b8860b', icon:'◉',
+             desc: `${day.planet} rules both today and ${sign.name}. Energy is amplified and unified — the day and the moon speak the same language. Momentum, clarity, and strong follow-through. This is a high-conviction combination.` },
+    ally:  { label:'Ally', color:'#166534', icon:'✦',
+             desc: `${day.planet} (day) and ${moonSignRuler} (${sign.name}) are allies. The day's drive and the moon's emotional tone are working together. Clean execution windows, cooperative energy — trust well-formed setups.` },
+    enemy: { label:'Friction', color:'#b91c1c', icon:'△',
+             desc: `${day.planet} (day) and ${moonSignRuler} (${sign.name}) are in conflict. The day's direction and the moon's emotional texture are pulling against each other. Expect chop, mixed signals, or false starts. Size down and wait for clarity.` },
+    neutral:{ label:'Neutral', color:'#6b7280', icon:'◆',
+             desc: `${day.planet} (day) and ${moonSignRuler} (${sign.name}) are neutral. No amplification, no friction — conditions are what the score says they are. Execute your plan.` }
+  };
+
+  const relKey = isRulerSame ? 'same' : isRulerAlly ? 'ally' : isRulerEnemy ? 'enemy' : 'neutral';
+  const rulerRelData = RULER_REL_DESC[relKey];
+
+  const toneEl = document.getElementById('moonSignTone');
+  const toneTextEl = document.getElementById('moonToneText');
+  const toneSignEl = document.getElementById('moonToneSignName');
+  if(toneEl && toneTextEl && toneSignEl){
+    const tone = SIGN_TRADING_TONE[sign.name];
+    if(tone){
+      toneSignEl.textContent = sign.name;
+      toneEl.style.display = 'block';
+      toneTextEl.innerHTML =
+        `<div style="font-family:'Cormorant Garamond',serif;font-size:18px;color:#aaa;line-height:1.8;margin-bottom:12px;">${tone}</div>` +
+
+        `<div style="font-family:'Cormorant Garamond',serif;font-size:17px;color:#aaa;line-height:1.8;">${rulerRelData.desc}</div>`;
+    }
+  }
+
   // ── DOUBLE RULERSHIP CHECK ──
   const isDouble = sign.ruler.includes(day.planet);
   const drBanner = document.getElementById('doubleRulerBanner');
@@ -1297,9 +1466,9 @@ function loadDate(){
   document.getElementById('rNeut').innerHTML   = rel.neutral.map(p=>`<span style="${tagStyle('var(--muted)')}">${p}</span>`).join('');
   document.getElementById('rEnemy').innerHTML  = rel.enemies.map(p=>`<span style="${tagStyle('var(--red)')}">${p}</span>`).join('');
   const en2=document.getElementById('elemNote');
-  en2.textContent=elem.mkt;en2.className='elem-note '+elem.cls;
+  en2.textContent=sign.mkt;en2.className='elem-note '+elem.cls;
   const en2d=document.getElementById('elemNoteDisplay');
-  if(en2d){en2d.textContent=elem.mkt;en2d.className='elem-note '+elem.cls;}
+  if(en2d){en2d.textContent=sign.mkt;en2d.className='elem-note '+elem.cls;}
 
   // Element chips
   const ELEM_DATA=[
@@ -1330,16 +1499,77 @@ function loadDate(){
   // Planetary Alignment — unified block
   const agEl=document.getElementById('alignGradeBanner');
   if(agEl){
-    const agRuler=sign.ruler.split('/')[0].trim();
+    const agRuler=getTraditionalRuler(sign.ruler);
     const ag=ALIGN_GRADES[day.planet+'+'+agRuler]||null;
     const agIsAlly=rel.allies.includes(agRuler);
     const agIsEnemy=rel.enemies.includes(agRuler);
     const agGrade=ag?ag.grade:(agIsAlly?'B':agIsEnemy?'C':'B');
-    const agColor=agGrade==='A+'?'#166534':agGrade==='A'?'#1d8a4a':agGrade==='B'?'#92400e':'#b91c1c';
+    const agColor=agGrade==='A+'?'#b8860b':agGrade==='A'?'#1d8a4a':agGrade==='B+'?'#166534':agGrade==='B'?'#92400e':'#b91c1c';
     const agRelDesc=agIsAlly?'Ally — energy flows':agIsEnemy?'Enemy — friction':'Neutral — mixed signals';
     const agBarWidths={'A+':'100%','A':'80%','B+':'70%','B':'55%','C+':'45%','C':'30%','D':'20%','D-':'10%'};
     const agBarWidth=agBarWidths[agGrade]||'55%';
-    const tagS=(color)=>`display:inline-block;font-size:13px;font-weight:500;padding:3px 10px;margin:3px 3px 3px 0;border:1px solid ${color};color:${color};font-family:'DM Sans',sans-serif;`;
+    const tagS=(color,p,tier)=>`display:inline-block;font-size:13px;font-weight:500;padding:3px 10px;margin:3px 3px 3px 0;border:1px solid ${color};color:${color};font-family:'DM Sans',sans-serif;cursor:pointer;` ;
+
+    // Planet-pair relationship descriptions keyed as "DayRuler|Planet"
+    const PLANET_REL_DESC = window._planetRelDesc = {
+      'Sun|Moon':   {ally:true,  desc:'Sun and Moon are natural allies. When the Sun rules the day and Moon hours arise, emotional clarity and intuition align with confident, decisive energy. Sentiment flows with direction — crowd participation amplifies clean setups.'},
+      'Sun|Mars':   {ally:true,  desc:'Sun and Mars are powerful allies. Drive, aggression, and vitality combine — this is high-energy execution territory. Momentum setups fire cleanly. Bold directional entries supported. Watch for overconfidence near ATR extremes.'},
+      'Sun|Jupiter':{ally:true,  desc:'Sun and Jupiter are natural allies — the most expansive, optimistic pairing. Trend days are likely. Confidence and fortune align. Strong follow-through on breakouts. Ideal for adding to winners and holding into targets.'},
+      'Sun|Venus':  {neutral:true,desc:'Sun and Venus are neutral. Vitality meets harmony — no friction, but no amplification. The tape is pleasant but undirected. Clean setups execute fine; don\'t expect outsized momentum. Good for structured, patient entries.'},
+      'Sun|Saturn': {neutral:true,desc:'Sun and Saturn are neutral. Confidence meets discipline — a measured, deliberate energy. The market may feel restrained or institutional. Levels hold well. Precision entries rewarded. Don\'t force breakouts.'},
+      'Sun|Mercury':{enemy:true,  desc:'Sun and Mercury are enemies. Vitality clashes with nervous, scattered communication energy. Signals feel mixed — bold conviction setups get whipsawed by rapid information reversals. Size down on high-conviction plays and confirm every entry twice.'},
+      'Moon|Sun':   {ally:true,  desc:'Moon and Sun are allies. Intuitive emotional cycles flow with confident solar energy. The crowd\'s sentiment aligns with directional confidence — momentum and sentiment-driven moves have clean follow-through.'},
+      'Moon|Mercury':{ally:true, desc:'Moon and Mercury are allies — the smoothest technical pairing. Intuitive tape reading aligns with precise, analytical execution. EMA/VWAP levels respected. Clean technical signals. Ideal for structured intraday strategies.'},
+      'Moon|Mars':  {neutral:true,desc:'Moon and Mars are neutral. Emotional cycles meet aggressive drive — can produce bursts of momentum but with unpredictable reversals. No clear amplification or friction. Trade what you see, not what you feel.'},
+      'Moon|Jupiter':{neutral:true,desc:'Moon and Jupiter are neutral. Emotional sentiment meets expansive fortune energy — optimistic but inconsistent. Trend attempts may lack follow-through. Good conditions without outstanding edge.'},
+      'Moon|Venus': {neutral:true,desc:'Moon and Venus are neutral. Emotional intuition meets harmony — gentle, balanced conditions. The tape doesn\'t feel threatening. Setups execute cleanly without major surprises.'},
+      'Moon|Saturn':{enemy:true,  desc:'Moon and Saturn are enemies. Intuition and emotional flow clash with cold, restrictive structure. Your gut reads may feel blocked or delayed. The market can feel heavy and unresponsive. Trust levels over feelings today; size down on intuitive calls.'},
+      'Mars|Sun':   {ally:true,  desc:'Mars and Sun are aggressive allies. Drive and vitality are fully aligned — powerful momentum energy. Breakouts run further and reversals are sharp. This is high-octane execution territory. Ideal for momentum scalps and directional swings.'},
+      'Mars|Moon':  {ally:true,  desc:'Mars and Moon combine drive with emotional responsiveness. Momentum meets crowd psychology — when sentiment turns, it moves fast. Watch for sharp reversals driven by crowd behavior, but clean setups fire with conviction.'},
+      'Mars|Jupiter':{ally:true, desc:'Mars and Jupiter are strong allies — large trend ranges are the signature. Aggressive expansion energy. Breakouts extend further than normal. Best for trend pullback entries and adding to winning positions. The market wants to run.'},
+      'Mars|Saturn':{neutral:true,desc:'Mars and Saturn are neutral. Drive meets discipline — aggression is tempered by structure. The tape may feel like it wants to move but keeps getting contained. Breakouts need extra confirmation. Patient, structured entries work best.'},
+      'Mars|Venus': {neutral:true,desc:'Mars and Venus are neutral. Aggression meets harmony — energy is present but not fully committed to direction. Mixed conditions. Trade setups that have both momentum signals and level confluence.'},
+      'Mars|Mercury':{enemy:true, desc:'Mars and Mercury are enemies. Drive and aggression clash with rapid, scattered communication energy. Fast impulse moves get interrupted by noise and data reversals. Whipsaws are common. Size down, confirm before entry, and avoid chasing.'},
+      'Mercury|Sun':{ally:true,  desc:'Mercury and Sun are allies. Analytical precision aligns with confident, decisive energy. Clean technical setups with good follow-through. Data and communication flow clearly — news-driven moves tend to be orderly rather than chaotic.'},
+      'Mercury|Venus':{ally:true,desc:'Mercury and Venus are allies — the most balanced, orderly pairing. Structured, harmonious markets. Price respects levels. Setups that are technically clean work exceptionally well. Ideal for systematic, rules-based trading.'},
+      'Mercury|Saturn':{neutral:true,desc:'Mercury and Saturn are neutral. Analytical energy meets disciplined structure — methodical, deliberate conditions. No noise, no chaos. Levels respected. The tape rewards preparation. Good for planned entries at technical confluences.'},
+      'Mercury|Jupiter':{neutral:true,desc:'Mercury and Jupiter are neutral. Communication meets expansion — the market processes information broadly. Data releases may trigger bigger-than-expected reactions. Balanced conditions without strong directional bias.'},
+      'Mercury|Moon':{enemy:true, desc:'Mercury and Moon are enemies. Analytical clarity clashes with emotional, intuitive sentiment. The tape sends contradictory signals — technical levels get overridden by crowd emotion, and intuitive reads get second-guessed by data. Stick strictly to your system.'},
+      'Mercury|Mars':{enemy:true, desc:'Mercury and Mars are enemies. Communication and precision clash with raw aggression. Fast impulse moves get disrupted by noise. Entries based on technical signals face sudden invalidation from momentum bursts. Confirmation is critical.'},
+      'Jupiter|Sun':{ally:true,  desc:'Jupiter and Sun are the most powerful expansion pair. Fortune and vitality amplify each other — trend days, strong follow-through, broad market participation. The ideal conditions for holding winners and letting trades develop fully.'},
+      'Jupiter|Moon':{ally:true, desc:'Jupiter and Moon combine expansion with emotional sentiment. The crowd is optimistic and participatory — breakouts get bought, dips get held. Broad upside momentum energy. Best for trend continuation and momentum trades.'},
+      'Jupiter|Mars':{ally:true, desc:'Jupiter and Mars create large, sustained momentum moves. Expansion meets aggression — the market wants to break out and run. Add to winners, trail stops generously. This pairing produces the largest intraday ranges.'},
+      'Jupiter|Mercury':{neutral:true,desc:'Jupiter and Mercury are neutral. Expansion meets analysis — the market processes information broadly and optimistically. Balanced conditions. Data releases may get bigger reactions than expected but without sustained directional follow-through.'},
+      'Jupiter|Venus':{enemy:true,desc:'Jupiter and Venus are enemies. Expansion clashes with harmony and equilibrium-seeking. Breakout attempts get faded. Upside runs hit resistance from value-seeking selling. Range-bound sessions despite expansive energy. Fade extremes rather than chasing.'},
+      'Jupiter|Saturn':{enemy:true,desc:'Jupiter and Saturn are enemies. Optimistic expansion clashes with restrictive discipline. The market tries to trend but gets suppressed. False breakouts followed by compression. Best to trade defensively — respect structure over momentum signals.'},
+      'Venus|Mercury':{ally:true, desc:'Venus and Mercury are natural allies. Harmony and analytical precision create the most orderly, balanced market conditions. Setups that are technically clean execute with minimal slippage. Ideal for rules-based, structured intraday trading.'},
+      'Venus|Saturn':{ally:true, desc:'Venus and Saturn are allies. Harmony meets discipline — the tape is restrained but well-structured. Levels hold with precision. Value-seeking and systematic entries both work well. Conservative but reliable conditions.'},
+      'Venus|Mars':  {neutral:true,desc:'Venus and Mars are neutral. Harmony meets aggression — the tape has energy but no clear direction. Momentum setups and fade setups both present but neither dominates. Trade what the chart confirms rather than what feels right.'},
+      'Venus|Jupiter':{enemy:true,desc:'Venus and Jupiter are enemies. Harmony and equilibrium clash with expansion — the market tries to trend but value-seeking energy keeps pulling it back. Breakouts frequently reverse. Better to fade strong moves than chase them.'},
+      'Venus|Sun':  {enemy:true, desc:'Venus and Sun are enemies. Harmony and balance clash with confident, expressive energy. Bold breakout plays get faded by equilibrium-seeking sellers. Sentiment runs high but the tape doesn\'t sustain moves. Fade the crowd rather than joining it.'},
+      'Venus|Moon': {enemy:true, desc:'Venus and Moon are enemies. Value-seeking harmony clashes with emotional, reactive sentiment. The crowd\'s emotional reactions push price away from fair value repeatedly. Reversals from key levels are common. Fade emotional extremes.'},
+      'Saturn|Venus':{ally:true, desc:'Saturn and Venus are allies. Discipline meets harmony — methodical, well-structured conditions. Levels respected, setups precise, risk well-contained. A steady, reliable session for systematic traders who follow their rules.'},
+      'Saturn|Mercury':{ally:true,desc:'Saturn and Mercury are allies. Structure and analytical precision align — the tape is deliberate and data-responsive. Clean technical environments where preparation and precision are rewarded. Good for planned entries at key confluence levels.'},
+      'Saturn|Jupiter':{enemy:true,desc:'Saturn and Jupiter are enemies. Restriction clashes with expansion — the market struggles between compression and breakout. Neither side sustains. Choppy, frustrating conditions for both trend traders and mean-reversion traders. Size down.'},
+      'Saturn|Mars': {neutral:true,desc:'Saturn and Mars are neutral. Discipline meets drive — the tape has energy but structure keeps it contained. Breakouts get attempted but met with resistance. Patient, deliberate entries at confirmed levels work best.'},
+      'Saturn|Sun':  {enemy:true, desc:'Saturn and Sun are enemies. Restrictive, disciplined energy clashes with bold, expressive confidence. The tape feels heavy — momentum plays get suppressed, breakouts fail, and crowd confidence gets tested. Conservative, defensive positioning favored.'},
+      'Saturn|Moon': {enemy:true, desc:'Saturn and Moon are enemies. Cold, structural restriction clashes with emotional, intuitive sentiment. The tape feels blocked and unresponsive. Emotional reads are unreliable. Trust levels and rules over feelings — intuition is distorted today.'},
+    };
+
+    const makeTag = (p, color, tier) => {
+      const key = day.planet+'|'+p;
+      const rd = PLANET_REL_DESC[key];
+      return `<span onclick="togglePlanetRelDetail('${p}','${color}','${tier}','${day.planet}')" style="${tagS(color,p,tier)}">${p}</span>`;
+    };
+
+    // Relations grid
+    const relGridHTML =
+      '<div class="rel-grid" style="margin-bottom:0;" id="planetRelGrid">' +
+        '<div class="rel-col"><div class="rel-lbl ra">Allies</div><div class="rel-items">'+rel.allies.map(p=>makeTag(p,'var(--green)','ally')).join('')+'</div></div>' +
+        '<div class="rel-col"><div class="rel-lbl rn">Neutral</div><div class="rel-items">'+rel.neutral.map(p=>makeTag(p,'var(--muted)','neutral')).join('')+'</div></div>' +
+        '<div class="rel-col"><div class="rel-lbl re">Enemies</div><div class="rel-items">'+rel.enemies.map(p=>makeTag(p,'var(--red)','enemy')).join('')+'</div></div>' +
+      '</div>' +
+      '<div id="planetRelDetail" style="display:none;padding:12px 14px;border:1px solid var(--rule);border-top:none;background:var(--off);margin-bottom:16px;"></div>';
 
     // Double rulership note
     const isDouble2 = sign.ruler.includes(day.planet);
@@ -1375,57 +1605,42 @@ function loadDate(){
         '<div style="height:3px;background:'+agColor+';width:'+agBarWidth+';transition:width .4s;"></div>' +
       '</div>' +
       // Relations grid
-      '<div class="rel-grid" style="margin-bottom:16px;">' +
-        '<div class="rel-col"><div class="rel-lbl ra">Allies</div><div class="rel-items">'+rel.allies.map(p=>`<span style="${tagS('var(--green)')}">${p}</span>`).join('')+'</div></div>' +
-        '<div class="rel-col"><div class="rel-lbl rn">Neutral</div><div class="rel-items">'+rel.neutral.map(p=>`<span style="${tagS('var(--muted)')}">${p}</span>`).join('')+'</div></div>' +
-        '<div class="rel-col"><div class="rel-lbl re">Enemies</div><div class="rel-items">'+rel.enemies.map(p=>`<span style="${tagS('var(--red)')}">${p}</span>`).join('')+'</div></div>' +
-      '</div>' +
+      relGridHTML +
       '<div style="height:3px;background:var(--rule);margin-top:4px;">' +
         '<div style="height:3px;background:'+agColor+';width:'+agBarWidth+';transition:width .4s;"></div>' +
       '</div>';
 
     // ── PLANETARY HOURS DURING NY SESSION (shown every day) ──
     {
-      const phSt = getSunTimes(date, 'est');
-      const phNextDay = new Date(date);
-      phNextDay.setDate(phNextDay.getDate()+1);
-      const phStNext = getSunTimes(phNextDay, 'est');
-      const phDayLen = phSt.sunset - phSt.sunrise;
-      const phNightLen = (phStNext.sunrise + 1440) - phSt.sunset;
-      const phDayHourLen = phDayLen / 12;
-      const phNightHourLen = phNightLen / 12;
-      const chaldeanOrder = ['Saturn','Jupiter','Mars','Sun','Venus','Mercury','Moon'];
-      const dayRulerMap = {'0':'Sun','1':'Moon','2':'Mars','3':'Mercury','4':'Jupiter','5':'Venus','6':'Saturn'};
-      const phSyms = {'Sun':'☉','Moon':'☽','Mars':'♂','Mercury':'☿','Jupiter':'♃','Venus':'♀','Saturn':'♄'};
-      const phRuler = dayRulerMap[dow];
-      let phStartIdx = chaldeanOrder.indexOf(phRuler);
-      const allHours = [];
-      for(let i=0;i<24;i++){
-        const isD = i < 12;
-        const bMin = isD ? phSt.sunrise + i*phDayHourLen : phSt.sunset + (i-12)*phNightHourLen;
-        const eMin = bMin + (isD ? phDayHourLen : phNightHourLen);
-        const pl = chaldeanOrder[(phStartIdx + i) % 7];
-        allHours.push({planet:pl, start:bMin, end:eMin});
-      }
-      const fmtT = m => {let h=Math.floor(m/60)%24;const ap=h>=12?'PM':'AM';h=h%12||12;const mn=Math.round(m%60);return h+':'+(mn<10?'0':'')+mn+' '+ap;};
+      const phData = calcPlanetaryHoursData(date);
+      const allHours = phData.hours;
+      const phRuler = phData.ruler;
+      const phSyms = phData.syms;
+      const fmtT = m => { let h=Math.floor(m/60)%24; const ap=h>=12?'PM':'AM'; h=h%12||12; const mn=Math.round(m%60); return h+':'+(mn<10?'0':'')+mn+' '+ap; };
 
-      // All hours in NY trading session (9:30 AM - 4:00 PM EST = 570-960 min)
-      const sessionHours = allHours.filter(h => h.end > 570 && h.start < 960);
+      // NYSE session 9:30 AM – 4:00 PM in selected timezone
+      const sessionOpen = 570;  // 9:30 AM in local tz minutes
+      const sessionClose = 960; // 4:00 PM in local tz minutes
+      const sessionHours = allHours.filter(h => h.end > sessionOpen && h.start < sessionClose);
 
       // Grade-specific label/color/description
       let phAccentColor, phBg, phBadge, phDesc;
-      if(agGrade === 'A'){
+      if(agGrade === 'A+'){
+        phAccentColor = '#b8860b'; phBg = '#fffbeb';
+        phBadge = '\u2605\u2605 Planetary Hours \u00B7 NY Session';
+        phDesc = 'Maximum alignment today. Ruler and ally hours carry the strongest possible energy. This is the session to execute your best setups with full conviction.';
+      } else if(agGrade === 'A'){
         phAccentColor = '#b8860b'; phBg = '#fffbeb';
         phBadge = '\u2605 Planetary Hours \u00B7 NY Session';
-        phDesc = 'Full alignment today. Ruler and ally hours carry the strongest energy for execution.';
-      } else if(agGrade === 'B'){
+        phDesc = 'Strong alignment today. Ruler and ally hours carry the strongest energy for execution.';
+      } else if(agGrade === 'B+' || agGrade === 'B'){
         phAccentColor = 'var(--green)'; phBg = '#f0fdf4';
         phBadge = '\u26A1 Planetary Hours \u00B7 NY Session';
         phDesc = 'Partial alignment. Ally hours offer the cleanest execution windows during the session.';
       } else {
         phAccentColor = 'var(--green)'; phBg = '#f0fdf4';
         phBadge = '\u26A1 Ally Hours Available';
-        phDesc = 'The planetary alignment is unfavorable today, but these ally hours during the NY session create windows where the energy supports cleaner execution.';
+        phDesc = 'The planetary alignment is mixed today. These ally hours during the NY session create windows where the energy supports cleaner execution.';
       }
 
       const tierColor = {ruler:'#b8860b', ally:'var(--green)', neutral:'var(--muted)', enemy:'var(--red)'};
@@ -1437,15 +1652,15 @@ function loadDate(){
         phHtml += '<div style="font-size:8px;letter-spacing:3px;text-transform:uppercase;color:'+phAccentColor+';font-weight:600;margin-bottom:8px;">'+phBadge+'</div>';
         phHtml += '<div style="font-size:13px;color:var(--mid);line-height:1.6;margin-bottom:10px;">'+phDesc+'</div>';
         sessionHours.forEach(h => {
-          const clippedStart = Math.max(h.start, 570);
-          const clippedEnd   = Math.min(h.end, 960);
+          const clippedStart = Math.max(h.start, sessionOpen);
+          const clippedEnd   = Math.min(h.end, sessionClose);
           const tier = getTier(h.planet);
           const col  = tierColor[tier];
           phHtml += '<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--rule);opacity:'+(tier==='enemy'?'0.45':'1')+';">';
           phHtml += '<span style="font-size:16px;">'+phSyms[h.planet]+'</span>';
           phHtml += '<span style="font-size:13px;font-weight:600;color:'+col+';">'+h.planet+'</span>';
           phHtml += '<span style="font-size:10px;letter-spacing:1px;text-transform:uppercase;color:'+col+';opacity:0.8;">'+tierLabel[tier]+'</span>';
-          phHtml += '<span style="font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;margin-left:auto;">'+fmtT(clippedStart)+' \u2013 '+fmtT(clippedEnd)+' EST</span>';
+          phHtml += '<span style="font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;margin-left:auto;">'+fmtT(clippedStart)+' \u2013 '+fmtT(clippedEnd)+' '+TZ_OPTIONS[_phTimezone].label.replace(/\s*\(.*\)/,'')+'</span>';
           phHtml += '</div>';
         });
         phHtml += '</div>';
@@ -1478,9 +1693,9 @@ function loadDate(){
   const l3Label = sign.name + ' · ' + sign.elem.charAt(0).toUpperCase()+sign.elem.slice(1) + ' · ' + sign.ruler;
 
   // Layer 4: Planetary Harmony (Quality) — 40% of score
-  const paKey = day.planet+'+'+sign.ruler.split('/')[0].trim();
-  const paData = ALIGN_GRADES[paKey] || ALIGN_GRADES[sign.ruler.split('/')[0].trim()+'+'+day.planet] || null;
-  const paGrade = paData ? paData.grade : (rel.allies.includes(sign.ruler.split('/')[0].trim())?'A':rel.enemies.includes(sign.ruler.split('/')[0].trim())?'C':'B');
+  const paKey = day.planet+'+'+getTraditionalRuler(sign.ruler);
+  const paData = ALIGN_GRADES[paKey] || ALIGN_GRADES[getTraditionalRuler(sign.ruler)+'+'+day.planet] || null;
+  const paGrade = paData ? paData.grade : (rel.allies.includes(getTraditionalRuler(sign.ruler))?'A':rel.enemies.includes(getTraditionalRuler(sign.ruler))?'C':'B');
   const L4_MAP = {'A+':3,'A':2.5,'B':1.5,'C':0.5};
   const l4Raw = L4_MAP[paGrade] !== undefined ? L4_MAP[paGrade] : 1.5;
   const l4Score = l4Raw / 3;
@@ -1547,7 +1762,7 @@ function loadDate(){
   document.getElementById('l4Score').textContent = l4Display + '%';
   document.getElementById('l4Score').style.color = layerScoreColor(l4Display);
   document.getElementById('l4Label').textContent = l4Label;
-  document.getElementById('l4Val').textContent = day.planet + ' / ' + sign.ruler.split('/')[0].trim() + ' — Grade ' + paGrade;
+  document.getElementById('l4Val').textContent = day.planet + ' / ' + getTraditionalRuler(sign.ruler) + ' — Grade ' + paGrade;
   document.getElementById('l4Cell').style.borderTopColor = layerScoreColor(l4Display);
   const l4WtEl = document.getElementById('l4WtLabel');
   if(l4WtEl) l4WtEl.textContent = Math.round(_wtAlign*100) + '%';
@@ -1565,8 +1780,13 @@ function loadDate(){
     const phasePhrase = phaseWords[phase.name] || phase.energyType.toLowerCase();
     erEl.textContent = `${ed.name} energy is ${dirPhrase} under ${sign.name} (${elemPhrase}). ${phase.name} adds ${phasePhrase}. ${day.planet} rules the day.`;
   }
-  if(erWrap) erWrap.style.borderLeftColor = pdtColor;
 
+  // Build confluence score — this is the authoritative day rating
+  const confluenceResult = buildConfluenceScore(date, pdtPct, pdtColor, pdtMode, day, sign, phase, en, ed, rel, paGrade);
+  const activeMode  = confluenceResult ? confluenceResult.confluenceMode : pdtMode;
+  const activeColor = confluenceResult ? confluenceResult.gradeColor     : pdtColor;
+
+  if(erWrap) erWrap.style.borderLeftColor = activeColor;
   // ── BE AWARE — flag conflicts between score and modifiers ──
   const beAwareWrap = document.getElementById('beAwareWrap');
   const beAwareContent = document.getElementById('beAwareContent');
@@ -1747,35 +1967,36 @@ function loadDate(){
     descEl.textContent='Stage '+currentStage+' · '+['Build','Expansion','Peak','Reset'][currentStage-1]+': '+LC_DESC[currentStage];
   }
 
-  // Highlight active interpretation cell
+  // Highlight active interpretation cell — based on confluence score
+  const activePct = confluenceResult ? confluenceResult.pct : pdtPct;
   document.querySelectorAll('.interp-cell').forEach(cell => {
     const range = cell.dataset.range;
     const [lo, hi] = range.split('-').map(Number);
-    const active = pdtPct >= lo && (hi === 100 ? pdtPct <= 100 : pdtPct < hi);
+    const active = activePct >= lo && (hi === 100 ? activePct <= 100 : activePct < hi);
     cell.classList.toggle('active', active);
   });
 
   // Update snapshot score box
   const scTRSEl = document.getElementById('snapTRS');
   if(scTRSEl){
-    scTRSEl.innerHTML = `<span style="font-size:44px;line-height:1;">${pdtPct}%</span><br><span style="font-size:11px;letter-spacing:3px;text-transform:uppercase;font-family:'DM Sans',sans-serif;font-weight:600;">${pdtMode}</span>`;
-    scTRSEl.style.color = pdtColor;
+    scTRSEl.innerHTML = `<span style="font-size:44px;line-height:1;">${confluenceResult ? confluenceResult.pct : pdtPct}%</span><br><span style="font-size:11px;letter-spacing:3px;text-transform:uppercase;font-family:'DM Sans',sans-serif;font-weight:600;">${activeMode}</span>`;
+    scTRSEl.style.color = activeColor;
   }
 
-  // ── Update banner to match Energy Pulse score
+  // ── Update banner to match Confluence score (authoritative day rating)
   const banner = document.getElementById('alertBanner');
   if(banner){
-    document.getElementById('alertLabel').textContent = pdtMode.toUpperCase();
-    banner.className = 'alert-banner ' + pdtMode.toLowerCase().replace(' ', '-');
+    document.getElementById('alertLabel').textContent = activeMode.toUpperCase();
+    banner.className = 'alert-banner ' + activeMode.toLowerCase().replace(' ', '-');
   }
 
   // Date bar meta
 
   // ── SNAPSHOT CARD ──
-  const scAlignKey = day.planet+'+'+sign.ruler.split('/')[0].trim();
-  const scAlignData = ALIGN_GRADES[scAlignKey]||ALIGN_GRADES[sign.ruler.split('/')[0].trim()+'+'+day.planet]||null;
-  const scAlignGrade = scAlignData?scAlignData.grade:(rel.allies.includes(sign.ruler.split('/')[0].trim())?'A':rel.enemies.includes(sign.ruler.split('/')[0].trim())?'C':'B');
-  const scGC = g=>g==='A+'?'#166534':g==='A'?'#1d8a4a':g==='B'?'#92400e':'#b91c1c';
+  const scAlignKey = day.planet+'+'+getTraditionalRuler(sign.ruler);
+  const scAlignData = ALIGN_GRADES[scAlignKey]||ALIGN_GRADES[getTraditionalRuler(sign.ruler)+'+'+day.planet]||null;
+  const scAlignGrade = scAlignData?scAlignData.grade:(rel.allies.includes(getTraditionalRuler(sign.ruler))?'A':rel.enemies.includes(getTraditionalRuler(sign.ruler))?'C':'B');
+  const scGC = g=>g==='A+'?'#b8860b':g==='A'?'#1d8a4a':g==='B+'?'#166534':g==='B'?'#92400e':'#b91c1c';
 
   document.getElementById('snapENum').textContent='#'+en;
   document.getElementById('snapEBadge').innerHTML=`<span class="cat-badge cat-${(ed.category||'').toLowerCase()}">${ed.category||''}</span>`;
@@ -1785,13 +2006,13 @@ function loadDate(){
   document.getElementById('snapMoonSub').textContent=sign.elem.charAt(0).toUpperCase()+sign.elem.slice(1)+' · '+sign.ruler;
   document.getElementById('snapPhaseVal').textContent=phase.sym+' '+phase.name;
   document.getElementById('snapPhaseSub').innerHTML=`<span style="color:${phase.gradeColor};font-weight:600;">Grade ${phase.grade}</span> · ${phase.energyType}`;
-  document.getElementById('snapAlignVal').textContent=day.sym+' '+day.planet+' / '+sign.ruler.split('/')[0].trim();
-  const snapAlignMktText = scAlignData?scAlignData.mkt:(rel.allies.includes(sign.ruler.split('/')[0].trim())?'Ally — energy flows':'Enemy — friction');
+  document.getElementById('snapAlignVal').textContent=day.sym+' '+day.planet+' / '+getTraditionalRuler(sign.ruler);
+  const snapAlignMktText = scAlignData?scAlignData.mkt:(rel.allies.includes(getTraditionalRuler(sign.ruler))?'Ally — energy flows':'Enemy — friction');
   document.getElementById('snapAlignMkt').textContent='';
   document.getElementById('snapAlignGradeBig').innerHTML=`<span style="color:${scGC(scAlignGrade)};font-weight:600;">Grade ${scAlignGrade}</span><span style="color:var(--muted);font-weight:400;"> · ${snapAlignMktText}</span>`;
 
   // Card 3: Planetary Alignment (kept for alignment grade calc)
-  const signRulerNameTC=sign.ruler.split('/')[0].trim();
+  const signRulerNameTC=getTraditionalRuler(sign.ruler);
   const rel3=getPlanetRelations(day.planet);
   const isAlly3=rel3.allies.includes(signRulerNameTC);
   const isEnemy3=rel3.enemies.includes(signRulerNameTC);
@@ -1805,7 +2026,7 @@ function loadDate(){
   const alignGrade=alignData?alignData.grade:(isAlly3?'B':isEnemy3?'C':'B');
   const alignMkt=alignData?alignData.mkt:relDesc3;
   const alignStyle=alignData?alignData.style:'';
-  const alignGradeColor=alignGrade==='A+'?'#166534':alignGrade==='A'?'#1d8a4a':alignGrade==='B'?'#92400e':'#b91c1c';
+  const alignGradeColor=alignGrade==='A+'?'#b8860b':alignGrade==='A'?'#1d8a4a':alignGrade==='B+'?'#166534':alignGrade==='B'?'#92400e':'#b91c1c';
 
 
   // ── MULTI-FACTOR ALERT ENGINE ─────────────────────────────
@@ -1838,7 +2059,7 @@ function loadDate(){
 
   // 4. RULER RELATIONSHIP (day ruler vs sign ruler)
   const rel2 = getPlanetRelations(day.planet);
-  const signRulerName = sign.ruler.split('/')[0].trim();
+  const signRulerName = getTraditionalRuler(sign.ruler);
   if(rel2.allies.includes(signRulerName))        score.flow    += 2;
   else if(rel2.enemies.includes(signRulerName))  score.volatile+= 2;
   else                                           score.chop    += 1;
@@ -1920,6 +2141,7 @@ function loadDate(){
   }).join('');
 
   } catch(e) { console.error('loadDate error:', e.message, e.stack); }
+  // Refresh date-sensitive sections
 }
 
 function toggleCatPanel(cat){
@@ -2098,15 +2320,18 @@ function previewElemChip(i, ELEM_DATA){
   const signsOfElem = SIGNS.filter(s=>s.elem===e.key);
   let signsHTML = `<div style="margin-top:10px;padding:10px 0 4px;border-top:1px solid var(--rule);">
     <div style="font-size:8px;letter-spacing:3px;text-transform:uppercase;color:${e.color};margin-bottom:8px;">${e.name} Signs</div>
-    <div style="display:grid;grid-template-columns:repeat(${signsOfElem.length},1fr);gap:0;border:1px solid var(--rule);">`;
+    <div id="elemSignGrid" style="display:grid;grid-template-columns:repeat(${signsOfElem.length},1fr);gap:0;border:1px solid var(--rule);">`;
   signsOfElem.forEach((s,idx)=>{
-    signsHTML += `<div style="text-align:center;padding:14px 4px;${idx<signsOfElem.length-1?'border-right:1px solid var(--rule);':''}">
+    const borderLeft = idx > 0 ? 'border-left:1px solid var(--rule);' : '';
+    signsHTML += `<div data-sign="${s.name}" onclick="toggleElemSignDetail('${s.name}','${e.color}')" style="text-align:center;padding:14px 4px;cursor:pointer;transition:background .15s;${borderLeft}" onmouseover="this.style.background='var(--off)'" onmouseout="this.style.background=''">
       <div style="font-size:28px;">${s.sym}</div>
       <div style="font-size:13px;font-weight:500;color:#000;margin-top:4px;">${s.name}</div>
-      <div style="font-size:11px;color:var(--muted);margin-top:2px;">${s.ruler}</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:2px;">${getTraditionalRuler(s.ruler)}</div>
     </div>`;
   });
-  signsHTML += `</div></div>`;
+  signsHTML += `</div>
+  <div id="elemSignDetail" style="display:none;margin-top:0;padding:12px 14px;border:1px solid var(--rule);border-top:none;background:var(--off);font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--mid);line-height:1.75;"></div>
+  </div>`;
 
   // Inject or replace signs row after the visible elemNoteDisplay
   let signsRow = document.getElementById('elemSignsRow');
@@ -2117,6 +2342,31 @@ function previewElemChip(i, ELEM_DATA){
     if(anchor && anchor.parentNode) anchor.parentNode.insertBefore(signsRow, anchor.nextSibling);
   }
   if(signsRow) signsRow.innerHTML = signsHTML;
+}
+
+function toggleElemSignDetail(signName, accentColor){
+  const detail = document.getElementById('elemSignDetail');
+  const grid = document.getElementById('elemSignGrid');
+  if(!detail) return;
+  const sign = SIGNS.find(s=>s.name===signName);
+  if(!sign) return;
+  // If already showing this sign, toggle off
+  if(detail.dataset.active === signName && detail.style.display !== 'none'){
+    detail.style.display = 'none';
+    detail.dataset.active = '';
+    if(grid) grid.querySelectorAll('[data-sign]').forEach(c=>c.style.background='');
+    return;
+  }
+  // Highlight selected cell
+  if(grid) grid.querySelectorAll('[data-sign]').forEach(c=>{
+    c.style.background = c.dataset.sign===signName ? 'var(--off)' : '';
+    c.style.borderBottom = c.dataset.sign===signName ? '2px solid '+accentColor : '';
+  });
+  detail.style.display = 'block';
+  detail.dataset.active = signName;
+  detail.style.borderLeftColor = accentColor;
+  detail.style.borderLeft = '3px solid '+accentColor;
+  detail.innerHTML = `<div style="font-size:8px;letter-spacing:3px;text-transform:uppercase;color:${accentColor};margin-bottom:8px;">${sign.sym} ${sign.name} · ${getTraditionalRuler(sign.ruler)}</div>${sign.mkt}`;
 }
 
 // ── PLANETARY DAY WEEK STRIP ──
@@ -2286,6 +2536,76 @@ const TZ_OPTIONS = {
 };
 var _phTimezone = 'est'; // default New York
 
+function togglePlanetRelDetail(planet, color, tier, dayRuler){
+  const detail = document.getElementById('planetRelDetail');
+  if(!detail) return;
+  const PSYMS = {'Sun':'☉','Moon':'☽','Mars':'♂','Mercury':'☿','Jupiter':'♃','Venus':'♀','Saturn':'♄'};
+  const PQUAL = {
+    Sun:'Vitality · Confidence', Moon:'Intuition · Cycles', Mars:'Aggression · Drive',
+    Mercury:'Communication · Speed', Jupiter:'Expansion · Fortune',
+    Venus:'Harmony · Value', Saturn:'Discipline · Structure'
+  };
+  const tierColors = {ally:'var(--green)', neutral:'var(--muted)', enemy:'var(--red)'};
+  const tierLabels = {ally:'Ally', neutral:'Neutral', enemy:'Enemy'};
+  const col = tierColors[tier] || color;
+
+  // Toggle off if already showing this planet
+  if(detail.dataset.active === planet && detail.style.display !== 'none'){
+    detail.style.display = 'none';
+    detail.dataset.active = '';
+    return;
+  }
+
+  // Find description
+  const PLANET_REL_DESC_GLOBAL = window._planetRelDesc;
+  let desc = '';
+  if(PLANET_REL_DESC_GLOBAL){
+    const key = dayRuler+'|'+planet;
+    const rd = PLANET_REL_DESC_GLOBAL[key];
+    desc = rd ? rd.desc : '';
+  }
+
+  detail.style.display = 'block';
+  detail.dataset.active = planet;
+  detail.style.borderLeft = '3px solid '+col;
+  detail.innerHTML =
+    `<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">` +
+      `<span style="font-size:18px;">${PSYMS[dayRuler]||''}</span>` +
+      `<span style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">${dayRuler}</span>` +
+      `<span style="font-size:13px;color:var(--muted);">×</span>` +
+      `<span style="font-size:18px;">${PSYMS[planet]||''}</span>` +
+      `<span style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">${planet}</span>` +
+      `<span style="font-size:10px;letter-spacing:1px;text-transform:uppercase;font-weight:700;color:${col};margin-left:auto;">${tierLabels[tier]}</span>` +
+    `</div>` +
+    `<div style="font-size:11px;color:var(--muted);margin-bottom:6px;letter-spacing:1px;">${PQUAL[dayRuler]||''} × ${PQUAL[planet]||''}</div>` +
+    `<div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--mid);line-height:1.75;">${desc}</div>`;
+}
+
+// Shared planetary hours calculator — used by both the ally hours panel and the full planetary hours section
+function calcPlanetaryHoursData(date){
+  const chaldean = ['Saturn','Jupiter','Mars','Sun','Venus','Mercury','Moon'];
+  const dayRulers = {'0':'Sun','1':'Moon','2':'Mars','3':'Mercury','4':'Jupiter','5':'Venus','6':'Saturn'};
+  const syms = {'Sun':'☉','Moon':'☽','Mars':'♂','Mercury':'☿','Jupiter':'♃','Venus':'♀','Saturn':'♄'};
+  const dayOfWeek = date.getDay();
+  const ruler = dayRulers[dayOfWeek];
+  const st = getSunTimes(date);
+  const nextDay = new Date(date); nextDay.setDate(nextDay.getDate()+1);
+  const stNext = getSunTimes(nextDay);
+  const dayLen = st.sunset - st.sunrise;
+  const nightLen = (stNext.sunrise + 1440) - st.sunset;
+  const dayHourLen = dayLen / 12;
+  const nightHourLen = nightLen / 12;
+  let startIdx = chaldean.indexOf(ruler);
+  const hours = [];
+  for(let i=0;i<24;i++){
+    const isDay = i < 12;
+    const baseMin = isDay ? st.sunrise + i*dayHourLen : st.sunset + (i-12)*nightHourLen;
+    const endMin = baseMin + (isDay ? dayHourLen : nightHourLen);
+    hours.push({planet:chaldean[(startIdx+i)%7], start:baseMin, end:endMin, isDay, idx:i+1});
+  }
+  return {hours, ruler, syms, st, stNext, dayHourLen, nightHourLen};
+}
+
 function getSunTimes(date, tzKey){
   const tz = TZ_OPTIONS[tzKey || _phTimezone];
   const lat = tz.lat, lng = tz.lng;
@@ -2347,45 +2667,24 @@ function buildPlanetaryHours(){
   const now = new Date();
   const targetDate = dateStr ? new Date(dateStr+'T12:00:00') : now;
   const dayOfWeek = targetDate.getDay();
-  const ruler = dayRulers[dayOfWeek];
+
+  const phData = calcPlanetaryHoursData(targetDate);
+  const hours = phData.hours.map(h => {
+    const startH = Math.floor(h.start/60);
+    const startM = Math.round(h.start%60);
+    const endH = Math.floor(h.end/60);
+    const endM = Math.round(h.end%60);
+    const fmt = (hh,mm) => { let hr=hh%24; const ampm=hr>=12?'PM':'AM'; hr=hr%12||12; return hr+':'+(mm<10?'0':'')+mm+' '+ampm; };
+    return {...h, label:fmt(startH,startM)+' – '+fmt(endH,endM)};
+  });
+  const ruler = phData.ruler;
+  const st = phData.st;
 
   // Get today's day ruler relations
   const dayData = Object.values(DAYS).find(x=>x.planet===ruler);
   const allies = dayData ? dayData.allies : [];
   const enemies = dayData ? dayData.enemies : [];
   const neutrals = dayData ? dayData.neutral : [];
-
-  // Get sunrise/sunset
-  const st = getSunTimes(targetDate);
-  const nextDay = new Date(targetDate);
-  nextDay.setDate(nextDay.getDate()+1);
-  const stNext = getSunTimes(nextDay);
-
-  const dayLen = st.sunset - st.sunrise;
-  const nightLen = (stNext.sunrise + 1440) - st.sunset;
-  const dayHourLen = dayLen / 12;
-  const nightHourLen = nightLen / 12;
-
-  let startIdx = chaldean.indexOf(ruler);
-  const hours = [];
-  for(let i=0;i<24;i++){
-    const isDay = i < 12;
-    const hourLen = isDay ? dayHourLen : nightHourLen;
-    const baseMin = isDay ? st.sunrise + i*dayHourLen : st.sunset + (i-12)*nightHourLen;
-    const endMin = baseMin + hourLen;
-    const planet = chaldean[(startIdx + i) % 7];
-    const startH = Math.floor(baseMin/60);
-    const startM = Math.round(baseMin%60);
-    const endH = Math.floor(endMin/60);
-    const endM = Math.round(endMin%60);
-    const fmt = (h,m) => {
-      let hr = h % 24;
-      const ampm = hr >= 12 ? 'PM' : 'AM';
-      hr = hr % 12 || 12;
-      return hr+':'+(m<10?'0':'')+m+' '+ampm;
-    };
-    hours.push({planet, start:baseMin, end:endMin, label:fmt(startH,startM)+' – '+fmt(endH,endM), isDay, idx:i+1});
-  }
 
   // Current hour (only if viewing today)
   const isToday = dateStr === now.toISOString().split('T')[0] || (!dateStr);
@@ -2965,6 +3264,8 @@ function toggleLifePathCalc(){
     }
     // Sync button state
     updateLpSaveButtons(!!_savedLP);
+    // If birthdate already saved, auto-run alignment to show all results
+    if(_savedBD) setTimeout(calcLifePathAlignment, 50);
     // Auto-tab between fields
     const mo = document.getElementById('lpMonth');
     const dy = document.getElementById('lpDay');
@@ -3579,12 +3880,62 @@ function calcLifePathAlignment(){
 var _wtMoon = 0.60;
 var _wtAlign = 0.40;
 
+function calcScoreWithWeights(wMoon, wAlign){
+  // Compute today's score with given weights without changing state
+  const dateStr = document.getElementById('dateInput').value || new Date().toISOString().split('T')[0];
+  const date = new Date(dateStr+'T12:00:00');
+  const phase = getMoonPhase(date);
+  const sign  = getMoonSign(date);
+  const dow   = date.getDay();
+  const day   = DAYS[dow];
+  const L2_MAP = {'Waxing Gibbous':3,'Full Moon':2.5,'First Quarter':2,'Waxing Crescent':1.5,'Waning Gibbous':1.5,'Last Quarter':1,'New Moon':1,'Waning Crescent':0.5};
+  const l2Score = (L2_MAP[phase.name] !== undefined ? L2_MAP[phase.name] : 1) / 3;
+  const rel    = getPlanetRelations(day.planet);
+  const paKey  = day.planet+'+'+getTraditionalRuler(sign.ruler);
+  const paData = ALIGN_GRADES[paKey] || ALIGN_GRADES[getTraditionalRuler(sign.ruler)+'+'+day.planet] || null;
+  const paGrade = paData ? paData.grade : (rel.allies.includes(getTraditionalRuler(sign.ruler))?'A':rel.enemies.includes(getTraditionalRuler(sign.ruler))?'C':'B');
+  const L4_MAP = {'A+':3,'A':2.5,'B':1.5,'C':0.5};
+  const l4Score = (L4_MAP[paGrade] !== undefined ? L4_MAP[paGrade] : 1.5) / 3;
+  const pct = Math.round((l2Score * wMoon + l4Score * wAlign) * 100);
+  let mode, color;
+  if(pct>=80){mode='Prime';color='#b8860b';}
+  else if(pct>=55){mode='Aligned';color='#166534';}
+  else if(pct>=30){mode='Selective';color='#1a56a0';}
+  else{mode='Conserve';color='#b91c1c';}
+  return {pct, mode, color};
+}
+
+function updateWeightBeforeAfter(){
+  const ba = document.getElementById('wtBeforeAfter');
+  if(!ba) return;
+  ba.style.display = 'block';
+  // Before = current saved weights
+  const before = calcScoreWithWeights(_wtMoon, _wtAlign);
+  const bScore = document.getElementById('wtBeforeScore');
+  const bMode  = document.getElementById('wtBeforeMode');
+  const bWts   = document.getElementById('wtBeforeWeights');
+  if(bScore){ bScore.textContent = before.pct + '%'; bScore.style.color = before.color; }
+  if(bMode) { bMode.textContent  = before.mode;      bMode.style.color  = before.color; }
+  if(bWts)    bWts.textContent   = 'Moon ' + Math.round(_wtMoon*100) + '% · Align ' + Math.round(_wtAlign*100) + '%';
+  // After = current slider values
+  const newMoon  = Number(document.getElementById('wtMoonSlider').value) / 100;
+  const newAlign = Number(document.getElementById('wtAlignSlider').value) / 100;
+  const after  = calcScoreWithWeights(newMoon, newAlign);
+  const aScore = document.getElementById('wtAfterScore');
+  const aMode  = document.getElementById('wtAfterMode');
+  const aWts   = document.getElementById('wtAfterWeights');
+  if(aScore){ aScore.textContent = after.pct + '%'; aScore.style.color = after.color; }
+  if(aMode) { aMode.textContent  = after.mode;      aMode.style.color  = after.color; }
+  if(aWts)    aWts.textContent   = 'Moon ' + Math.round(newMoon*100) + '% · Align ' + Math.round(newAlign*100) + '%';
+}
+
 function toggleWeightSettings(){
   const panel = document.getElementById('weightSettingsPanel');
   const arrow = document.getElementById('weightSettingsArrow');
   const open = panel.style.display === 'block';
   panel.style.display = open ? 'none' : 'block';
   arrow.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
+  if(!open) updateWeightBeforeAfter();
 }
 
 function syncWeightSliders(source){
@@ -3598,6 +3949,7 @@ function syncWeightSliders(source){
   document.getElementById('wtMoonVal').textContent = moonSlider.value + '%';
   document.getElementById('wtAlignVal').textContent = alignSlider.value + '%';
   document.getElementById('wtTotal').textContent = '100%';
+  updateWeightBeforeAfter();
 }
 
 function resetWeights(){
@@ -3608,14 +3960,53 @@ function resetWeights(){
   document.getElementById('wtTotal').textContent = '100%';
   _wtMoon = 0.60;
   _wtAlign = 0.40;
+  try { localStorage.removeItem('pdt_weights'); } catch(e){}
   loadDate();
+  buildWeekAheadSnapshot();
+  const wp = document.getElementById('weekAheadPanel');
+  if(wp && wp.style.display==='block') buildWeekAhead();
+  updateWeightBeforeAfter();
 }
 
-function applyWeights(){
+function saveWeights(){
   _wtMoon = Number(document.getElementById('wtMoonSlider').value) / 100;
   _wtAlign = Number(document.getElementById('wtAlignSlider').value) / 100;
+  try { localStorage.setItem('pdt_weights', JSON.stringify({moon: _wtMoon, align: _wtAlign})); } catch(e){}
+  // Flash button to confirm save
+  const btn = document.querySelector('[onclick="saveWeights()"]');
+  if(btn){ const orig = btn.textContent; btn.textContent = 'Saved ✓'; setTimeout(()=>{ btn.textContent = orig; }, 1200); }
   loadDate();
+  buildWeekAheadSnapshot();
+  const wp = document.getElementById('weekAheadPanel');
+  if(wp && wp.style.display==='block') buildWeekAhead();
+  updateWeightBeforeAfter();
 }
+
+function applyWeights(){ saveWeights(); } // legacy alias
+
+// Restore saved weights on load
+(function loadSavedWeights(){
+  try {
+    const s = localStorage.getItem('pdt_weights');
+    if(s){
+      const obj = JSON.parse(s);
+      if(obj.moon && obj.align){
+        _wtMoon  = obj.moon;
+        _wtAlign = obj.align;
+        setTimeout(function(){
+          const ms = document.getElementById('wtMoonSlider');
+          const as = document.getElementById('wtAlignSlider');
+          const mv = document.getElementById('wtMoonVal');
+          const av = document.getElementById('wtAlignVal');
+          if(ms) ms.value = Math.round(_wtMoon * 100);
+          if(as) as.value = Math.round(_wtAlign * 100);
+          if(mv) mv.textContent = Math.round(_wtMoon * 100) + '%';
+          if(av) av.textContent = Math.round(_wtAlign * 100) + '%';
+        }, 200);
+      }
+    }
+  } catch(e){}
+})();
 
 var _moonCalMonth = null;
 var _moonCalYear = null;
@@ -3998,7 +4389,7 @@ function renderAstroAlerts(dateStr){
           upHtml += `<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #222;">
             <span style="font-size:14px;">${typeIcon[ev.type]||'📅'}</span>
             <div style="flex:1;">
-              <div style="font-size:13px;font-weight:${isHigh?'700':'500'};color:${isHigh?'#fff':'#aaa'};">⚠️ ${ev.name}${moonTag}${impTag}</div>
+              <div style="font-size:13px;font-weight:${isHigh?'700':'500'};color:${isHigh?'#fff':'#aaa'};">${ev.name}${moonTag}${impTag}</div>
               <div style="font-size:11px;color:#555;">${fmtD(ev.date)} · ${ev.time} ET</div>
             </div>
             <span style="font-size:11px;font-weight:600;color:${c};">In ${diff}d</span>
@@ -4009,39 +4400,96 @@ function renderAstroAlerts(dateStr){
     }
   }
 
-  // ── MOON SIGN INGRESS DURING TRADING SESSION ──
-  const tradingOpen  = new Date(dateStr + 'T09:30:00');
-  const tradingClose = new Date(dateStr + 'T16:00:00');
-  const signAtOpen   = getMoonSign(tradingOpen);
-  const signAtClose  = getMoonSign(tradingClose);
-
-  if(signAtOpen.name !== signAtClose.name){
-    // Binary search for the exact minute of sign change
-    let lo = tradingOpen.getTime();
-    let hi = tradingClose.getTime();
-    while(hi - lo > 60000){ // 1-minute precision
-      const mid = Math.floor((lo + hi) / 2);
-      const midSign = getMoonSign(new Date(mid));
-      if(midSign.name === signAtOpen.name){ lo = mid; } else { hi = mid; }
+  // ── MOON SIGN INGRESS — FULL DAY, NY TIME ──
+  // Helper: convert a UTC Date to NY wall-clock time string
+  function toNYTimeStr(utcDate){
+    // Determine NY offset: EDT (UTC-4) Mar 2nd Sun to Nov 1st Sun; EST (UTC-5) otherwise
+    function nthSunday(yr, mo0, n){ // mo0: 0-based month
+      const d = new Date(Date.UTC(yr, mo0, 1));
+      const dow = d.getUTCDay(); // 0=Sun
+      return 1 + ((7 - dow) % 7) + (n - 1) * 7;
     }
-    const ingressTime = new Date(hi);
-    const ingressHour = ingressTime.getHours();
-    const ingressMin  = String(ingressTime.getMinutes()).padStart(2,'0');
-    const ampm        = ingressHour >= 12 ? 'PM' : 'AM';
-    const h12         = ingressHour > 12 ? ingressHour - 12 : ingressHour === 0 ? 12 : ingressHour;
-    const timeStr     = h12 + ':' + ingressMin + ' ' + ampm + ' ET';
+    const yr = utcDate.getUTCFullYear();
+    const dstStart = new Date(Date.UTC(yr, 2, nthSunday(yr, 2, 2), 7, 0, 0)); // 2nd Sun Mar 2:00am EST = 7:00 UTC
+    const dstEnd   = new Date(Date.UTC(yr, 10, nthSunday(yr, 10, 1), 6, 0, 0)); // 1st Sun Nov 2:00am EDT = 6:00 UTC
+    const isDST = utcDate >= dstStart && utcDate < dstEnd;
+    const offsetMs = isDST ? -4*3600000 : -5*3600000;
+    const ny = new Date(utcDate.getTime() + offsetMs);
+    let h = ny.getUTCHours(), m = ny.getUTCMinutes();
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    const h12 = h > 12 ? h - 12 : h === 0 ? 12 : h;
+    return h12 + ':' + String(m).padStart(2,'0') + ' ' + ampm + ' ET';
+  }
+
+  // Scan the full selected date in NY time (midnight-to-midnight NY = UTC offset window)
+  function nyMidnightUTC(dateStr, isDSTGuess){
+    // Parse the date in NY: midnight NY = UTC + 4h (EDT) or UTC + 5h (EST)
+    // We approximate by using the offset at noon of that day
+    const noon = new Date(dateStr + 'T17:00:00Z'); // noon EST ~ 17:00 UTC
+    function nthSunday(yr, mo0, n){
+      const d = new Date(Date.UTC(yr, mo0, 1));
+      return 1 + ((7 - d.getUTCDay()) % 7) + (n - 1) * 7;
+    }
+    const yr = noon.getUTCFullYear();
+    const dstStart = new Date(Date.UTC(yr, 2, nthSunday(yr, 2, 2), 7, 0, 0));
+    const dstEnd   = new Date(Date.UTC(yr, 10, nthSunday(yr, 10, 1), 6, 0, 0));
+    const isDST = noon >= dstStart && noon < dstEnd;
+    const offsetHr = isDST ? 4 : 5;
+    // midnight NY = 04:00 or 05:00 UTC
+    return new Date(dateStr + 'T' + String(offsetHr).padStart(2,'0') + ':00:00Z');
+  }
+
+  const dayStartUTC = nyMidnightUTC(dateStr);
+  const dayEndUTC   = new Date(dayStartUTC.getTime() + 24*3600000);
+  const signAtDayStart = getMoonSign(dayStartUTC);
+  const signAtDayEnd   = getMoonSign(dayEndUTC);
+
+  if(signAtDayStart.name !== signAtDayEnd.name){
+    // Binary search for exact minute of change (1-min precision)
+    let lo = dayStartUTC.getTime();
+    let hi = dayEndUTC.getTime();
+    while(hi - lo > 60000){
+      const mid = Math.floor((lo + hi) / 2);
+      if(getMoonSign(new Date(mid)).name === signAtDayStart.name){ lo = mid; } else { hi = mid; }
+    }
+    const ingressUTC = new Date(hi);
+    const timeStr    = toNYTimeStr(ingressUTC);
+    const signBefore = signAtDayStart;
+    const signAfter  = getMoonSign(ingressUTC);
+
+    // Determine if change is during trading session (9:30–16:00 ET)
+    function nyMins(utcDate){
+      function nthSunday(yr, mo0, n){
+        const d = new Date(Date.UTC(yr, mo0, 1));
+        return 1 + ((7 - d.getUTCDay()) % 7) + (n - 1) * 7;
+      }
+      const yr = utcDate.getUTCFullYear();
+      const dstStart = new Date(Date.UTC(yr, 2, nthSunday(yr, 2, 2), 7, 0, 0));
+      const dstEnd   = new Date(Date.UTC(yr, 10, nthSunday(yr, 10, 1), 6, 0, 0));
+      const isDST = utcDate >= dstStart && utcDate < dstEnd;
+      const nyDate = new Date(utcDate.getTime() + (isDST ? -4 : -5)*3600000);
+      return nyDate.getUTCHours()*60 + nyDate.getUTCMinutes();
+    }
+    const ingressNYMins = nyMins(ingressUTC);
+    const isDuringSession = ingressNYMins >= 9*60+30 && ingressNYMins < 16*60;
+    const sessionNote = isDuringSession
+      ? `<span style="color:#a78bfa;font-size:12px;font-weight:700;">⚡ DURING TRADING SESSION</span> — expect a noticeable shift in market tone and sentiment around this time.`
+      : `Change occurs <strong style="color:#fff;">${ingressNYMins < 9*60+30 ? 'before' : 'after'} market hours</strong>. The new sign's energy sets the tone for ${ingressNYMins < 9*60+30 ? 'the full session today' : 'tomorrow\'s session'}.`;
 
     const econEl2 = document.getElementById('econAlerts');
     if(econEl2){
-      const ingressHtml = `<div style="padding:12px 14px;background:rgba(139,92,246,0.08);border-left:3px solid #7c3aed;margin-bottom:10px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-          <span style="font-size:16px;">🌙</span>
-          <span style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#7c3aed;">⚠ Moon Sign Change During Session</span>
+      const ingressHtml = `<div style="padding:14px 16px;background:rgba(139,92,246,0.1);border-left:3px solid #7c3aed;margin-bottom:10px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+          <span style="font-size:18px;">🌙</span>
+          <span style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#a78bfa;">Moon Sign Change</span>
         </div>
-        <div style="font-size:13px;color:#ccc;line-height:1.6;">
-          Moon moves from <strong style="color:#fff;">${signAtOpen.sym} ${signAtOpen.name}</strong> → <strong style="color:#fff;">${signAtClose.sym} ${signAtClose.name}</strong> at approximately <strong style="color:#a78bfa;">${timeStr}</strong>.<br>
-          <span style="font-size:12px;color:#888;margin-top:4px;display:block;">Expect a shift in market tone and sentiment around this time. Emotional energy and momentum may change direction.</span>
+        <div style="font-size:14px;color:#ccc;line-height:1.6;margin-bottom:6px;">
+          <strong style="color:#fff;">${signBefore.sym} ${signBefore.name}</strong>
+          <span style="color:#7c3aed;font-size:16px;margin:0 8px;">→</span>
+          <strong style="color:#fff;">${signAfter.sym} ${signAfter.name}</strong>
+          &nbsp;at&nbsp;<strong style="color:#a78bfa;font-size:15px;">${timeStr}</strong>
         </div>
+        <div style="font-size:12px;color:#888;line-height:1.6;">${sessionNote}</div>
       </div>`;
       econEl2.innerHTML = ingressHtml + econEl2.innerHTML;
     }
@@ -4308,7 +4756,7 @@ function toggleWhy(){
 
 </script>
 
-<!-- LINKS BUTTON -->
+
 <div class="links-btn-wrap" style="display:flex;gap:12px;justify-content:center;">
   <button class="links-btn" style="flex:1;max-width:200px;" onclick="document.getElementById('linksOverlay').classList.add('open')">Links</button>
 </div>
@@ -4355,7 +4803,249 @@ function toggleWhy(){
 (function(){ if(_savedLP) setTimeout(function(){ updateLpSaveButtons(true); }, 100); })();
 // Render week ahead snapshot bar after page settles
 setTimeout(buildWeekAheadSnapshot, 200);
-// ── WEEK AHEAD ENGINE ──
+// ── CONFLUENCE SCORE ──
+function buildConfluenceScore(date, pdtPct, pdtColor, pdtMode, day, sign, phase, en, ed, rel, agGrade){
+  const wrap  = document.getElementById('confluenceWrap');
+  const inner = document.getElementById('confluenceInner');
+  if(!wrap || !inner) return;
+
+  wrap.style.display = 'block';
+
+  // ── Layer scores (0–2 each, summed to max 10) ──
+  // 1. PDT base score (0–2)
+  const pdtLayerScore = pdtPct >= 80 ? 2 : pdtPct >= 55 ? 1.5 : pdtPct >= 30 ? 1 : 0;
+
+  // 2. Planetary alignment grade (0–2)
+  const alignScore = agGrade==='A+'?2 : agGrade==='A'?1.8 : agGrade==='B+'?1.4 : agGrade==='B'?1 : agGrade==='C+'?0.6 : 0.2;
+
+  // 3. Moon phase strength (0–2)
+  const phaseScores = {'Waxing Gibbous':2,'Full Moon':1.8,'First Quarter':1.6,'Waxing Crescent':1.2,'Waning Gibbous':1,'Last Quarter':0.6,'New Moon':0.6,'Waning Crescent':0.3};
+  const phaseLayerScore = phaseScores[phase.name] !== undefined ? phaseScores[phase.name] : 1;
+
+  // 4. Universal energy bias (0–2)
+  const highBias  = ['Directional','Momentum','Amplified','Accelerating','Peak'];
+  const lowBias   = ['Distorted','Compressed','Reversal'];
+  const enLayerScore = highBias.includes(ed.bias) ? 2 : lowBias.includes(ed.bias) ? 0.4 : 1.2;
+
+  // Total (max 8) — four layers, no planetary hour
+  const total = pdtLayerScore + alignScore + phaseLayerScore + enLayerScore;
+  const pct   = Math.round((total / 8) * 100);
+
+  // Grade — confluence score drives Prime/Aligned/Selective/Conserve
+  let grade, gradeColor, gradeLabel, gradeDesc, confluenceMode;
+  if(pct >= 80){
+    grade=4; gradeColor='#b8860b'; confluenceMode='Prime';
+    gradeLabel='Prime Confluence';
+    gradeDesc='All four layers are aligned. Market energy, planetary alignment, moon phase, and behavioral energy are all pointing the same direction. This is the session you prepare for — full conviction entries, momentum plays, and breakout trades have the wind at their back. Size up. Trust the tape. Execute your best setups without hesitation.';
+  } else if(pct >= 55){
+    grade=3; gradeColor='#166534'; confluenceMode='Aligned';
+    gradeLabel='Aligned Confluence';
+    gradeDesc='The energy is working in your favor with only minor friction. Three of four layers support the same direction. Trade your A+ setups with confidence and normal size. Wait for confirmation before entering. This is a solid session to be active, disciplined, and present.';
+  } else if(pct >= 30){
+    grade=2; gradeColor='#1a56a0'; confluenceMode='Selective';
+    gradeLabel='Selective Confluence';
+    gradeDesc='You trade — but you filter harder. The energy is mixed and signals lack clarity. Only take your A+ setups. No chasing, no forcing, no second-guessing. Be precise with entries, tight with stops, and intentional with every decision. The tape will give you something — your job is to wait for it.';
+  } else {
+    grade=1; gradeColor='#b91c1c'; confluenceMode='Conserve';
+    gradeLabel='Conserve Energy';
+    gradeDesc='The layers are working against each other. The market will feel heavy, unpredictable, or dead. The best trade today is no trade. Step away from the screen. Use this session for deep analysis, meditation, journaling, or strategy refinement. Conserve your capital and your focus. The next Prime day is coming.';
+  }
+
+  // Build dot grid string (filled vs empty circles)
+  const dotsFilled = Array(grade).fill(`<span style="color:${gradeColor};font-size:14px;">●</span>`).join('');
+  const dotsEmpty  = Array(4 - grade).fill(`<span style="color:#333;font-size:14px;">●</span>`).join('');
+  const dotsHTML   = `<div style="display:flex;gap:6px;align-items:center;">${dotsFilled}${dotsEmpty}</div>`;
+
+  // Layer rows
+  const LAYERS = [
+    {label:'PDT Score',       val:pdtMode,       score:pdtLayerScore,  color:pdtColor,    max:2},
+    {label:'Alignment Grade', val:agGrade,        score:alignScore,     color:agGrade.startsWith('A')?'#166534':agGrade.startsWith('B')?'#92400e':'#b91c1c', max:2},
+    {label:'Moon Phase',      val:phase.name,     score:phaseLayerScore,color:phase.gradeColor||'#555', max:2},
+    {label:'Energy Bias',     val:ed.bias,        score:enLayerScore,   color:enLayerScore>=1.5?'#166534':enLayerScore>=1?'#92400e':'#b91c1c', max:2},
+  ];
+
+  let html = '';
+
+  // Big score display
+  html += `<div style="display:flex;align-items:flex-end;gap:16px;margin-bottom:16px;">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:64px;font-weight:700;line-height:1;color:${gradeColor};">${pct}<span style="font-size:28px;">%</span></div>
+    <div style="padding-bottom:6px;">
+      <div style="font-size:9px;letter-spacing:3px;text-transform:uppercase;color:${gradeColor};font-weight:700;margin-bottom:6px;">${gradeLabel}</div>
+      ${dotsHTML}
+    </div>
+  </div>`;
+
+  // Desc
+  html += `<div style="font-family:'Cormorant Garamond',serif;font-size:16px;color:#aaa;line-height:1.75;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid #333;">${gradeDesc}</div>`;
+
+  // Layer breakdown
+  LAYERS.forEach(l => {
+    const barW = Math.round((l.score / l.max) * 100);
+    html += `<div style="margin-bottom:10px;">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;">
+        <span style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#555;">${l.label}</span>
+        <span style="font-size:11px;font-weight:600;color:${l.color};">${l.val}</span>
+      </div>
+      <div style="height:3px;background:#222;border-radius:0;">
+        <div style="height:3px;background:${l.color};width:${barW}%;transition:width .4s;"></div>
+      </div>
+    </div>`;
+  });
+
+  inner.innerHTML = html;
+  wrap.style.borderLeft = '3px solid ' + gradeColor;
+  wrap.style.padding = '20px 16px';
+  return { confluenceMode, gradeColor, pct };
+}
+
+// ── CHART ANALYSIS ──
+
+
+
+function handleChartUpload(input){
+  const file = input.files[0];
+  if(!file) return;
+  // Detect actual media type
+  _chartMediaType = file.type || 'image/jpeg';
+  // API only accepts jpeg, png, gif, webp — convert heic/heif to jpeg label
+  if(!['image/jpeg','image/png','image/gif','image/webp'].includes(_chartMediaType)){
+    _chartMediaType = 'image/jpeg';
+  }
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const dataUrl = e.target.result;
+    // Re-derive base64 cleanly after comma
+    _chartImageB64 = dataUrl.split(',')[1];
+    document.getElementById('chartPreviewImg').src = dataUrl;
+    document.getElementById('chartPreviewWrap').style.display = 'block';
+    document.getElementById('chartAnalyzeBtn').style.display = 'block';
+    document.getElementById('chartResult').style.display = 'none';
+    document.getElementById('chartResult').innerHTML = '';
+  };
+  reader.readAsDataURL(file);
+}
+
+async function runChartAnalysis(){
+  if(!_chartImageB64) return;
+  const btn = document.getElementById('chartAnalyzeBtn');
+  const resultEl = document.getElementById('chartResult');
+  const context = document.getElementById('chartContext').value.trim();
+
+  btn.textContent = 'Analyzing…';
+  btn.disabled = true;
+  resultEl.style.display = 'block';
+  resultEl.innerHTML = '<div style="padding:20px 0;text-align:center;font-size:12px;color:#555;letter-spacing:2px;">Reading the chart…</div>';
+
+  // Build energy context from current date
+  const dateStr = document.getElementById('dateInput').value || new Date().toISOString().split('T')[0];
+  const date = new Date(dateStr+'T12:00:00');
+  const phase = getMoonPhase(date);
+  const sign  = getMoonSign(date);
+  const en    = calcNum(dateStr);
+  const ed    = EN[en];
+  const dow   = date.getDay();
+  const day   = DAYS[dow];
+  const lp    = getUserLP();
+
+  const energyContext = `Today's energy context from the PDT Trades Energy Report:
+- Date: ${dateStr}
+- Universal Energy: #${en} (${ed.name}) — ${ed.bias} bias
+- Moon Phase: ${phase.name} (${phase.energyType})
+- Moon Sign: ${sign.name} (${sign.elem} element, ruled by ${sign.ruler})
+- Day Ruler: ${day.planet}
+- Market Bias: ${ed.market}${lp ? `\n- User's Life Path: ${lp}` : ''}`;
+
+  const userPrompt = `You are an expert technical analyst and trader. Analyze this trading chart screenshot.
+
+${energyContext}
+
+${context ? `Additional context from the trader: ${context}\n` : ''}
+Please provide:
+1. **Price Structure** — What are you seeing? Key levels, trend direction, pattern forming.
+2. **Key Levels** — Immediate support and resistance. Where would you watch for reactions.
+3. **Bias** — Bullish, bearish, or neutral right now and why.
+4. **Setup** — Is there a trade setup visible? Entry, stop, and target if so. If not, what needs to happen first.
+5. **Energy Alignment** — Given today's ${phase.name} moon and ${ed.name} universal energy (${ed.bias} bias), does the chart action align with or contradict the current energy?
+
+Be direct and specific. Think like a seasoned trader, not a textbook.`;
+
+  try {
+    const apiKey = (document.getElementById('chartApiKey')?.value || loadApiKey()).trim();
+    if(!apiKey){
+      throw new Error('No API key. Enter your Anthropic API key above to use Chart Analysis.');
+    }
+
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-6',
+        max_tokens: 1000,
+        messages:[{
+          role:'user',
+          content:[
+            {type:'image',source:{type:'base64',media_type:_chartMediaType,data:_chartImageB64}},
+            {type:'text',text:userPrompt}
+          ]
+        }]
+      })
+    });
+
+    // Check HTTP status first
+    if(!response.ok){
+      const errBody = await response.text();
+      throw new Error(`API ${response.status}: ${errBody}`);
+    }
+
+    const data = await response.json();
+
+    // Handle API-level errors returned in body
+    if(data.error){
+      throw new Error(data.error.message || JSON.stringify(data.error));
+    }
+
+    const text = data.content?.find(b=>b.type==='text')?.text;
+    if(!text) throw new Error('No text in response — content: ' + JSON.stringify(data.content));
+
+    // Render result
+    let html = `<div style="border:1px solid #333;border-left:4px solid #b8860b;background:#0a0a0a;">
+      <div style="padding:10px 14px;border-bottom:1px solid #222;display:flex;align-items:center;justify-content:space-between;">
+        <div style="font-size:8px;letter-spacing:3px;text-transform:uppercase;color:#b8860b;">AI Chart Analysis</div>
+        <div style="font-size:10px;color:#555;">${dateStr} · ${phase.name} · ${ed.name}</div>
+      </div>
+      <div style="padding:16px 14px;font-size:13px;color:#aaa;line-height:1.8;">`;
+
+    const formatted = text
+      .replace(/\*\*(.+?)\*\*/g, '<strong style="color:#ccc;">$1</strong>')
+      .replace(/^(\d+\.\s+)/gm, '<br><span style="color:#b8860b;font-weight:700;">$1</span>')
+      .replace(/\n/g, '<br>');
+
+    html += formatted;
+    html += `</div>
+      <div style="padding:8px 14px;border-top:1px solid #222;">
+        <button onclick="document.getElementById('chartPreviewWrap').style.display='none';document.getElementById('chartAnalyzeBtn').style.display='none';document.getElementById('chartResult').style.display='none';_chartImageB64=null;document.getElementById('chartFileInput').value='';" style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#555;background:none;border:none;cursor:pointer;padding:4px 0;">✕ Clear &amp; Upload New Chart</button>
+      </div>
+    </div>`;
+
+    resultEl.innerHTML = html;
+
+  } catch(err) {
+    resultEl.innerHTML = `<div style="padding:14px;border:1px solid #b91c1c;background:rgba(185,28,28,0.06);">
+      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#b91c1c;margin-bottom:6px;">Analysis Error</div>
+      <div style="font-size:12px;color:#888;line-height:1.6;">${err.message}</div>
+    </div>`;
+  }
+
+  btn.textContent = 'Analyze Chart';
+  btn.disabled = false;
+}
+
+
 function scoreDay(dateStr){
   const date = new Date(dateStr+'T12:00:00');
   const dow = date.getDay();
@@ -4374,9 +5064,9 @@ function scoreDay(dateStr){
 
   // Planetary alignment score (same L4_MAP)
   const rel    = getPlanetRelations(day.planet);
-  const paKey  = day.planet+'+'+sign.ruler.split('/')[0].trim();
-  const paData = ALIGN_GRADES[paKey] || ALIGN_GRADES[sign.ruler.split('/')[0].trim()+'+'+day.planet] || null;
-  const paGrade = paData ? paData.grade : (rel.allies.includes(sign.ruler.split('/')[0].trim())?'A':rel.enemies.includes(sign.ruler.split('/')[0].trim())?'C':'B');
+  const paKey  = day.planet+'+'+getTraditionalRuler(sign.ruler);
+  const paData = ALIGN_GRADES[paKey] || ALIGN_GRADES[getTraditionalRuler(sign.ruler)+'+'+day.planet] || null;
+  const paGrade = paData ? paData.grade : (rel.allies.includes(getTraditionalRuler(sign.ruler))?'A':rel.enemies.includes(getTraditionalRuler(sign.ruler))?'C':'B');
   const L4_MAP = {'A+':3,'A':2.5,'B':1.5,'C':0.5};
   const l4Score = (L4_MAP[paGrade] !== undefined ? L4_MAP[paGrade] : 1.5) / 3;
 
@@ -4438,13 +5128,12 @@ function buildWeekAhead(){
   const container = document.getElementById('weekAheadContent');
   if(!container) return;
 
-  // Build 21 days starting from today's Monday
-  const today = new Date();
-  const todayStr = today.toISOString().split('T')[0];
+  // Build 21 days starting from the selected date's Monday
+  const dateVal = document.getElementById('dateInput') ? document.getElementById('dateInput').value : '';
+  const today = dateVal ? new Date(dateVal+'T12:00:00') : new Date();
+  const todayStr = dateVal || today.toISOString().split('T')[0];
   const startMon = new Date(today);
-  const sd = startMon.getDay();
-  startMon.setDate(startMon.getDate() + (sd===0?1:sd===1?0:1-(sd)));
-  // Actually always start from current Monday
+  // Find Monday of the current week
   const diff = today.getDay()===0?-6:1-today.getDay();
   startMon.setDate(today.getDate()+diff);
 
@@ -4590,7 +5279,7 @@ function buildWeekAhead(){
   // LP reminder if not saved
   if(!getUserLP()){
     html += `<div style="padding:12px 14px;border-top:1px solid #222;font-size:11px;color:#555;line-height:1.6;">
-      💡 Save your Life Path in the <strong style="color:#888;">Life Path Alignment</strong> section to see personal LP alignment overlaid on this outlook.
+      💡 Save your Life Path in the <strong style="color:#888;">Soul Alignment</strong> section to see personal LP alignment overlaid on this outlook.
     </div>`;
   }
 
@@ -4603,8 +5292,9 @@ function buildWeekAheadSnapshot(){
 
   const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const DAY_INIT = ['','M','T','W','T','F'];
-  const today = new Date();
-  const todayStr = today.toISOString().split('T')[0];
+  const dateVal = document.getElementById('dateInput') ? document.getElementById('dateInput').value : '';
+  const today = dateVal ? new Date(dateVal+'T12:00:00') : new Date();
+  const todayStr = dateVal || today.toISOString().split('T')[0];
 
   // Find Monday of current week
   const startMon = new Date(today);
