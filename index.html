@@ -1171,47 +1171,62 @@ const PHASES=[
   {name:"Waning Crescent",sym:"🌘",grade:"D-",esRange:"25–50 pts",energyType:"Low Activity",gradeColor:"#7f1d1d",mkt:"Low Activity energy. The cycle is closing and the market is quiet, thin, and releasing. Sentiment is low conviction with old trends dying and no new ones ready to emerge."},
 ];
 const ALIGN_GRADES={
+  // ── A+ : Both see each other as Ally ──
+  'Sun+Moon':{grade:'A+',mkt:'Confident, sentiment-driven momentum',style:'Momentum trades'},
+  'Moon+Sun':{grade:'A+',mkt:'Confident, sentiment-driven momentum',style:'Momentum trades'},
+  'Sun+Mars':{grade:'A+',mkt:'Aggressive breakout momentum',style:'Breakout trades'},
+  'Mars+Sun':{grade:'A+',mkt:'Aggressive breakout momentum',style:'Breakout trades'},
   'Sun+Jupiter':{grade:'A+',mkt:'Expansion, strong directional trends',style:'Trend continuation'},
   'Jupiter+Sun':{grade:'A+',mkt:'Expansion, strong directional trends',style:'Trend continuation'},
-  'Sun+Mars':{grade:'A+',mkt:'Aggressive momentum',style:'Breakout trades'},
-  'Mars+Sun':{grade:'A+',mkt:'Aggressive momentum',style:'Breakout trades'},
-  'Moon+Mercury':{grade:'A+',mkt:'Smooth technical movement',style:'EMA / VWAP trading'},
-  'Mercury+Moon':{grade:'A+',mkt:'Smooth technical movement',style:'EMA / VWAP trading'},
-  'Jupiter+Mars':{grade:'A+',mkt:'Large trend ranges',style:'Trend pullbacks'},
-  'Mars+Jupiter':{grade:'A+',mkt:'Large trend ranges',style:'Trend pullbacks'},
-  'Mercury+Venus':{grade:'A+',mkt:'Balanced orderly markets',style:'Structured trading'},
-  'Venus+Mercury':{grade:'A+',mkt:'Balanced orderly markets',style:'Structured trading'},
-  'Moon+Sun':{grade:'A',mkt:'Strong sentiment participation',style:'Momentum trades'},
-  'Sun+Moon':{grade:'A',mkt:'Strong sentiment participation',style:'Momentum trades'},
-  'Jupiter+Moon':{grade:'A',mkt:'Smooth trend development',style:'Trend following'},
-  'Moon+Jupiter':{grade:'A',mkt:'Smooth trend development',style:'Trend following'},
-  'Mercury+Saturn':{grade:'A',mkt:'Technical / structured movement',style:'Technical levels'},
-  'Saturn+Mercury':{grade:'A',mkt:'Technical / structured movement',style:'Technical levels'},
-  'Venus+Saturn':{grade:'A',mkt:'Slow but orderly price action',style:'Patience trades'},
-  'Saturn+Venus':{grade:'A',mkt:'Slow but orderly price action',style:'Patience trades'},
-  'Mars+Venus':{grade:'B',mkt:'Momentum with reversals',style:'Quick scalps'},
-  'Venus+Mars':{grade:'B',mkt:'Momentum with reversals',style:'Quick scalps'},
-  'Mercury+Jupiter':{grade:'B',mkt:'News-driven moves',style:'Event trading'},
-  'Jupiter+Mercury':{grade:'B',mkt:'News-driven moves',style:'Event trading'},
-  'Saturn+Jupiter':{grade:'B',mkt:'Slow trend formation',style:'Range trading'},
-  'Jupiter+Saturn':{grade:'B',mkt:'Slow trend formation',style:'Range trading'},
-  'Moon+Saturn':{grade:'C',mkt:'Emotional whipsaw markets',style:'Reduce size'},
-  'Saturn+Moon':{grade:'C',mkt:'Emotional whipsaw markets',style:'Reduce size'},
-  'Sun+Saturn':{grade:'C',mkt:'Heavy slow markets',style:'Stay flat or small'},
-  'Saturn+Sun':{grade:'C',mkt:'Heavy slow markets',style:'Stay flat or small'},
-  'Mars+Mercury':{grade:'C',mkt:'Impulsive fakeouts',style:'Avoid chasing'},
-  'Mercury+Mars':{grade:'C',mkt:'Impulsive fakeouts',style:'Avoid chasing'},
-  'Venus+Sun':{grade:'C',mkt:'Unstable momentum',style:'Tight stops'},
-  'Sun+Venus':{grade:'C',mkt:'Unstable momentum',style:'Tight stops'},
+  'Mars+Jupiter':{grade:'A+',mkt:'Large trend ranges, sustained momentum',style:'Trend pullbacks'},
+  'Jupiter+Mars':{grade:'A+',mkt:'Large trend ranges, sustained momentum',style:'Trend pullbacks'},
+  'Mercury+Venus':{grade:'A+',mkt:'Balanced, orderly structured markets',style:'Structured trading'},
+  'Venus+Mercury':{grade:'A+',mkt:'Balanced, orderly structured markets',style:'Structured trading'},
+  'Venus+Saturn':{grade:'A+',mkt:'Disciplined, value-driven price action',style:'Patience trades'},
+  'Saturn+Venus':{grade:'A+',mkt:'Disciplined, value-driven price action',style:'Patience trades'},
+  // ── A : Ally + Neutral (one-sided warmth) ──
+  'Mercury+Saturn':{grade:'A',mkt:'Technical, structured movement',style:'Technical levels'},
+  'Saturn+Mercury':{grade:'A',mkt:'Technical, structured movement',style:'Technical levels'},
+  // ── B : Mixed (Ally+Enemy) or Neutral+Neutral ──
+  'Sun+Mercury':{grade:'B',mkt:'Mixed signals, some technical clarity',style:'Confirm before entry'},
+  'Mercury+Sun':{grade:'B',mkt:'Mixed signals, some technical clarity',style:'Confirm before entry'},
+  'Moon+Mercury':{grade:'B',mkt:'Mixed emotional and analytical signals',style:'System only — no intuition'},
+  'Mercury+Moon':{grade:'B',mkt:'Mixed emotional and analytical signals',style:'System only — no intuition'},
+  'Moon+Mars':{grade:'B',mkt:'Emotional momentum bursts, reversals likely',style:'Quick scalps'},
+  'Mars+Moon':{grade:'B',mkt:'Emotional momentum bursts, reversals likely',style:'Quick scalps'},
+  'Moon+Jupiter':{grade:'B',mkt:'Optimistic but inconsistent trends',style:'Partial positions'},
+  'Jupiter+Moon':{grade:'B',mkt:'Optimistic but inconsistent trends',style:'Partial positions'},
+  'Mars+Venus':{grade:'B',mkt:'Momentum with harmonic reversals',style:'Quick scalps'},
+  'Venus+Mars':{grade:'B',mkt:'Momentum with harmonic reversals',style:'Quick scalps'},
+  'Mars+Saturn':{grade:'B',mkt:'Drive contained by structure',style:'Confirmed breakouts only'},
+  'Saturn+Mars':{grade:'B',mkt:'Drive contained by structure',style:'Confirmed breakouts only'},
+  'Mercury+Jupiter':{grade:'B',mkt:'News-driven, broad moves',style:'Event trading'},
+  'Jupiter+Mercury':{grade:'B',mkt:'News-driven, broad moves',style:'Event trading'},
+  // ── C : One Enemy involved ──
+  'Sun+Venus':{grade:'C',mkt:'Confidence faded by equilibrium-seeking',style:'Fade extremes'},
+  'Venus+Sun':{grade:'C',mkt:'Confidence faded by equilibrium-seeking',style:'Fade extremes'},
+  'Sun+Saturn':{grade:'C',mkt:'Bold moves suppressed by restriction',style:'Stay flat or small'},
+  'Saturn+Sun':{grade:'C',mkt:'Bold moves suppressed by restriction',style:'Stay flat or small'},
+  'Moon+Venus':{grade:'C',mkt:'Emotional reversals from value levels',style:'Fade emotional extremes'},
+  'Venus+Moon':{grade:'C',mkt:'Emotional reversals from value levels',style:'Fade emotional extremes'},
+  // ── D : Both see each other as Enemy ──
+  'Moon+Saturn':{grade:'D',mkt:'Heavy, blocked, unresponsive tape',style:'Stand aside'},
+  'Saturn+Moon':{grade:'D',mkt:'Heavy, blocked, unresponsive tape',style:'Stand aside'},
+  'Mars+Mercury':{grade:'D',mkt:'Impulsive fakeouts, whipsaw conditions',style:'Stand aside'},
+  'Mercury+Mars':{grade:'D',mkt:'Impulsive fakeouts, whipsaw conditions',style:'Stand aside'},
+  'Jupiter+Venus':{grade:'D',mkt:'Breakouts faded, expansion denied',style:'Stand aside'},
+  'Venus+Jupiter':{grade:'D',mkt:'Breakouts faded, expansion denied',style:'Stand aside'},
+  'Jupiter+Saturn':{grade:'D',mkt:'Trend attempts suppressed, choppy',style:'Stand aside'},
+  'Saturn+Jupiter':{grade:'D',mkt:'Trend attempts suppressed, choppy',style:'Stand aside'},
 };
 const DAYS={
   0:{planet:"Sun",     sym:"☉",quality:"Vitality · Confidence",  allies:["Moon","Mars","Jupiter"],          neutral:["Venus","Saturn"],              enemies:["Mercury"]},
   1:{planet:"Moon",    sym:"☽",quality:"Intuition · Cycles",     allies:["Sun","Mercury"],                  neutral:["Mars","Jupiter","Venus"],       enemies:["Saturn"]},
-  2:{planet:"Mars",    sym:"♂",quality:"Aggression · Drive",     allies:["Sun","Moon","Jupiter"],           neutral:["Saturn","Venus"],               enemies:["Mercury"]},
-  3:{planet:"Mercury", sym:"☿",quality:"Communication · Speed",  allies:["Sun","Venus"],                    neutral:["Saturn","Jupiter"],             enemies:["Moon","Mars"]},
+  2:{planet:"Mars",    sym:"♂",quality:"Aggression · Drive",     allies:["Sun","Moon","Jupiter"],           neutral:["Venus","Saturn"],               enemies:["Mercury"]},
+  3:{planet:"Mercury", sym:"☿",quality:"Communication · Speed",  allies:["Sun","Venus"],                    neutral:["Jupiter","Saturn"],             enemies:["Moon","Mars"]},
   4:{planet:"Jupiter", sym:"♃",quality:"Expansion · Fortune",    allies:["Sun","Moon","Mars"],              neutral:["Mercury"],                      enemies:["Venus","Saturn"]},
   5:{planet:"Venus",   sym:"♀",quality:"Harmony · Value",        allies:["Mercury","Saturn"],               neutral:["Mars","Jupiter"],               enemies:["Sun","Moon"]},
-  6:{planet:"Saturn",  sym:"♄",quality:"Discipline · Structure", allies:["Venus","Mercury"],                neutral:["Jupiter","Mars"],               enemies:["Sun","Moon"]},
+  6:{planet:"Saturn",  sym:"♄",quality:"Discipline · Structure", allies:["Mercury","Venus"],                neutral:["Mars","Jupiter"],               enemies:["Sun","Moon"]},
 };
 
 const ALL_PLANETS=["Sun","Moon","Mars","Mercury","Jupiter","Venus","Saturn"];
@@ -1318,10 +1333,10 @@ function loadDate(){
   try {
   const val=document.getElementById('dateInput').value;
   if(!val)return;
-  const date=new Date(val+'T12:00:00');
+  const date=new Date(val+'T12:00:00Z');
   const dow=date.getDay();
   renderAstroAlerts(val);
-  _pdwSelected = new Date(val+'T12:00:00').getDay();
+  _pdwSelected = new Date(val+'T12:00:00Z').getDay();
   buildPdwStrip(); // rebuild day strip for newly selected date
   selectPdwDay(_pdwSelected); // auto-open panel for selected date
   const wdn=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
@@ -1503,7 +1518,7 @@ function loadDate(){
     const ag=ALIGN_GRADES[day.planet+'+'+agRuler]||null;
     const agIsAlly=rel.allies.includes(agRuler);
     const agIsEnemy=rel.enemies.includes(agRuler);
-    const agGrade=ag?ag.grade:(agIsAlly?'B':agIsEnemy?'C':'B');
+    const agGrade=ag?ag.grade:(agIsAlly?'A':agIsEnemy?'C':'B');
     const agColor=agGrade==='A+'?'#b8860b':agGrade==='A'?'#1d8a4a':agGrade==='B+'?'#166534':agGrade==='B'?'#92400e':'#b91c1c';
     const agRelDesc=agIsAlly?'Ally — energy flows':agIsEnemy?'Enemy — friction':'Neutral — mixed signals';
     const agBarWidths={'A+':'100%','A':'80%','B+':'70%','B':'55%','C+':'45%','C':'30%','D':'20%','D-':'10%'};
@@ -1519,11 +1534,11 @@ function loadDate(){
       'Sun|Saturn': {neutral:true,desc:'Sun and Saturn are neutral. Confidence meets discipline — a measured, deliberate energy. The market may feel restrained or institutional. Levels hold well. Precision entries rewarded. Don\'t force breakouts.'},
       'Sun|Mercury':{enemy:true,  desc:'Sun and Mercury are enemies. Vitality clashes with nervous, scattered communication energy. Signals feel mixed — bold conviction setups get whipsawed by rapid information reversals. Size down on high-conviction plays and confirm every entry twice.'},
       'Moon|Sun':   {ally:true,  desc:'Moon and Sun are allies. Intuitive emotional cycles flow with confident solar energy. The crowd\'s sentiment aligns with directional confidence — momentum and sentiment-driven moves have clean follow-through.'},
-      'Moon|Mercury':{ally:true, desc:'Moon and Mercury are allies — the smoothest technical pairing. Intuitive tape reading aligns with precise, analytical execution. EMA/VWAP levels respected. Clean technical signals. Ideal for structured intraday strategies.'},
+      'Moon|Mercury':{mixed:true, desc:'Moon sees Mercury as an ally but Mercury views Moon as an enemy. The tape sends mixed signals — technical precision fights emotional reactivity. Stick strictly to your system; avoid intuition-based calls today.'},
       'Moon|Mars':  {neutral:true,desc:'Moon and Mars are neutral. Emotional cycles meet aggressive drive — can produce bursts of momentum but with unpredictable reversals. No clear amplification or friction. Trade what you see, not what you feel.'},
       'Moon|Jupiter':{neutral:true,desc:'Moon and Jupiter are neutral. Emotional sentiment meets expansive fortune energy — optimistic but inconsistent. Trend attempts may lack follow-through. Good conditions without outstanding edge.'},
       'Moon|Venus': {neutral:true,desc:'Moon and Venus are neutral. Emotional intuition meets harmony — gentle, balanced conditions. The tape doesn\'t feel threatening. Setups execute cleanly without major surprises.'},
-      'Moon|Saturn':{enemy:true,  desc:'Moon and Saturn are enemies. Intuition and emotional flow clash with cold, restrictive structure. Your gut reads may feel blocked or delayed. The market can feel heavy and unresponsive. Trust levels over feelings today; size down on intuitive calls.'},
+      'Moon|Saturn':{enemy:true,  desc:'Moon and Saturn are mutual enemies — the most suppressed pairing. Emotional intuition is blocked by cold structure. The tape feels dead or deceptive. Stand aside.'},
       'Mars|Sun':   {ally:true,  desc:'Mars and Sun are aggressive allies. Drive and vitality are fully aligned — powerful momentum energy. Breakouts run further and reversals are sharp. This is high-octane execution territory. Ideal for momentum scalps and directional swings.'},
       'Mars|Moon':  {ally:true,  desc:'Mars and Moon combine drive with emotional responsiveness. Momentum meets crowd psychology — when sentiment turns, it moves fast. Watch for sharp reversals driven by crowd behavior, but clean setups fire with conviction.'},
       'Mars|Jupiter':{ally:true, desc:'Mars and Jupiter are strong allies — large trend ranges are the signature. Aggressive expansion energy. Breakouts extend further than normal. Best for trend pullback entries and adding to winning positions. The market wants to run.'},
@@ -1540,13 +1555,13 @@ function loadDate(){
       'Jupiter|Moon':{ally:true, desc:'Jupiter and Moon combine expansion with emotional sentiment. The crowd is optimistic and participatory — breakouts get bought, dips get held. Broad upside momentum energy. Best for trend continuation and momentum trades.'},
       'Jupiter|Mars':{ally:true, desc:'Jupiter and Mars create large, sustained momentum moves. Expansion meets aggression — the market wants to break out and run. Add to winners, trail stops generously. This pairing produces the largest intraday ranges.'},
       'Jupiter|Mercury':{neutral:true,desc:'Jupiter and Mercury are neutral. Expansion meets analysis — the market processes information broadly and optimistically. Balanced conditions. Data releases may get bigger reactions than expected but without sustained directional follow-through.'},
-      'Jupiter|Venus':{enemy:true,desc:'Jupiter and Venus are enemies. Expansion clashes with harmony and equilibrium-seeking. Breakout attempts get faded. Upside runs hit resistance from value-seeking selling. Range-bound sessions despite expansive energy. Fade extremes rather than chasing.'},
-      'Jupiter|Saturn':{enemy:true,desc:'Jupiter and Saturn are enemies. Optimistic expansion clashes with restrictive discipline. The market tries to trend but gets suppressed. False breakouts followed by compression. Best to trade defensively — respect structure over momentum signals.'},
+      'Jupiter|Venus':{enemy:true,desc:'Jupiter and Venus are mutual enemies. Expansion is continually denied by equilibrium-seeking. Breakouts get faded hard. Range-bound despite bullish energy — fade extremes, avoid breakout chasing.'},
+      'Jupiter|Saturn':{enemy:true,desc:'Jupiter and Saturn are mutual enemies. The market oscillates between breakout attempts and hard suppression. Neither trend nor range dominates. Size down and stand aside.'},
       'Venus|Mercury':{ally:true, desc:'Venus and Mercury are natural allies. Harmony and analytical precision create the most orderly, balanced market conditions. Setups that are technically clean execute with minimal slippage. Ideal for rules-based, structured intraday trading.'},
       'Venus|Saturn':{ally:true, desc:'Venus and Saturn are allies. Harmony meets discipline — the tape is restrained but well-structured. Levels hold with precision. Value-seeking and systematic entries both work well. Conservative but reliable conditions.'},
       'Venus|Mars':  {neutral:true,desc:'Venus and Mars are neutral. Harmony meets aggression — the tape has energy but no clear direction. Momentum setups and fade setups both present but neither dominates. Trade what the chart confirms rather than what feels right.'},
       'Venus|Jupiter':{enemy:true,desc:'Venus and Jupiter are enemies. Harmony and equilibrium clash with expansion — the market tries to trend but value-seeking energy keeps pulling it back. Breakouts frequently reverse. Better to fade strong moves than chase them.'},
-      'Venus|Sun':  {enemy:true, desc:'Venus and Sun are enemies. Harmony and balance clash with confident, expressive energy. Bold breakout plays get faded by equilibrium-seeking sellers. Sentiment runs high but the tape doesn\'t sustain moves. Fade the crowd rather than joining it.'},
+      'Venus|Sun':  {enemy:true, desc:'Venus views Sun as an enemy. Balance fades bold confidence — momentum plays get reversed at value levels. Fade the crowd rather than joining it.'},
       'Venus|Moon': {enemy:true, desc:'Venus and Moon are enemies. Value-seeking harmony clashes with emotional, reactive sentiment. The crowd\'s emotional reactions push price away from fair value repeatedly. Reversals from key levels are common. Fade emotional extremes.'},
       'Saturn|Venus':{ally:true, desc:'Saturn and Venus are allies. Discipline meets harmony — methodical, well-structured conditions. Levels respected, setups precise, risk well-contained. A steady, reliable session for systematic traders who follow their rules.'},
       'Saturn|Mercury':{ally:true,desc:'Saturn and Mercury are allies. Structure and analytical precision align — the tape is deliberate and data-responsive. Clean technical environments where preparation and precision are rewarded. Good for planned entries at key confluence levels.'},
@@ -1610,64 +1625,56 @@ function loadDate(){
         '<div style="height:3px;background:'+agColor+';width:'+agBarWidth+';transition:width .4s;"></div>' +
       '</div>';
 
-    // ── PLANETARY HOURS DURING NY SESSION (shown every day) ──
+    // ── PLANETARY HOURS DURING NY SESSION — hora characteristic system ──
     {
+      const _HORA = {
+        Sun:     { signal:'green',  tag:'Trend Initiation', tagShort:'TREND',    desc:'Strong directional moves. Good for breakout trading.' },
+        Moon:    { signal:'yellow', tag:'Emotional Market', tagShort:'CAUTION',  desc:'High uncertainty. False breakouts possible. Stay cautious.' },
+        Mars:    { signal:'green',  tag:'High Volatility',  tagShort:'VOLATILE', desc:'Fast, aggressive price action. Experienced traders only.' },
+        Mercury: { signal:'green',  tag:'Scalping Time',    tagShort:'SCALP',    desc:'Quick movements. Best for short-term trades and VWAP plays.' },
+        Jupiter: { signal:'green',  tag:'Stable Growth',    tagShort:'STABLE',   desc:'Smooth trends. Ideal for positional trades. Hold winners.' },
+        Venus:   { signal:'yellow', tag:'Calm Market',      tagShort:'CALM',     desc:'Low volatility. Range-bound. Good for safe entries.' },
+        Saturn:  { signal:'red',    tag:'Slow & Heavy',     tagShort:'AVOID',    desc:'Market moves slowly. Breakouts often fail. Avoid overtrading.' },
+      };
+      const _SIG_C  = { green:'#166534', yellow:'#854d0e', red:'#991b1b' };
+      const _SIG_BG = { green:'#f4f7f4', yellow:'#f8f6f0', red:'#f7f4f4' };
+      const _SIG_BR = { green:'#15803d', yellow:'#a16207', red:'#b91c1c' };
+      const _SIG_PL = { green:'#e8ede9', yellow:'#ede9e0', red:'#ece8e8' };
+
       const phData = calcPlanetaryHoursData(date);
       const allHours = phData.hours;
-      const phRuler = phData.ruler;
       const phSyms = phData.syms;
       const fmtT = m => { let h=Math.floor(m/60)%24; const ap=h>=12?'PM':'AM'; h=h%12||12; const mn=Math.round(m%60); return h+':'+(mn<10?'0':'')+mn+' '+ap; };
 
-      // NYSE session 9:30 AM – 4:00 PM in selected timezone
-      const sessionOpen = 570;  // 9:30 AM in local tz minutes
-      const sessionClose = 960; // 4:00 PM in local tz minutes
+      // Session 5:00 AM – 4:00 PM
+      const sessionOpen = 300;
+      const sessionClose = 960;
       const sessionHours = allHours.filter(h => h.end > sessionOpen && h.start < sessionClose);
 
-      // Grade-specific label/color/description
-      let phAccentColor, phBg, phBadge, phDesc;
-      if(agGrade === 'A+'){
-        phAccentColor = '#b8860b'; phBg = '#fffbeb';
-        phBadge = '\u2605\u2605 Planetary Hours \u00B7 NY Session';
-        phDesc = 'Maximum alignment today. Ruler and ally hours carry the strongest possible energy. This is the session to execute your best setups with full conviction.';
-      } else if(agGrade === 'A'){
-        phAccentColor = '#b8860b'; phBg = '#fffbeb';
-        phBadge = '\u2605 Planetary Hours \u00B7 NY Session';
-        phDesc = 'Strong alignment today. Ruler and ally hours carry the strongest energy for execution.';
-      } else if(agGrade === 'B+' || agGrade === 'B'){
-        phAccentColor = 'var(--green)'; phBg = '#f0fdf4';
-        phBadge = '\u26A1 Planetary Hours \u00B7 NY Session';
-        phDesc = 'Partial alignment. Ally hours offer the cleanest execution windows during the session.';
-      } else {
-        phAccentColor = 'var(--green)'; phBg = '#f0fdf4';
-        phBadge = '\u26A1 Ally Hours Available';
-        phDesc = 'The planetary alignment is mixed today. These ally hours during the NY session create windows where the energy supports cleaner execution.';
-      }
-
-      const tierColor = {ruler:'#b8860b', ally:'var(--green)', neutral:'var(--muted)', enemy:'var(--red)'};
-      const tierLabel = {ruler:'Ruler', ally:'Ally', neutral:'Neutral', enemy:'Enemy'};
-      function getTier(p){ return p===phRuler?'ruler':rel.allies.includes(p)?'ally':rel.enemies.includes(p)?'enemy':'neutral'; }
-
       if(sessionHours.length > 0){
-        let phHtml = '<div style="margin-top:16px;padding:14px;border:1px solid var(--rule);border-left:4px solid '+phAccentColor+';background:'+phBg+';">';
-        phHtml += '<div style="font-size:8px;letter-spacing:3px;text-transform:uppercase;color:'+phAccentColor+';font-weight:600;margin-bottom:8px;">'+phBadge+'</div>';
-        phHtml += '<div style="font-size:13px;color:var(--mid);line-height:1.6;margin-bottom:10px;">'+phDesc+'</div>';
+        let phHtml = '<div style="margin-top:16px;">';
+        phHtml += '<div style="font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:8px;">⧗ Planetary Hours · NY Session</div>';
         sessionHours.forEach(h => {
           const clippedStart = Math.max(h.start, sessionOpen);
           const clippedEnd   = Math.min(h.end, sessionClose);
-          const tier = getTier(h.planet);
-          const col  = tierColor[tier];
-          phHtml += '<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--rule);opacity:'+(tier==='enemy'?'0.45':'1')+';">';
-          phHtml += '<span style="font-size:16px;">'+phSyms[h.planet]+'</span>';
-          phHtml += '<span style="font-size:13px;font-weight:600;color:'+col+';">'+h.planet+'</span>';
-          phHtml += '<span style="font-size:10px;letter-spacing:1px;text-transform:uppercase;color:'+col+';opacity:0.8;">'+tierLabel[tier]+'</span>';
-          phHtml += '<span style="font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;margin-left:auto;">'+fmtT(clippedStart)+' \u2013 '+fmtT(clippedEnd)+' '+TZ_OPTIONS[_phTimezone].label.replace(/\s*\(.*\)/,'')+'</span>';
+          const prof = _HORA[h.planet] || {signal:'yellow',tag:'',tagShort:'',desc:''};
+          const sig  = prof.signal;
+          phHtml += '<div style="display:flex;align-items:center;gap:8px;padding:7px 10px;border:1px solid '+_SIG_BR[sig]+';border-left:3px solid '+_SIG_BR[sig]+';background:'+_SIG_BG[sig]+';border-radius:3px;margin-bottom:4px;">';
+          phHtml += '<span style="font-size:16px;flex-shrink:0;">'+phSyms[h.planet]+'</span>';
+          phHtml += '<div style="flex:1;min-width:0;">';
+          phHtml += '<div style="font-size:12px;font-weight:600;color:#000;">'+h.planet+'</div>';
+          phHtml += '<div style="font-size:10px;color:'+_SIG_C[sig]+';font-weight:600;letter-spacing:0.5px;">'+prof.tag+'</div>';
+          phHtml += '</div>';
+          phHtml += '<div style="text-align:right;flex-shrink:0;">';
+          phHtml += '<div style="font-size:9px;font-weight:700;color:'+_SIG_C[sig]+';background:'+_SIG_PL[sig]+';padding:2px 6px;border-radius:3px;letter-spacing:1px;margin-bottom:3px;">'+prof.tagShort+'</div>';
+          phHtml += '<div style="font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;">'+fmtT(clippedStart)+' – '+fmtT(clippedEnd)+'</div>';
+          phHtml += '</div>';
           phHtml += '</div>';
         });
         phHtml += '</div>';
         agEl.innerHTML += phHtml;
       }
     }
-
     // Re-append Planet Relations drawer
     if(pRelDrawer) agEl.appendChild(pRelDrawer);
   }
@@ -2413,14 +2420,14 @@ const PDW_SIGN_DATA = [
 
 const PDW_DAY_KEYS = ['sun','mon','tue','wed','thu','fri','sat'];
 const PDW_SIG_COLOR = {PRESS:'#166534',  'LEAN IN':'#2563eb', NORMAL:'#4b5563', REDUCE:'#b91c1c'};
-const PDW_SIG_BG    = {PRESS:'#f0fdf4',  'LEAN IN':'#eff6ff', NORMAL:'#f9fafb', REDUCE:'#fef2f2'};
+const PDW_SIG_BG    = {PRESS:'#f4f7f4',  'LEAN IN':'#f4f5f7', NORMAL:'#f9fafb', REDUCE:'#f7f4f4'};
 
 function buildPdwStrip(){
   const strip = document.getElementById('pdwStrip');
   if(!strip) return;
   // Determine today's dow
   const dateStr = document.getElementById('dateInput') ? document.getElementById('dateInput').value : '';
-  const today = dateStr ? new Date(dateStr+'T12:00:00').getDay() : new Date().getDay();
+  const today = dateStr ? new Date(dateStr+'T12:00:00Z').getDay() : new Date().getDay();
   let html = '';
   for(let d=0;d<7;d++){
     const info = PDW_DATA[d];
@@ -2476,7 +2483,8 @@ function togglePRelations(){
   const open = panel.style.display === 'block';
   panel.style.display = open ? 'none' : 'block';
   arrow.textContent = open ? '↓' : '↑';
-  if(!open) buildPRelations();
+  if(!open){ buildPRelations(); startPHAutoRefresh(); }
+  else { if(_phAutoRefreshTimer){ clearInterval(_phAutoRefreshTimer); _phAutoRefreshTimer=null; } }
 }
 
 function buildPRelations(){
@@ -2586,7 +2594,9 @@ function calcPlanetaryHoursData(date){
   const chaldean = ['Saturn','Jupiter','Mars','Sun','Venus','Mercury','Moon'];
   const dayRulers = {'0':'Sun','1':'Moon','2':'Mars','3':'Mercury','4':'Jupiter','5':'Venus','6':'Saturn'};
   const syms = {'Sun':'☉','Moon':'☽','Mars':'♂','Mercury':'☿','Jupiter':'♃','Venus':'♀','Saturn':'♄'};
-  const dayOfWeek = date.getDay();
+  // Use Intl-based day-of-week so it reflects the selected timezone's calendar date, not browser locale
+  const _wcDow = getWallClock(date, _phTimezone);
+  const dayOfWeek = _wcDow ? _wcDow.dow : date.getDay();
   const ruler = dayRulers[dayOfWeek];
   const st = getSunTimes(date);
   const nextDay = new Date(date); nextDay.setDate(nextDay.getDate()+1);
@@ -2606,34 +2616,89 @@ function calcPlanetaryHoursData(date){
   return {hours, ruler, syms, st, stNext, dayHourLen, nightHourLen};
 }
 
+// Get the true UTC offset (in minutes) for a given timezone IANA name at a specific moment
+// Uses Intl.DateTimeFormat — handles DST automatically and correctly
+function getTZOffsetMin(date, ianaName){
+  try {
+    const fmt = new Intl.DateTimeFormat('en-US', {
+      timeZone: ianaName,
+      year:'numeric', month:'2-digit', day:'2-digit',
+      hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false
+    });
+    const parts = fmt.formatToParts(date);
+    const get = t => parseInt(parts.find(p=>p.type===t).value,10);
+    let h = get('hour'); if(h===24) h=0;
+    const localMs = Date.UTC(get('year'),get('month')-1,get('day'),h,get('minute'),get('second'));
+    return Math.round((localMs - date.getTime())/60000);
+  } catch(e){ return 0; }
+}
+
+// Map TZ_OPTIONS keys to IANA timezone names
+const TZ_IANA = {
+  'est':'America/New_York',
+  'cst':'America/Chicago',
+  'mst':'America/Denver',
+  'pst':'America/Los_Angeles',
+  'utc':'UTC',
+  'gmt':'Europe/London'
+};
+
+// Get wall-clock parts for a given Date in the selected timezone (uses Intl)
+function getWallClock(date, tzKey){
+  const ianaName = TZ_IANA[tzKey || _phTimezone] || 'America/New_York';
+  try {
+    const fmt = new Intl.DateTimeFormat('en-US', {
+      timeZone: ianaName,
+      year:'numeric', month:'2-digit', day:'2-digit',
+      hour:'2-digit', minute:'2-digit', second:'2-digit',
+      weekday:'short', hour12:false
+    });
+    const parts = fmt.formatToParts(date);
+    const get = t => parts.find(p=>p.type===t)?.value;
+    let h = parseInt(get('hour'),10); if(h===24) h=0;
+    const dowMap = {Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+    return {
+      year:  parseInt(get('year'),10),
+      month: parseInt(get('month'),10)-1,  // 0-indexed
+      day:   parseInt(get('day'),10),
+      hour:  h,
+      minute:parseInt(get('minute'),10),
+      second:parseInt(get('second'),10),
+      dow:   dowMap[get('weekday')] ?? 0,
+      minOfDay: h*60 + parseInt(get('minute'),10)
+    };
+  } catch(e){ return null; }
+}
+
 function getSunTimes(date, tzKey){
-  const tz = TZ_OPTIONS[tzKey || _phTimezone];
+  const key = tzKey || _phTimezone;
+  const tz = TZ_OPTIONS[key];
+  const ianaName = TZ_IANA[key] || 'America/New_York';
   const lat = tz.lat, lng = tz.lng;
   const rad = Math.PI/180;
-  const dayOfYear = Math.floor((date - new Date(date.getFullYear(),0,0)) / 86400000);
+
+  // Use a noon-UTC reference so dayOfYear is stable regardless of DST
+  const noonUTC = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), 12, 0, 0));
+  const dayOfYear = Math.floor((noonUTC - new Date(Date.UTC(noonUTC.getUTCFullYear(),0,0))) / 86400000);
   const gamma = (2*Math.PI/365)*(dayOfYear-1);
   const eqTime = 229.18*(0.000075+0.001868*Math.cos(gamma)-0.032077*Math.sin(gamma)-0.014615*Math.cos(2*gamma)-0.040849*Math.sin(2*gamma));
   const decl = 0.006918-0.399912*Math.cos(gamma)+0.070257*Math.sin(gamma)-0.006758*Math.cos(2*gamma)+0.000907*Math.sin(2*gamma)-0.002697*Math.cos(3*gamma)+0.00148*Math.sin(3*gamma);
   const ha = Math.acos(Math.cos(90.833*rad)/(Math.cos(lat*rad)*Math.cos(decl))-Math.tan(lat*rad)*Math.tan(decl))/rad;
-  const sunrise = 720-4*(lng+ha)-eqTime;
-  const sunset = 720-4*(lng-ha)-eqTime;
-  // DST check — use US DST calendar rules (2nd Sun Mar → 1st Sun Nov), not browser locale
-  function nthSunday(year, month, n){
-    // month: 0-indexed. Returns day-of-month for nth Sunday.
-    const d = new Date(Date.UTC(year, month, 1));
-    const dow = d.getUTCDay(); // 0=Sun
-    const first = dow === 0 ? 1 : 8 - dow;
-    return first + (n-1)*7;
-  }
-  const yr = date.getFullYear();
-  const dstStart = new Date(Date.UTC(yr, 2, nthSunday(yr,2,2), 7)); // Mar 2nd Sun 2AM UTC (=7AM UTC-5)
-  const dstEnd   = new Date(Date.UTC(yr,10, nthSunday(yr,10,1), 6)); // Nov 1st Sun 2AM UTC (=6AM UTC-4 during DST)
-  // Only apply US DST for US zones (std offsets -300 to -480); UTC/GMT stay fixed
-  const isUSZone = tz.std <= -300 && tz.std >= -480;
-  const isDST = isUSZone && date >= dstStart && date < dstEnd;
-  const tzOff = isDST ? -tz.dst : -tz.std;
-  const srLocal = sunrise - tzOff;
-  const ssLocal = sunset - tzOff;
+
+  // Solar noon in UTC minutes from midnight
+  const solarNoonUTC = 720 - 4*lng - eqTime;
+  const sunriseUTC = solarNoonUTC - 4*ha;
+  const sunsetUTC  = solarNoonUTC + 4*ha;
+
+  // Convert UTC minutes to local wall-clock minutes using Intl offset
+  // Build the sunrise/sunset as actual Date objects (UTC) then get offset
+  const baseUTC = Date.UTC(noonUTC.getUTCFullYear(), noonUTC.getUTCMonth(), noonUTC.getUTCDate());
+  const srDate = new Date(baseUTC + sunriseUTC * 60000);
+  const ssDate = new Date(baseUTC + sunsetUTC  * 60000);
+  const srOff = getTZOffsetMin(srDate, ianaName); // +offset means east of UTC
+  const ssOff = getTZOffsetMin(ssDate, ianaName);
+  const srLocal = sunriseUTC + srOff;
+  const ssLocal = sunsetUTC  + ssOff;
   return {sunrise: srLocal, sunset: ssLocal};
 }
 
@@ -2646,6 +2711,20 @@ function changeTimezone(val){
   }
 }
 
+let _phAutoRefreshTimer = null;
+function startPHAutoRefresh(){
+  if(_phAutoRefreshTimer) return; // already running
+  _phAutoRefreshTimer = setInterval(()=>{
+    const panel = document.getElementById('pRelPanel');
+    if(panel && panel.style.display === 'block'){
+      buildPRelations();
+    } else {
+      // Panel closed — stop timer
+      clearInterval(_phAutoRefreshTimer);
+      _phAutoRefreshTimer = null;
+    }
+  }, 60000);
+}
 function refreshPlanetaryHours(btn){
   if(btn){
     btn.style.transform = 'rotate(360deg)';
@@ -2654,6 +2733,7 @@ function refreshPlanetaryHours(btn){
   const panel = document.getElementById('pRelPanel');
   if(panel && panel.style.display === 'block'){
     buildPRelations();
+    startPHAutoRefresh();
   }
 }
 
@@ -2663,10 +2743,27 @@ function buildPlanetaryHours(){
   const syms = {'Sun':'☉','Moon':'☽','Mars':'♂','Mercury':'☿','Jupiter':'♃','Venus':'♀','Saturn':'♄'};
   const pColors = {'Sun':'#b8860b','Moon':'#6b7280','Mars':'#b91c1c','Mercury':'#2563eb','Jupiter':'#166534','Venus':'#9333ea','Saturn':'#374151'};
 
+  // Hora characteristic system — replaces ally/enemy/neutral
+  // signal: 'green' = trade actively, 'yellow' = cautious/selective, 'red' = avoid/reduce
+  const HORA_PROFILE = {
+    Sun:     { signal:'green',  tag:'Trend Initiation',  tagShort:'TREND',    desc:'Strong directional moves. Good for breakout trading. Ideal for starting trades.' },
+    Moon:    { signal:'yellow', tag:'Emotional Market',  tagShort:'CAUTION',  desc:'High uncertainty. False breakouts possible. Better to stay cautious.' },
+    Mars:    { signal:'green',  tag:'High Volatility',   tagShort:'VOLATILE', desc:'Fast and aggressive price action. Suitable for experienced traders. Ideal for intraday trading.' },
+    Mercury: { signal:'green',  tag:'Scalping Time',     tagShort:'SCALP',    desc:'Quick movements. Best for short-term trades. Works well with VWAP and volume strategies.' },
+    Jupiter: { signal:'green',  tag:'Stable Growth',     tagShort:'STABLE',   desc:'Smooth trends. Ideal for positional trades. Good for holding winners.' },
+    Venus:   { signal:'yellow', tag:'Calm Market',       tagShort:'CALM',     desc:'Low volatility. Range-bound behavior. Good for safe entries.' },
+    Saturn:  { signal:'red',    tag:'Slow & Heavy',      tagShort:'AVOID',    desc:'Market moves slowly. Breakouts often fail. Best to avoid overtrading.' },
+  };
+  // Signal colors: green=execute, yellow=selective, red=stand aside
+  const SIG_COLOR  = { green:'#166534', yellow:'#854d0e', red:'#991b1b' };
+  const SIG_BG     = { green:'#f4f7f4', yellow:'#f8f6f0', red:'#f7f4f4' };
+  const SIG_BORDER = { green:'#15803d', yellow:'#a16207', red:'#b91c1c' };
+  const SIG_PILL   = { green:'#e8ede9', yellow:'#ede9e0', red:'#ece8e8' };
+  const SIG_BADGE  = { green:'● EXECUTE', yellow:'◐ SELECTIVE', red:'○ STAND ASIDE' };
+
   const dateStr = document.getElementById('dateInput').value;
   const now = new Date();
-  const targetDate = dateStr ? new Date(dateStr+'T12:00:00') : now;
-  const dayOfWeek = targetDate.getDay();
+  const targetDate = dateStr ? new Date(dateStr+'T12:00:00Z') : now;
 
   const phData = calcPlanetaryHoursData(targetDate);
   const hours = phData.hours.map(h => {
@@ -2680,57 +2777,25 @@ function buildPlanetaryHours(){
   const ruler = phData.ruler;
   const st = phData.st;
 
-  // Get today's day ruler relations
-  const dayData = Object.values(DAYS).find(x=>x.planet===ruler);
-  const allies = dayData ? dayData.allies : [];
-  const enemies = dayData ? dayData.enemies : [];
-  const neutrals = dayData ? dayData.neutral : [];
-
   // Current hour (only if viewing today)
-  const isToday = dateStr === now.toISOString().split('T')[0] || (!dateStr);
+  const _nowWC = getWallClock(now, _phTimezone);
+  let _todayDateStr = '';
+  if(_nowWC){ _todayDateStr = _nowWC.year+'-'+String(_nowWC.month+1).padStart(2,'0')+'-'+String(_nowWC.day).padStart(2,'0'); }
+  const isToday = !dateStr || dateStr === _todayDateStr;
   let currentMin = null;
-  if(isToday){
-    // Convert current moment to minutes-since-midnight in the selected timezone
-    const tz = TZ_OPTIONS[_phTimezone];
-    // US DST: 2nd Sun Mar → 1st Sun Nov
-    function _nthSun(yr,mo,n){const d=new Date(Date.UTC(yr,mo,1));const dow=d.getUTCDay();const f=dow===0?1:8-dow;return f+(n-1)*7;}
-    const yr2=now.getFullYear();
-    const ds=new Date(Date.UTC(yr2,2,_nthSun(yr2,2,2),7));
-    const de=new Date(Date.UTC(yr2,10,_nthSun(yr2,10,1),6));
-    const isUSZone2 = tz.std<=-300 && tz.std>=-480;
-    const isDST2 = isUSZone2 && now>=ds && now<de;
-    const tzOffMin = isDST2 ? tz.dst : tz.std; // e.g. -240 EDT, -300 EST
-    const tzMs = now.getTime() + tzOffMin * 60000;
-    const tzDate = new Date(tzMs);
-    currentMin = tzDate.getUTCHours()*60 + tzDate.getUTCMinutes();
-  }
-
-  // Determine relation color for a planet hour
-  function getRelColor(planet){
-    if(planet === ruler) return {color:'#b8860b', label:'Ruler'};
-    if(allies.includes(planet)) return {color:'var(--green)', label:'Ally'};
-    if(enemies.includes(planet)) return {color:'var(--red)', label:'Enemy'};
-    return {color:'var(--muted)', label:'Neutral'};
-  }
-
-  // Show all 24 hours of the day
-  const sessionHours = hours;
+  if(isToday && _nowWC){ currentMin = _nowWC.minOfDay; }
 
   // Find current planetary hour
   let currentPlanet = null;
   let currentHourData = null;
   if(currentMin !== null){
     const ch = hours.find(h => currentMin >= h.start && currentMin < h.end);
-    if(ch){
-      currentPlanet = ch.planet;
-      currentHourData = ch;
-    }
+    if(ch){ currentPlanet = ch.planet; currentHourData = ch; }
   }
 
   let html = '';
 
-  // Timezone selector
-  const tzLabel = TZ_OPTIONS[_phTimezone].label;
+  // Header row: label + tz selector + refresh
   html += `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
     <div style="font-size:7px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);">Planetary Hours</div>
     <div style="display:flex;align-items:center;gap:6px;">
@@ -2741,54 +2806,73 @@ function buildPlanetaryHours(){
   });
   html += `</select></div></div>`;
 
+  // Legend row
+  html += `<div style="display:flex;gap:8px;margin-bottom:14px;">
+    <span style="display:flex;align-items:center;gap:4px;font-size:9px;letter-spacing:1px;color:#166534;"><span style="width:8px;height:8px;border-radius:50%;background:#15803d;display:inline-block;"></span>EXECUTE</span>
+    <span style="display:flex;align-items:center;gap:4px;font-size:9px;letter-spacing:1px;color:#854d0e;"><span style="width:8px;height:8px;border-radius:50%;background:#a16207;display:inline-block;"></span>SELECTIVE</span>
+    <span style="display:flex;align-items:center;gap:4px;font-size:9px;letter-spacing:1px;color:#991b1b;"><span style="width:8px;height:8px;border-radius:50%;background:#b91c1c;display:inline-block;"></span>STAND ASIDE</span>
+  </div>`;
+
   // Current Hour Hero (if today)
   if(currentPlanet && currentHourData){
-    const rel = getRelColor(currentPlanet);
+    const prof = HORA_PROFILE[currentPlanet] || {signal:'yellow',tag:'',tagShort:'',desc:''};
+    const sig = prof.signal;
     const minsLeft = Math.max(0, Math.ceil(currentHourData.end - currentMin));
-    html += `<div style="display:flex;align-items:center;gap:12px;padding:14px;background:var(--off);border:1px solid var(--rule);border-left:4px solid ${rel.color};margin-bottom:14px;">
-      <div style="font-size:32px;line-height:1;">${syms[currentPlanet]}</div>
-      <div style="flex:1;">
-        <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:3px;">Current Planetary Hour</div>
-        <div style="font-size:16px;font-weight:700;color:${pColors[currentPlanet]};">${currentPlanet} Hour</div>
-        <div style="font-size:11px;color:var(--muted);margin-top:2px;">${currentHourData.label}</div>
-      </div>
-      <div style="text-align:right;">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:${rel.color};">${minsLeft}m</div>
-        <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:${rel.color};font-weight:600;">${rel.label}</div>
+    html += `<div style="padding:14px;background:${SIG_BG[sig]};border:1px solid ${SIG_BORDER[sig]};border-left:4px solid ${SIG_BORDER[sig]};border-radius:4px;margin-bottom:14px;">
+      <div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:${SIG_COLOR[sig]};margin-bottom:8px;">Current Planetary Hour</div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="font-size:36px;line-height:1;">${syms[currentPlanet]}</div>
+        <div style="flex:1;">
+          <div style="font-size:16px;font-weight:700;color:${pColors[currentPlanet]};line-height:1.2;">${currentPlanet} Hour</div>
+          <div style="font-size:11px;font-weight:600;color:${SIG_COLOR[sig]};letter-spacing:1px;text-transform:uppercase;margin-top:3px;">${prof.tag}</div>
+          <div style="font-size:11px;color:var(--mid);margin-top:5px;line-height:1.5;">${prof.desc}</div>
+        </div>
+        <div style="text-align:right;flex-shrink:0;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:${SIG_COLOR[sig]};line-height:1;">${minsLeft}m</div>
+          <div style="font-size:8px;letter-spacing:1px;text-transform:uppercase;color:${SIG_COLOR[sig]};font-weight:700;margin-top:4px;">${SIG_BADGE[sig]}</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:3px;">${currentHourData.label}</div>
+        </div>
       </div>
     </div>`;
   }
 
   // Hour List
-  sessionHours.forEach(h=>{
+  hours.forEach(h=>{
     const isCurrent = currentMin !== null && currentMin >= h.start && currentMin < h.end;
-    const rel = getRelColor(h.planet);
-    const bg = isCurrent ? pColors[h.planet] : 'transparent';
-    const txtColor = isCurrent ? '#fff' : '#000';
-    const timeColor = isCurrent ? 'rgba(255,255,255,0.7)' : 'var(--muted)';
-    const border = isCurrent ? 'none' : '1px solid var(--rule)';
-    const inSession = h.start >= 570 && h.start < 960;
-    const sessionDot = inSession ? `<span style="width:5px;height:5px;border-radius:50%;background:${isCurrent?'#fff':'var(--green)'};display:inline-block;margin-right:6px;"></span>` : '';
+    const prof = HORA_PROFILE[h.planet] || {signal:'yellow',tag:'',tagShort:'',desc:''};
+    const sig = prof.signal;
+    const inSession = h.start >= 300 && h.start < 960;
 
-    // Time remaining for current hour
+    // Active row styling
+    const rowBg    = isCurrent ? SIG_BG[sig]     : 'transparent';
+    const rowBorder= isCurrent ? `2px solid ${SIG_BORDER[sig]}` : '1px solid var(--rule)';
+    const txtColor = '#000';
+    const timeColor= isCurrent ? SIG_COLOR[sig]  : 'var(--muted)';
+
+    // Session dot (NYSE hours)
+    const sessionDot = inSession
+      ? `<span style="width:5px;height:5px;border-radius:50%;background:${isCurrent?SIG_BORDER[sig]:'#15803d'};display:inline-block;margin-right:4px;flex-shrink:0;"></span>`
+      : '<span style="width:5px;height:5px;display:inline-block;margin-right:4px;flex-shrink:0;"></span>';
+
+    // Signal pill
+    const pillBg = isCurrent ? SIG_PILL[sig] : (sig==='green'?'#f4f7f4':sig==='yellow'?'#f8f6f0':'#f7f4f4');
+    const pill = `<span style="font-size:8px;letter-spacing:1px;font-weight:700;color:${SIG_COLOR[sig]};background:${pillBg};padding:2px 6px;border-radius:3px;text-transform:uppercase;">${prof.tagShort}</span>`;
+
+    // Countdown badge
     let countdown = '';
     if(isCurrent && currentMin !== null){
       const mLeft = Math.max(0, Math.ceil(h.end - currentMin));
-      countdown = `<span style="font-size:10px;color:rgba(255,255,255,0.8);font-weight:600;margin-left:8px;">${mLeft}m left</span>`;
+      countdown = `<span style="font-size:10px;color:${SIG_COLOR[sig]};font-weight:700;margin-left:6px;">${mLeft}m left</span>`;
     }
 
-    // Relation indicator
-    const relDot = isCurrent ? '' : `<span style="width:6px;height:6px;border-radius:50%;background:${rel.color};display:inline-block;"></span>`;
-
-    html += `<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:${bg};border-bottom:${border};${isCurrent?'border-radius:6px;margin-bottom:2px;':''}">
-      <div style="display:flex;align-items:center;gap:6px;">
+    html += `<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 10px;background:${rowBg};border-bottom:${rowBorder};${isCurrent?'border-radius:4px;margin-bottom:2px;':''}">
+      <div style="display:flex;align-items:center;gap:6px;min-width:0;">
         ${sessionDot}
-        <span style="font-size:14px;">${syms[h.planet]}</span>
-        <span style="font-size:12px;font-weight:600;color:${txtColor};">${h.planet}</span>
-        ${relDot}
-        <span style="font-size:9px;color:${isCurrent?'rgba(255,255,255,0.6)':rel.color};letter-spacing:1px;text-transform:uppercase;">${rel.label}</span>
+        <span style="font-size:14px;flex-shrink:0;">${syms[h.planet]}</span>
+        <span style="font-size:12px;font-weight:600;color:${txtColor};flex-shrink:0;">${h.planet}</span>
+        ${pill}
       </div>
-      <div style="font-size:11px;color:${timeColor};font-variant-numeric:tabular-nums;">${h.label}${countdown}</div>
+      <div style="display:flex;align-items:center;gap:0;font-size:11px;color:${timeColor};font-variant-numeric:tabular-nums;flex-shrink:0;">${h.label}${countdown}</div>
     </div>`;
   });
 
@@ -2835,7 +2919,7 @@ function buildSessionCharacter(){
   window._SESSION_GUIDE = SESSION_GUIDE;
 
   const dateStr = document.getElementById('dateInput').value;
-  const targetDate = dateStr ? new Date(dateStr+'T12:00:00') : new Date();
+  const targetDate = dateStr ? new Date(dateStr+'T12:00:00Z') : new Date();
   const activeDow = targetDate.getDay();
 
   let html = '';
@@ -3191,7 +3275,7 @@ const ECON_EVENTS = [
 ];
 
 function getAstroAlerts(dateStr){
-  const date = new Date(dateStr+'T12:00:00');
+  const date = new Date(dateStr+'T12:00:00Z');
   const active = [];
   const upcoming = [];
   const shadows = [];
@@ -3298,9 +3382,9 @@ function renderLpChart(){
   // Header row
   html += '<div style="display:grid;grid-template-columns:60px 1fr 1fr 1fr;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:8px;">';
   html += '<div style="background:#f5f5f5;padding:8px 6px;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;">LP</div>';
-  html += '<div style="background:#f0fdf4;padding:8px 6px;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#166534;font-weight:600;">Aligned</div>';
+  html += '<div style="background:#f4f7f4;padding:8px 6px;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#166534;font-weight:600;">Aligned</div>';
   html += '<div style="background:#fef3e2;padding:8px 6px;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#92400e;font-weight:600;">Optimistic</div>';
-  html += '<div style="background:#fef2f2;padding:8px 6px;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#b91c1c;font-weight:600;">Friction</div>';
+  html += '<div style="background:#f7f4f4;padding:8px 6px;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:#b91c1c;font-weight:600;">Friction</div>';
 
   // Data rows — master numbers merge with their reduced form, A > B > C priority
   const REDUCTIONS = {11:2, 22:4, 33:6};
@@ -3351,7 +3435,7 @@ function renderLpChart(){
   const CS_DOW_KEY = ['sun','mon','tue','wed','thu','fri','sat'];
   const csTodayKey = CS_DOW_KEY[new Date().getDay()];
   const csCol = function(s){ return s==='PRESS'?'#166534':s==='LEAN IN'?'#2563eb':s==='REDUCE'?'#b91c1c':'#4b5563'; };
-  const csBgC = function(s){ return s==='PRESS'?'#f0fdf4':s==='LEAN IN'?'#eff6ff':s==='REDUCE'?'#fef2f2':'#f9fafb'; };
+  const csBgC = function(s){ return s==='PRESS'?'#f4f7f4':s==='LEAN IN'?'#f4f5f7':s==='REDUCE'?'#f7f4f4':'#f9fafb'; };
 
   // Abbreviate signals for compact display
   const csAbbr = function(s){ return s==='PRESS'?'PRS':s==='LEAN IN'?'LN':s==='REDUCE'?'RED':'NRM'; };
@@ -3437,9 +3521,9 @@ function renderLpCalendar(){
     const ue = calcNum(dateStr);
     const ueR = ue === 11 ? 2 : ue === 22 ? 4 : ue === 33 ? 6 : ue;
     let tier, tierColor, tierBg;
-    if(_calA.includes(ue) || _calA.includes(ueR)){ tier='A'; tierColor='#166534'; tierBg='#f0fdf4'; }
+    if(_calA.includes(ue) || _calA.includes(ueR)){ tier='A'; tierColor='#166534'; tierBg='#f4f7f4'; }
     else if(_calB.includes(ue) || _calB.includes(ueR)){ tier='B'; tierColor='#92400e'; tierBg='#fef3e2'; }
-    else { tier='C'; tierColor='#b91c1c'; tierBg='#fef2f2'; }
+    else { tier='C'; tierColor='#b91c1c'; tierBg='#f7f4f4'; }
 
     const isToday = isCurrentMonth && d === currentDay;
     const cell = document.createElement('div');
@@ -3748,7 +3832,7 @@ function calcLifePathAlignment(){
   html += '<div style="border:1px solid var(--rule);margin-bottom:16px;">'
     + '<div style="font-size:7px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);padding:12px 16px;border-bottom:1px solid var(--rule);">Your Energy Tiers (Life Path ' + lp + ')</div>'
     + '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;">'
-    + '<div style="padding:12px;border-right:1px solid var(--rule);' + (tier==='A'?'background:#f0fdf4;':'') + '">'
+    + '<div style="padding:12px;border-right:1px solid var(--rule);' + (tier==='A'?'background:#f4f7f4;':'') + '">'
     + '<div style="font-family:\'Cormorant Garamond\',serif;font-size:22px;font-weight:600;color:#166534;margin-bottom:4px;">A</div>'
     + '<div style="font-size:10px;font-weight:600;color:#166534;margin-bottom:4px;">Aligned</div>'
     + '<div style="font-size:11px;color:var(--mid);">' + combinedTiers.a.slice().sort((a,b)=>a-b).join(', ') + '</div>'
@@ -3758,7 +3842,7 @@ function calcLifePathAlignment(){
     + '<div style="font-size:10px;font-weight:600;color:#92400e;margin-bottom:4px;">Optimistic</div>'
     + '<div style="font-size:11px;color:var(--mid);">' + combinedTiers.b.slice().sort((a,b)=>a-b).join(', ') + '</div>'
     + '</div>'
-    + '<div style="padding:12px;' + (tier==='C'?'background:#fef2f2;':'') + '">'
+    + '<div style="padding:12px;' + (tier==='C'?'background:#f7f4f4;':'') + '">'
     + '<div style="font-family:\'Cormorant Garamond\',serif;font-size:22px;font-weight:600;color:#b91c1c;margin-bottom:4px;">C</div>'
     + '<div style="font-size:10px;font-weight:600;color:#b91c1c;margin-bottom:4px;">Friction</div>'
     + '<div style="font-size:11px;color:var(--mid);">' + combinedTiers.c.slice().sort((a,b)=>a-b).join(', ') + '</div>'
@@ -3823,16 +3907,16 @@ function calcLifePathAlignment(){
     pdSignal = 'NORMAL'; // Sat/Sun fallback
   }
   if(pdSignal === 'PRESS'){
-    pdColor = '#166534'; pdBg = '#f0fdf4'; pdIcon = '▲';
+    pdColor = '#166534'; pdBg = '#f4f7f4'; pdIcon = '▲';
     pdDesc = 'Full alignment. Today\'s planetary ruler resonates with your sun sign. Optimal conditions for active execution — prioritize your A+ setups.';
   } else if(pdSignal === 'LEAN IN'){
-    pdColor = '#2563eb'; pdBg = '#eff6ff'; pdIcon = '\u25B6';
+    pdColor = '#2563eb'; pdBg = '#f4f5f7'; pdIcon = '\u25B6';
     pdDesc = 'Strong alignment. The day\'s energy supports your sign\'s natural flow. Lean into quality setups with measured confidence.';
   } else if(pdSignal === 'NORMAL'){
     pdColor = '#374151'; pdBg = '#f9fafb'; pdIcon = '\u25A0';
     pdDesc = 'Neutral energy for your sign today. Standard discipline applies. No special edge — execute your plan and manage risk normally.';
   } else {
-    pdColor = '#b91c1c'; pdBg = '#fef2f2'; pdIcon = '\u25BC';
+    pdColor = '#b91c1c'; pdBg = '#f7f4f4'; pdIcon = '\u25BC';
     pdDesc = 'Caution. The planetary day works against your sign\'s ruler. Reduce position size, tighten risk, or sit this session out entirely.';
   }
 
@@ -3883,7 +3967,7 @@ var _wtAlign = 0.40;
 function calcScoreWithWeights(wMoon, wAlign){
   // Compute today's score with given weights without changing state
   const dateStr = document.getElementById('dateInput').value || new Date().toISOString().split('T')[0];
-  const date = new Date(dateStr+'T12:00:00');
+  const date = new Date(dateStr+'T12:00:00Z');
   const phase = getMoonPhase(date);
   const sign  = getMoonSign(date);
   const dow   = date.getDay();
@@ -4304,7 +4388,7 @@ function renderAstroAlerts(dateStr){
   if(econEl){
     let econHtml = '';
     const todayEcon = ECON_EVENTS.filter(ev => ev.date === dateStr);
-    const econDate = new Date(dateStr+'T12:00:00');
+    const econDate = new Date(dateStr+'T12:00:00Z');
 
     // Get moon phase for today to detect collisions
     const todayPhase = getMoonPhase(econDate);
@@ -4573,7 +4657,7 @@ function toggleDayPicker(){
   wrap.style.display = open ? 'none' : 'block';
   if(!open){
     const val = document.getElementById('dateInput').value;
-    const d = val ? new Date(val+'T12:00:00') : new Date();
+    const d = val ? new Date(val+'T12:00:00Z') : new Date();
     _pickerMonth = d.getMonth();
     _pickerYear = d.getFullYear();
     renderDayPicker();
@@ -4596,7 +4680,7 @@ function renderDayPicker(){
   const daysInMonth = new Date(_pickerYear, _pickerMonth + 1, 0).getDate();
 
   const val = document.getElementById('dateInput').value;
-  const current = val ? new Date(val+'T12:00:00') : new Date();
+  const current = val ? new Date(val+'T12:00:00Z') : new Date();
   const isCurrentMonth = current.getMonth() === _pickerMonth && current.getFullYear() === _pickerYear;
   const currentDay = current.getDate();
 
@@ -4634,7 +4718,7 @@ function renderDayPicker(){
 function updateDateDisplay(){
   const val = document.getElementById('dateInput').value;
   if(!val) return;
-  const d = new Date(val+'T12:00:00');
+  const d = new Date(val+'T12:00:00Z');
   const mm = String(d.getMonth()+1).padStart(2,'0');
   const dd = String(d.getDate()).padStart(2,'0');
   const yyyy = d.getFullYear();
@@ -4938,7 +5022,7 @@ async function runChartAnalysis(){
 
   // Build energy context from current date
   const dateStr = document.getElementById('dateInput').value || new Date().toISOString().split('T')[0];
-  const date = new Date(dateStr+'T12:00:00');
+  const date = new Date(dateStr+'T12:00:00Z');
   const phase = getMoonPhase(date);
   const sign  = getMoonSign(date);
   const en    = calcNum(dateStr);
@@ -5047,7 +5131,7 @@ Be direct and specific. Think like a seasoned trader, not a textbook.`;
 
 
 function scoreDay(dateStr){
-  const date = new Date(dateStr+'T12:00:00');
+  const date = new Date(dateStr+'T12:00:00Z');
   const dow = date.getDay();
   // Skip weekends
   if(dow === 0 || dow === 6) return null;
