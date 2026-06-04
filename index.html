@@ -1086,7 +1086,7 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
 
       <!-- BODY AWARENESS -->
       <div style="border-left:2px solid #333;padding-left:16px;margin-bottom:32px;color:#bbb;font-size:16px;line-height:1.8;">
-        <div style="margin-bottom:18px;">Although being confident and positive towards your trading and the market — your chest still tightens up, fear and anxiety can arise and emotions can take over, or you feel a bit of desperation and scarcity is present. It's very important to be <strong style="color:#fff;">AWARE</strong> and ask yourself <em style="color:#b8860b;">what's going on and why?</em></div>
+        <div style="margin-bottom:18px;">Although being confident and positive towards your trading and the market — your chest still tightens up, fear and anxiety can arise and emotions can take over, or you feel a bit of desperation and scarcity is present. It's very important to be <strong style="color:#fff;">AWARE</strong> and ask yourself <em style="color:#fff;">what's going on and why?</em> And ask yourself <em style="color:#fff;">what needs to take place to shift from that lower state and into a higher state of mindful awareness and abundance towards the market?</em></div>
         <div style="margin-bottom:18px;">Enthusiasm towards the market is in the mind — but sometimes your body tells you something is wrong. It's real data that is imperative that you pay attention to, and you have to deal with that <strong style="color:#fff;">before</strong> you deal with the market. If not — <strong style="color:#fff;">the market will expose it.</strong></div>
         <div style="font-size:17px;font-weight:600;color:#fff;letter-spacing:0.3px;">Your body knows things your mind hasn't processed yet.</div>
       </div>
@@ -1714,7 +1714,20 @@ function _nkInfoBlock(nk, transitions, birth){
 }
 
 function _taraCalSection(dateStr, birth){
-  if(!birth) return '';
+  const uid = 'taraFwd_' + Date.now();
+  const toggleFn = `(function(el){var b=document.getElementById('${uid}');var open=b.style.display==='none';b.style.display=open?'block':'none';el.querySelector('.tfwd-chevron').style.transform=open?'rotate(180deg)':'rotate(0deg)';})(this)`;
+
+  if(!birth){
+    return `
+    <div style="border-top:1px solid var(--rule);">
+      <div onclick="${toggleFn}" style="padding:10px 14px 8px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='transparent'">
+        <div style="font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);">Forward Tara Plan · 14 Days</div>
+        <span class="tfwd-chevron" style="font-size:10px;color:var(--muted);transition:transform 0.2s;display:inline-block;">▾</span>
+      </div>
+      <div id="${uid}" style="display:none;padding:12px 14px;font-size:9px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;">Add birth date above for Tara Bala ratings</div>
+    </div>`;
+  }
+
   const SIZE_RULE = {'Optimal':{pct:100,label:'Full'},'Prime':{pct:100,label:'Full'},'Caution':{pct:50,label:'Half'},'Danger':{pct:25,label:'¼'},'Obstacle':{pct:25,label:'¼'},'Avoid':{pct:0,label:'None'}};
 
   // Fast transition finder for calendar display — coarse scan (30-min steps) then
@@ -1790,10 +1803,13 @@ function _taraCalSection(dateStr, birth){
       </div>`;
   }
   return `
-    <div style="padding:10px 14px 6px;border-top:1px solid var(--rule);">
-      <div style="font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);">Forward Tara Plan · 14 Days</div>
-    </div>
-    <div>${html}</div>`;
+    <div style="border-top:1px solid var(--rule);">
+      <div onclick="${toggleFn}" style="padding:10px 14px 8px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none;" onmouseover="this.style.background='#f5f5f5'" onmouseout="this.style.background='transparent'">
+        <div style="font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);">Forward Tara Plan · 14 Days</div>
+        <span class="tfwd-chevron" style="font-size:10px;color:var(--muted);transition:transform 0.2s;display:inline-block;">▾</span>
+      </div>
+      <div id="${uid}" style="display:none;">${html}</div>
+    </div>`;
 }
 
 function toggleNakshatraSection(){ renderNakshatraSection(); }
