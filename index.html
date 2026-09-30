@@ -3591,8 +3591,8 @@ const ECON_EVENTS = [
   {name:'PPI Report',type:'ppi',date:'2026-08-13',time:'8:30 AM',impact:'high',desc:'Producer Price Index release. Wholesale inflation data.'},
   {name:'PPI Report',type:'ppi',date:'2026-09-15',time:'8:30 AM',impact:'high',desc:'Producer Price Index release. Wholesale inflation data.'},
   {name:'PPI Report',type:'ppi',date:'2026-10-15',time:'8:30 AM',impact:'high',desc:'Producer Price Index release. Wholesale inflation data.'},
-  {name:'PPI Report',type:'ppi',date:'2026-11-12',time:'8:30 AM',impact:'high',desc:'Producer Price Index release. Wholesale inflation data.'},
-  {name:'PPI Report',type:'ppi',date:'2026-12-11',time:'8:30 AM',impact:'high',desc:'Producer Price Index release. Wholesale inflation data.'},
+  {name:'PPI Report',type:'ppi',date:'2026-11-13',time:'8:30 AM',impact:'high',desc:'Producer Price Index release. Wholesale inflation data.'},
+  {name:'PPI Report',type:'ppi',date:'2026-12-15',time:'8:30 AM',impact:'high',desc:'Producer Price Index release. Wholesale inflation data.'},
   // GDP Releases (8:30 AM) — advance, second, third estimates
   {name:'GDP (Advance)',type:'gdp',date:'2026-04-29',time:'8:30 AM',impact:'high',desc:'GDP Advance Estimate (Q1 2026). First look at economic growth. Sets the macro narrative. Wide ranges and fast moves at the open.'},
   {name:'GDP (Second)',type:'gdp',date:'2026-05-27',time:'8:30 AM',impact:'high',desc:'GDP Second Estimate (Q1 2026). Revision of first estimate.'},
@@ -3600,9 +3600,9 @@ const ECON_EVENTS = [
   {name:'GDP (Advance)',type:'gdp',date:'2026-07-29',time:'8:30 AM',impact:'high',desc:'GDP Advance Estimate (Q2 2026). First look at economic growth.'},
   {name:'GDP (Second)',type:'gdp',date:'2026-08-26',time:'8:30 AM',impact:'high',desc:'GDP Second Estimate (Q2 2026).'},
   {name:'GDP (Third)',type:'gdp',date:'2026-09-30',time:'8:30 AM',impact:'high',desc:'GDP Third Estimate (Q2 2026).'},
-  {name:'GDP (Advance)',type:'gdp',date:'2026-10-28',time:'8:30 AM',impact:'high',desc:'GDP Advance Estimate (Q3 2026).'},
-  {name:'GDP (Second)',type:'gdp',date:'2026-11-24',time:'8:30 AM',impact:'high',desc:'GDP Second Estimate (Q3 2026).'},
-  {name:'GDP (Third)',type:'gdp',date:'2026-12-22',time:'8:30 AM',impact:'high',desc:'GDP Third Estimate (Q3 2026).'},
+  {name:'GDP (Advance)',type:'gdp',date:'2026-10-29',time:'8:30 AM',impact:'high',desc:'GDP Advance Estimate (Q3 2026).'},
+  {name:'GDP (Second)',type:'gdp',date:'2026-11-25',time:'8:30 AM',impact:'high',desc:'GDP Second Estimate (Q3 2026).'},
+  {name:'GDP (Third)',type:'gdp',date:'2026-12-23',time:'8:30 AM',impact:'high',desc:'GDP Third Estimate (Q3 2026).'},
   // Core PCE (8:30 AM) — Fed's preferred inflation measure, last Friday of month
   {name:'Core PCE',type:'pce',date:'2026-03-27',time:'8:30 AM',impact:'high',desc:'Personal Consumption Expenditures Price Index. The Fed\'s preferred inflation gauge. Often the most important data point of the month for rate expectations.'},
   {name:'Core PCE',type:'pce',date:'2026-04-30',time:'8:30 AM',impact:'high',desc:'Core PCE Price Index release. Fed\'s preferred inflation measure.'},
@@ -3611,7 +3611,7 @@ const ECON_EVENTS = [
   {name:'Core PCE',type:'pce',date:'2026-07-31',time:'8:30 AM',impact:'high',desc:'Core PCE Price Index release.'},
   {name:'Core PCE',type:'pce',date:'2026-08-28',time:'8:30 AM',impact:'high',desc:'Core PCE Price Index release.'},
   {name:'Core PCE',type:'pce',date:'2026-09-25',time:'8:30 AM',impact:'high',desc:'Core PCE Price Index release.'},
-  {name:'Core PCE',type:'pce',date:'2026-10-30',time:'8:30 AM',impact:'high',desc:'Core PCE Price Index release.'},
+  {name:'Core PCE',type:'pce',date:'2026-10-29',time:'8:30 AM',impact:'high',desc:'Core PCE Price Index release.'},
   {name:'Core PCE',type:'pce',date:'2026-11-25',time:'8:30 AM',impact:'high',desc:'Core PCE Price Index release.'},
   {name:'Core PCE',type:'pce',date:'2026-12-23',time:'8:30 AM',impact:'high',desc:'Core PCE Price Index release.'},
   // Retail Sales (8:30 AM) — mid-month
@@ -3778,6 +3778,68 @@ const ECON_EVENTS = [
   {name:'Housing Starts',type:'housing',date:'2026-10-20',time:'8:30 AM',impact:'medium',desc:'Housing Starts & Building Permits release.'},
   {name:'Housing Starts',type:'housing',date:'2026-11-18',time:'8:30 AM',impact:'medium',desc:'Housing Starts & Building Permits release.'},
   {name:'Housing Starts',type:'housing',date:'2026-12-17',time:'8:30 AM',impact:'medium',desc:'Housing Starts & Building Permits release.'},
+  // -- OCT 2026 - MAR 2027 UPDATE (proj:true = agency has not published 2027 dates yet; confirm when released) --
+  {name:'FOMC Meeting Minutes',type:'fomc',date:'2026-10-07',time:'2:00 PM',impact:'high',desc:'FOMC minutes. Markets parse the language for rate-path signals. Expect a sharp move at 2:00 PM ET.'},
+  {name:'FOMC Meeting Minutes',type:'fomc',date:'2026-11-18',time:'2:00 PM',impact:'high',desc:'FOMC minutes. Markets parse the language for rate-path signals. Expect a sharp move at 2:00 PM ET.'},
+  {name:'FOMC Meeting Minutes',type:'fomc',date:'2026-12-30',time:'2:00 PM',impact:'high',desc:'FOMC minutes. Markets parse the language for rate-path signals. Expect a sharp move at 2:00 PM ET.'},
+  {name:'FOMC Meeting Minutes',type:'fomc',date:'2027-02-17',time:'2:00 PM',impact:'high',desc:'FOMC minutes. Markets parse the language for rate-path signals. Expect a sharp move at 2:00 PM ET.'},
+  {name:'FOMC Decision',type:'fomc',date:'2027-01-27',time:'2:00 PM',impact:'high',desc:'Federal Reserve interest rate decision and press conference. Expect elevated volatility around 2:00 PM ET. Widen stops or reduce size ahead of the announcement.'},
+  {name:'FOMC Decision',type:'fomc',date:'2027-03-17',time:'2:00 PM',impact:'high',desc:'Federal Reserve interest rate decision with Summary of Economic Projections (Dot Plot). Major volatility event.'},
+  {name:'Jobs Report (NFP)',type:'nfp',date:'2027-01-08',time:'8:30 AM',impact:'high',desc:'Nonfarm Payrolls release. Employment data sets the session tone. NFP week: stay alert Monday through the print.',proj:true},
+  {name:'Jobs Report (NFP)',type:'nfp',date:'2027-02-05',time:'8:30 AM',impact:'high',desc:'Nonfarm Payrolls release. Employment data sets the session tone. NFP week: stay alert Monday through the print.',proj:true},
+  {name:'Jobs Report (NFP)',type:'nfp',date:'2027-03-05',time:'8:30 AM',impact:'high',desc:'Nonfarm Payrolls release. Employment data sets the session tone. NFP week: stay alert Monday through the print.',proj:true},
+  {name:'CPI Report',type:'cpi',date:'2027-01-13',time:'8:30 AM',impact:'high',desc:'Consumer Price Index release. Inflation data drives rate expectations.',proj:true},
+  {name:'CPI Report',type:'cpi',date:'2027-02-10',time:'8:30 AM',impact:'high',desc:'Consumer Price Index release. Inflation data drives rate expectations.',proj:true},
+  {name:'CPI Report',type:'cpi',date:'2027-03-10',time:'8:30 AM',impact:'high',desc:'Consumer Price Index release. Inflation data drives rate expectations.',proj:true},
+  {name:'PPI Report',type:'ppi',date:'2027-01-14',time:'8:30 AM',impact:'high',desc:'Producer Price Index release. Wholesale inflation data.',proj:true},
+  {name:'PPI Report',type:'ppi',date:'2027-02-11',time:'8:30 AM',impact:'high',desc:'Producer Price Index release. Wholesale inflation data.',proj:true},
+  {name:'PPI Report',type:'ppi',date:'2027-03-11',time:'8:30 AM',impact:'high',desc:'Producer Price Index release. Wholesale inflation data.',proj:true},
+  {name:'GDP (Advance)',type:'gdp',date:'2027-01-28',time:'8:30 AM',impact:'high',desc:'GDP Advance Estimate (Q4 2026).',proj:true},
+  {name:'GDP (Second)',type:'gdp',date:'2027-02-25',time:'8:30 AM',impact:'high',desc:'GDP Second Estimate (Q4 2026).',proj:true},
+  {name:'GDP (Third)',type:'gdp',date:'2027-03-25',time:'8:30 AM',impact:'high',desc:'GDP Third Estimate (Q4 2026).',proj:true},
+  {name:'Core PCE',type:'pce',date:'2027-01-28',time:'8:30 AM',impact:'high',desc:'Core PCE Price Index release. Fed\'s preferred inflation gauge.',proj:true},
+  {name:'Core PCE',type:'pce',date:'2027-02-25',time:'8:30 AM',impact:'high',desc:'Core PCE Price Index release. Fed\'s preferred inflation gauge.',proj:true},
+  {name:'Core PCE',type:'pce',date:'2027-03-25',time:'8:30 AM',impact:'high',desc:'Core PCE Price Index release. Fed\'s preferred inflation gauge.',proj:true},
+  {name:'Retail Sales',type:'retail',date:'2027-01-15',time:'8:30 AM',impact:'high',desc:'Retail Sales report.',proj:true},
+  {name:'Retail Sales',type:'retail',date:'2027-02-17',time:'8:30 AM',impact:'high',desc:'Retail Sales report.',proj:true},
+  {name:'Retail Sales',type:'retail',date:'2027-03-16',time:'8:30 AM',impact:'high',desc:'Retail Sales report.',proj:true},
+  {name:'ISM Manufacturing',type:'ism',date:'2027-01-04',time:'10:00 AM',impact:'high',desc:'ISM Manufacturing PMI release.',proj:true},
+  {name:'ISM Manufacturing',type:'ism',date:'2027-02-01',time:'10:00 AM',impact:'high',desc:'ISM Manufacturing PMI release.',proj:true},
+  {name:'ISM Manufacturing',type:'ism',date:'2027-03-01',time:'10:00 AM',impact:'high',desc:'ISM Manufacturing PMI release.',proj:true},
+  {name:'Jobless Claims',type:'claims',date:'2026-12-31',time:'8:30 AM',impact:'medium',desc:'Weekly initial unemployment claims.'},
+  {name:'Jobless Claims',type:'claims',date:'2027-01-07',time:'8:30 AM',impact:'medium',desc:'Weekly initial unemployment claims.'},
+  {name:'Jobless Claims',type:'claims',date:'2027-01-14',time:'8:30 AM',impact:'medium',desc:'Weekly initial unemployment claims.'},
+  {name:'Jobless Claims',type:'claims',date:'2027-01-21',time:'8:30 AM',impact:'medium',desc:'Weekly initial unemployment claims.'},
+  {name:'Jobless Claims',type:'claims',date:'2027-01-28',time:'8:30 AM',impact:'medium',desc:'Weekly initial unemployment claims.'},
+  {name:'Jobless Claims',type:'claims',date:'2027-02-04',time:'8:30 AM',impact:'medium',desc:'Weekly initial unemployment claims.'},
+  {name:'Jobless Claims',type:'claims',date:'2027-02-11',time:'8:30 AM',impact:'medium',desc:'Weekly initial unemployment claims.'},
+  {name:'Jobless Claims',type:'claims',date:'2027-02-18',time:'8:30 AM',impact:'medium',desc:'Weekly initial unemployment claims.'},
+  {name:'Jobless Claims',type:'claims',date:'2027-02-25',time:'8:30 AM',impact:'medium',desc:'Weekly initial unemployment claims.'},
+  {name:'Jobless Claims',type:'claims',date:'2027-03-04',time:'8:30 AM',impact:'medium',desc:'Weekly initial unemployment claims.'},
+  {name:'Jobless Claims',type:'claims',date:'2027-03-11',time:'8:30 AM',impact:'medium',desc:'Weekly initial unemployment claims.'},
+  {name:'Jobless Claims',type:'claims',date:'2027-03-18',time:'8:30 AM',impact:'medium',desc:'Weekly initial unemployment claims.'},
+  {name:'Jobless Claims',type:'claims',date:'2027-03-25',time:'8:30 AM',impact:'medium',desc:'Weekly initial unemployment claims.'},
+  {name:'ISM Services PMI',type:'ism',date:'2027-01-06',time:'10:00 AM',impact:'medium',desc:'ISM Services PMI release.',proj:true},
+  {name:'ADP Employment',type:'adp',date:'2027-01-06',time:'8:15 AM',impact:'medium',desc:'ADP private payrolls report. NFP week: sets expectations for Friday.',proj:true},
+  {name:'ISM Services PMI',type:'ism',date:'2027-02-03',time:'10:00 AM',impact:'medium',desc:'ISM Services PMI release.',proj:true},
+  {name:'ADP Employment',type:'adp',date:'2027-02-03',time:'8:15 AM',impact:'medium',desc:'ADP private payrolls report. NFP week: sets expectations for Friday.',proj:true},
+  {name:'ISM Services PMI',type:'ism',date:'2027-03-03',time:'10:00 AM',impact:'medium',desc:'ISM Services PMI release.',proj:true},
+  {name:'ADP Employment',type:'adp',date:'2027-03-03',time:'8:15 AM',impact:'medium',desc:'ADP private payrolls report. NFP week: sets expectations for Friday.',proj:true},
+  {name:'Consumer Confidence',type:'sentiment',date:'2027-01-26',time:'10:00 AM',impact:'medium',desc:'CB Consumer Confidence Index release.',proj:true},
+  {name:'Consumer Confidence',type:'sentiment',date:'2027-02-23',time:'10:00 AM',impact:'medium',desc:'CB Consumer Confidence Index release.',proj:true},
+  {name:'Consumer Confidence',type:'sentiment',date:'2027-03-30',time:'10:00 AM',impact:'medium',desc:'CB Consumer Confidence Index release.',proj:true},
+  {name:'UMich Sentiment',type:'sentiment',date:'2027-01-15',time:'10:00 AM',impact:'medium',desc:'UMich Sentiment release.',proj:true},
+  {name:'UMich Sentiment',type:'sentiment',date:'2027-01-29',time:'10:00 AM',impact:'medium',desc:'UMich Sentiment release.',proj:true},
+  {name:'UMich Sentiment',type:'sentiment',date:'2027-02-12',time:'10:00 AM',impact:'medium',desc:'UMich Sentiment release.',proj:true},
+  {name:'UMich Sentiment',type:'sentiment',date:'2027-02-26',time:'10:00 AM',impact:'medium',desc:'UMich Sentiment release.',proj:true},
+  {name:'UMich Sentiment',type:'sentiment',date:'2027-03-12',time:'10:00 AM',impact:'medium',desc:'UMich Sentiment release.',proj:true},
+  {name:'UMich Sentiment',type:'sentiment',date:'2027-03-26',time:'10:00 AM',impact:'medium',desc:'UMich Sentiment release.',proj:true},
+  {name:'Durable Goods Orders',type:'durable',date:'2027-01-27',time:'8:30 AM',impact:'medium',desc:'Durable Goods Orders release.',proj:true},
+  {name:'Durable Goods Orders',type:'durable',date:'2027-02-25',time:'8:30 AM',impact:'medium',desc:'Durable Goods Orders release.',proj:true},
+  {name:'Durable Goods Orders',type:'durable',date:'2027-03-25',time:'8:30 AM',impact:'medium',desc:'Durable Goods Orders release.',proj:true},
+  {name:'Housing Starts',type:'housing',date:'2027-01-20',time:'8:30 AM',impact:'medium',desc:'Housing Starts & Building Permits release.',proj:true},
+  {name:'Housing Starts',type:'housing',date:'2027-02-17',time:'8:30 AM',impact:'medium',desc:'Housing Starts & Building Permits release.',proj:true},
+  {name:'Housing Starts',type:'housing',date:'2027-03-17',time:'8:30 AM',impact:'medium',desc:'Housing Starts & Building Permits release.',proj:true},
 ];
 
 function getAstroAlerts(dateStr){
@@ -4883,6 +4945,35 @@ function refreshNews(btn){
   }, 400);
 }
 
+// NFP WEEK -- Non-Farm Payrolls awareness banner, shown Mon-Fri of every NFP week
+function nfpWeekBanner(dateStr){
+  const d = new Date(dateStr+'T12:00:00');
+  const dow = d.getDay();
+  if(dow === 0 || dow === 6) return '';
+  const iso = x => x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0');
+  const mon = new Date(d); mon.setDate(d.getDate()-(dow-1));
+  const fri = new Date(mon); fri.setDate(mon.getDate()+4);
+  const a = iso(mon), b = iso(fri);
+  const nfp = ECON_EVENTS.find(e => e.type === 'nfp' && e.date >= a && e.date <= b);
+  if(!nfp) return '';
+  const nd = new Date(nfp.date+'T12:00:00');
+  const diff = Math.round((nd - d)/86400000);
+  const wd = x => new Date(x+'T12:00:00').toLocaleDateString([],{weekday:'short'});
+  const status = diff > 0 ? (diff+' day'+(diff>1?'s':'')+' to the print') : diff === 0 ? 'Releases TODAY' : 'Released - watch follow-through';
+  const related = ECON_EVENTS.filter(e => e.date >= a && e.date <= b && ['adp','claims','nfp'].includes(e.type)).sort((x,y) => x.date.localeCompare(y.date));
+  const rows = related.map(e => `<div style="font-size:12px;color:#aaa;line-height:1.7;"><span style="color:#2563eb;font-weight:700;display:inline-block;width:34px;">${wd(e.date)}</span>${e.name} &middot; ${e.time} ET${e.proj?' (proj.)':''}</div>`).join('');
+  const ph = getMoonPhase(new Date(nfp.date+'T12:00:00Z'));
+  const moon = ['Full Moon','First Quarter','Waxing Gibbous','New Moon'].includes(ph.name) ? `<div style="font-size:12px;color:#b91c1c;line-height:1.6;margin-top:8px;">NFP lands on a <strong>${ph.name}</strong> - a potent phase. Expect amplified reactions and reversals at extremes.</div>` : '';
+  return `<div style="padding:12px 14px;background:rgba(37,99,235,0.12);border-left:3px solid #2563eb;margin-bottom:10px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;">
+      <span style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#2563eb;">NFP Week &middot; Non-Farm Payrolls ${wd(nfp.date)} ${nd.toLocaleDateString([],{month:'short',day:'numeric'})}</span>
+      <span style="font-size:10px;font-weight:700;color:#b91c1c;white-space:nowrap;">${status}</span>
+    </div>
+    <div style="font-size:13px;color:#999;line-height:1.6;margin-bottom:8px;">Employment data sets the market's tone all week. Positioning gets cautious into the print - ranges can tighten early, then expand hard at ${nfp.time} ET. Size down, widen stops, and don't chase the initial spike.</div>
+    ${rows}${moon}
+  </div>`;
+}
+
 function renderAstroAlerts(dateStr){
   const el = document.getElementById('astroAlerts');
   if(!el) return;
@@ -4896,7 +4987,8 @@ function renderAstroAlerts(dateStr){
   // ── ECONOMIC NEWS → econAlerts container ──
   const econEl = document.getElementById('econAlerts');
   if(econEl){
-    let econHtml = '';
+    let econHtml = nfpWeekBanner(dateStr);
+    const nfpWeekHtml = econHtml;
     const todayEcon = ECON_EVENTS.filter(ev => ev.date === dateStr);
     const econDate = new Date(dateStr+'T12:00:00Z');
 
@@ -4920,7 +5012,7 @@ function renderAstroAlerts(dateStr){
         econHtml += `<div style="padding:12px 14px;background:${bg};border-left:3px solid ${c};margin-bottom:8px;">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
             <span style="font-size:16px;">${typeIcon[ev.type]||'📅'}</span>
-            <span style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:${c};">⚡ ${ev.name} · ${ev.time} ET</span>
+            <span style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:${c};">⚡ ${ev.name} · ${ev.time} ET${ev.proj?' (proj.)':''}</span>
           </div>
           <div style="font-size:13px;color:#999;line-height:1.6;">${ev.desc}</div>
         </div>`;
@@ -4931,7 +5023,7 @@ function renderAstroAlerts(dateStr){
           <span style="font-size:14px;">${typeIcon[ev.type]||'📅'}</span>
           <div style="flex:1;">
             <span style="font-size:12px;font-weight:600;color:#ccc;">${ev.name}</span>
-            <span style="font-size:11px;color:#666;margin-left:8px;">${ev.time} ET</span>
+            <span style="font-size:11px;color:#666;margin-left:8px;">${ev.time} ET${ev.proj?' (proj.)':''}</span>
           </div>
           <span style="font-size:10px;color:#c2570a;font-weight:600;">MED</span>
         </div>`;
@@ -4955,7 +5047,7 @@ function renderAstroAlerts(dateStr){
     }
 
     if(todayEcon.length === 0){
-      econHtml = '';
+      econHtml = nfpWeekHtml;
     }
 
     econEl.innerHTML = econHtml;
@@ -4984,7 +5076,7 @@ function renderAstroAlerts(dateStr){
             <span style="font-size:14px;">${typeIcon[ev.type]||'📅'}</span>
             <div style="flex:1;">
               <div style="font-size:13px;font-weight:${isHigh?'700':'500'};color:${isHigh?'#fff':'#aaa'};">${ev.name}${moonTag}${impTag}</div>
-              <div style="font-size:11px;color:#555;">${fmtD(ev.date)} · ${ev.time} ET</div>
+              <div style="font-size:11px;color:#555;">${fmtD(ev.date)} · ${ev.time} ET${ev.proj?' (proj.)':''}</div>
             </div>
             <span style="font-size:11px;font-weight:600;color:${c};">In ${diff}d</span>
           </div>`;
