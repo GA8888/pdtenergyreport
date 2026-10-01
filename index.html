@@ -504,6 +504,35 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
   font-size:16px;color:var(--muted);
 }
 
+
+/* TOP ALERT STRIP -- NFP week + Moon sign change */
+#topAlerts{background:#fff;}
+#topAlerts:empty{display:none;}
+.ta{--ta:#2563eb;border-bottom:1px solid var(--rule);border-left:3px solid var(--ta);padding:10px 16px 10px 14px;cursor:pointer;background:#fff;font-family:'DM Sans',sans-serif;-webkit-tap-highlight-color:transparent;}
+.ta.moon{--ta:#7c3aed;}
+.ta-top{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.ta-lab{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--ta);}
+.ta-tag{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#fff;background:var(--ta);padding:3px 7px;border-radius:2px;white-space:nowrap;}
+.ta-tag.hot{background:#b91c1c;}
+.ta-tag.dim{background:#9ca3af;}
+.ta-line{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:4px;}
+.ta-main{font-size:14px;font-weight:600;color:#111;line-height:1.4;}
+.ta-main span{color:#6b7280;font-weight:500;}
+.ta-chev{font-size:10px;color:#9ca3af;transition:transform .2s;flex:none;}
+.ta.open .ta-chev{transform:rotate(180deg);}
+.ta-more{display:none;margin-top:8px;padding-top:8px;border-top:1px solid var(--rule);font-size:12px;line-height:1.65;color:#555;}
+.ta.open .ta-more{display:block;}
+.ta-more .ta-sched{display:flex;gap:10px;color:#444;}
+.ta-more .ta-sched b{width:30px;color:var(--ta);}
+.ta-more .ta-warn{margin-top:6px;color:#b91c1c;}
+/* dark variant (Be Aware section) */
+.ta.dark{--ta:#3b82f6;background:rgba(255,255,255,0.03);border-bottom:none;margin-bottom:8px;}
+.ta.moon.dark{--ta:#a78bfa;}
+.ta.dark .ta-main{color:#e5e5e5;}
+.ta.dark .ta-main span{color:#888;}
+.ta.dark .ta-more{color:#999;border-top-color:#2a2a2a;}
+.ta.dark .ta-more .ta-sched{color:#bbb;}
+.ta.dark .ta-chev{color:#666;}
 </style>
 </head>
 <body id="top">
@@ -530,6 +559,9 @@ html,body{width:100%;overflow-x:hidden;background:#fff;color:#000;font-family:'D
   </div>
   <div class="why-grid" id="whyGrid"></div>
 </div>
+
+<!-- ALERTS under the score banner: NFP week + moon sign change -->
+<div id="topAlerts"></div>
 
 <!-- DATE BAR -->
 <div class="datebar">
@@ -4945,36 +4977,89 @@ function refreshNews(btn){
   }, 400);
 }
 
-// NFP WEEK -- Non-Farm Payrolls awareness banner, shown Mon-Fri of every NFP week
-function nfpWeekBanner(dateStr){
+// -- TOP ALERT STRIP: NFP week + Moon sign change ------------------------------
+function toggleTA(el){ el.classList.toggle('open'); }
+
+function buildTopAlerts(dateStr, dark){
+  const out = [];
   const d = new Date(dateStr+'T12:00:00');
   const dow = d.getDay();
-  if(dow === 0 || dow === 6) return '';
+  const isWeekend = dow === 0 || dow === 6;
   const iso = x => x.getFullYear()+'-'+String(x.getMonth()+1).padStart(2,'0')+'-'+String(x.getDate()).padStart(2,'0');
-  const mon = new Date(d); mon.setDate(d.getDate()-(dow-1));
-  const fri = new Date(mon); fri.setDate(mon.getDate()+4);
-  const a = iso(mon), b = iso(fri);
-  const nfp = ECON_EVENTS.find(e => e.type === 'nfp' && e.date >= a && e.date <= b);
-  if(!nfp) return '';
-  const nd = new Date(nfp.date+'T12:00:00');
-  const diff = Math.round((nd - d)/86400000);
-  const wd = x => new Date(x+'T12:00:00').toLocaleDateString([],{weekday:'short'});
-  const status = diff > 0 ? (diff+' day'+(diff>1?'s':'')+' to the print') : diff === 0 ? 'Releases TODAY' : 'Released - watch follow-through';
-  const related = ECON_EVENTS.filter(e => e.date >= a && e.date <= b && ['adp','claims','nfp'].includes(e.type)).sort((x,y) => x.date.localeCompare(y.date));
-  const rows = related.map(e => `<div style="font-size:12px;color:#aaa;line-height:1.7;"><span style="color:#2563eb;font-weight:700;display:inline-block;width:34px;">${wd(e.date)}</span>${e.name} &middot; ${e.time} ET${e.proj?' (proj.)':''}</div>`).join('');
-  const ph = getMoonPhase(new Date(nfp.date+'T12:00:00Z'));
-  const moon = ['Full Moon','First Quarter','Waxing Gibbous','New Moon'].includes(ph.name) ? `<div style="font-size:12px;color:#b91c1c;line-height:1.6;margin-top:8px;">NFP lands on a <strong>${ph.name}</strong> - a potent phase. Expect amplified reactions and reversals at extremes.</div>` : '';
-  return `<div style="padding:12px 14px;background:rgba(37,99,235,0.12);border-left:3px solid #2563eb;margin-bottom:10px;">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;">
-      <span style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#2563eb;">NFP Week &middot; Non-Farm Payrolls ${wd(nfp.date)} ${nd.toLocaleDateString([],{month:'short',day:'numeric'})}</span>
-      <span style="font-size:10px;font-weight:700;color:#b91c1c;white-space:nowrap;">${status}</span>
-    </div>
-    <div style="font-size:13px;color:#999;line-height:1.6;margin-bottom:8px;">Employment data sets the market's tone all week. Positioning gets cautious into the print - ranges can tighten early, then expand hard at ${nfp.time} ET. Size down, widen stops, and don't chase the initial spike.</div>
-    ${rows}${moon}
-  </div>`;
+  const wd  = x => new Date(x+'T12:00:00').toLocaleDateString([],{weekday:'short'});
+  const md  = x => new Date(x+'T12:00:00').toLocaleDateString([],{month:'short',day:'numeric'});
+  const card = (cls,label,tag,tagCls,main,more) =>
+    `<div class="ta ${cls}${dark?' dark':''}" onclick="toggleTA(this)">
+      <div class="ta-top"><span class="ta-lab">${label}</span><span class="ta-tag ${tagCls}">${tag}</span></div>
+      <div class="ta-line"><div class="ta-main">${main}</div><span class="ta-chev">&#9660;</span></div>
+      <div class="ta-more">${more}</div>
+    </div>`;
+
+  // 1) NFP WEEK -- Mon-Fri of the week containing a Non-Farm Payrolls release
+  if(!isWeekend){
+    const mon = new Date(d); mon.setDate(d.getDate()-(dow-1));
+    const fri = new Date(mon); fri.setDate(mon.getDate()+4);
+    const a = iso(mon), b = iso(fri);
+    const nfp = ECON_EVENTS.find(e => e.type === 'nfp' && e.date >= a && e.date <= b);
+    if(nfp){
+      const diff = Math.round((new Date(nfp.date+'T12:00:00') - d)/86400000);
+      const tag  = diff > 1 ? diff+' days' : diff === 1 ? 'Tomorrow' : diff === 0 ? 'Today' : 'Released';
+      const tagCls = diff === 0 ? 'hot' : diff < 0 ? 'dim' : '';
+      const rows = ECON_EVENTS.filter(e => e.date >= a && e.date <= b && ['adp','claims','nfp'].includes(e.type))
+        .sort((x,y) => x.date.localeCompare(y.date))
+        .map(e => `<div class="ta-sched"><b>${wd(e.date)}</b><span>${e.name} &middot; ${e.time} ET${e.proj?' (proj.)':''}</span></div>`).join('');
+      let moon = '';
+      try{
+        const ph = getMoonPhase(new Date(nfp.date+'T12:00:00Z'));
+        if(['Full Moon','First Quarter','Waxing Gibbous','New Moon'].includes(ph.name))
+          moon = `<div class="ta-warn">NFP lands on a ${ph.name} &mdash; potent phase. Expect amplified reactions and reversals at extremes.</div>`;
+      }catch(e){}
+      const note = diff < 0 ? 'Print is out. Watch follow-through and fade exhaustion.' : 'Employment data sets the tone all week. Positioning gets cautious into the print; ranges can tighten early, then expand hard at '+nfp.time+' ET. Size down, widen stops, don&rsquo;t chase the first spike.';
+      out.push(card('nfp','NFP Week',tag,tagCls,`Non-Farm Payrolls <span>&middot; ${wd(nfp.date)} ${md(nfp.date)} &middot; ${nfp.time} ET${nfp.proj?' (proj.)':''}</span>`,
+        note+'<div style="margin-top:6px;">'+rows+'</div>'+moon));
+    }
+  }
+
+  // 2) MOON SIGN CHANGE -- NY calendar day, minute-accurate
+  try{
+    const nth = (y,m0,n) => { const x = new Date(Date.UTC(y,m0,1)); return 1+((7-x.getUTCDay())%7)+(n-1)*7; };
+    const offH = u => { const y=u.getUTCFullYear(); const st=Date.UTC(y,2,nth(y,2,2),7), en=Date.UTC(y,10,nth(y,10,1),6); return (u>=st && u<en)?4:5; };
+    const noon = new Date(dateStr+'T17:00:00Z');
+    const start = new Date(dateStr+'T00:00:00Z').getTime() + offH(noon)*3600000;
+    const end = start + 86400000;
+    // full-precision sign at an exact instant (getMoonSign snaps to one moment per day, which would pin every ingress to 8 PM ET)
+    const signAt = t => SIGNS[Math.floor(_moonLonFull(new Date(t))/30) % 12];
+    const s0 = signAt(start), s1 = signAt(end);
+    if(s0.name !== s1.name){
+      let lo = start, hi = end;
+      while(hi-lo > 60000){ const mid = Math.floor((lo+hi)/2); if(signAt(mid).name === s0.name) lo = mid; else hi = mid; }
+      const u = new Date(hi);
+      const ny = new Date(hi - offH(u)*3600000);
+      const mins = ny.getUTCHours()*60 + ny.getUTCMinutes();
+      const h = ny.getUTCHours(), m = ny.getUTCMinutes();
+      const t = (h%12||12)+':'+String(m).padStart(2,'0')+' '+(h>=12?'PM':'AM')+' ET';
+      const s2 = signAt(hi);
+      let tag, tagCls = '', note;
+      if(isWeekend){ tag='Market closed'; tagCls='dim'; note='Weekend change. The new sign sets the tone into the next session.'; }
+      else if(mins >= 570 && mins < 960){ tag='In session'; tagCls='hot'; note='Change lands during the trading session. Expect a noticeable shift in tone and sentiment around '+t+'.'; }
+      else if(mins < 570){ tag='Pre-market'; note='Change occurs before the open. The new sign sets the tone for the full session.'; }
+      else { tag='After close'; tagCls='dim'; note='Change occurs after the close. The new sign sets the tone for the next session.'; }
+      out.push(card('moon','Moon Sign Change',tag,tagCls,`${s0.sym} ${s0.name} &rarr; ${s2.sym} ${s2.name} <span>&middot; ${t}</span>`,note));
+    }
+  }catch(e){}
+
+  return out.join('');
+}
+function renderTopAlerts(dateStr){
+  const el = document.getElementById('topAlerts');
+  if(!el) return;
+  const open = Array.from(el.querySelectorAll('.ta')).map(x => x.classList.contains('open'));
+  el.innerHTML = buildTopAlerts(dateStr);
+  el.querySelectorAll('.ta').forEach((x,i) => { if(open[i]) x.classList.add('open'); });
 }
 
 function renderAstroAlerts(dateStr){
+  renderTopAlerts(dateStr);
   const el = document.getElementById('astroAlerts');
   if(!el) return;
   const {active, upcoming, shadows} = getAstroAlerts(dateStr);
@@ -4987,8 +5072,7 @@ function renderAstroAlerts(dateStr){
   // ── ECONOMIC NEWS → econAlerts container ──
   const econEl = document.getElementById('econAlerts');
   if(econEl){
-    let econHtml = nfpWeekBanner(dateStr);
-    const nfpWeekHtml = econHtml;
+    let econHtml = '';
     const todayEcon = ECON_EVENTS.filter(ev => ev.date === dateStr);
     const econDate = new Date(dateStr+'T12:00:00Z');
 
@@ -5047,10 +5131,11 @@ function renderAstroAlerts(dateStr){
     }
 
     if(todayEcon.length === 0){
-      econHtml = nfpWeekHtml;
+      econHtml = '';
     }
 
-    econEl.innerHTML = econHtml;
+    // NFP week + moon sign change also live here (same cards as the top strip, dark theme)
+    econEl.innerHTML = buildTopAlerts(dateStr, true) + econHtml;
 
     // ── Upcoming events (econ) → upcomingAlerts container ──
     const upcomingEl = document.getElementById('upcomingAlerts');
@@ -5162,23 +5247,7 @@ function renderAstroAlerts(dateStr){
       ? `<span style="color:#a78bfa;font-size:12px;font-weight:700;">⚡ DURING TRADING SESSION</span> — expect a noticeable shift in market tone and sentiment around this time.`
       : `Change occurs <strong style="color:#fff;">${ingressNYMins < 9*60+30 ? 'before' : 'after'} market hours</strong>. The new sign's energy sets the tone for ${ingressNYMins < 9*60+30 ? 'the full session today' : 'tomorrow\'s session'}.`;
 
-    const econEl2 = document.getElementById('econAlerts');
-    if(econEl2){
-      const ingressHtml = `<div style="padding:14px 16px;background:rgba(139,92,246,0.1);border-left:3px solid #7c3aed;margin-bottom:10px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-          <span style="font-size:18px;">🌙</span>
-          <span style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#a78bfa;">Moon Sign Change</span>
-        </div>
-        <div style="font-size:14px;color:#ccc;line-height:1.6;margin-bottom:6px;">
-          <strong style="color:#fff;">${signBefore.sym} ${signBefore.name}</strong>
-          <span style="color:#7c3aed;font-size:16px;margin:0 8px;">→</span>
-          <strong style="color:#fff;">${signAfter.sym} ${signAfter.name}</strong>
-          &nbsp;at&nbsp;<strong style="color:#a78bfa;font-size:15px;">${timeStr}</strong>
-        </div>
-        <div style="font-size:12px;color:#888;line-height:1.6;">${sessionNote}</div>
-      </div>`;
-      econEl2.innerHTML = ingressHtml + econEl2.innerHTML;
-    }
+    // (Moon sign change alert now renders in the top alert strip -- see renderTopAlerts)
   }
 
   // ── ASTRO EVENTS → astroAlerts container ──
